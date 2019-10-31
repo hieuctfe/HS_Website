@@ -1,0 +1,56 @@
+#thumb-header {
+	width: 100%;
+	padding: 30px 0;
+	background: #fff;
+	text-align: center;
+	box-shadow: 0px 2px 6px #cacaca;
+	position: relative;
+}
+#thumb-header .btn {
+	position: absolute;
+	right: 0;
+	top: 23px;
+}
+#thumb-header h6 {
+	padding-top: 15px;
+	color: #0d1c42
+}
+.uniland-logo {
+	display: table;
+	margin: 0 auto
+}
+#thimb-box {
+	padding: 70px 0
+}
+.thumb-grid {
+	padding: 30px;
+	text-align: center
+}
+.page-title {
+	padding: 10px 0 5px 0;
+	color: #1a1a1a
+}
+.page-img {
+	padding: 0 30px;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out
+}
+.thumb-grid a.btn {
+	font-weight: 500;
+	color: #0d1c42;
+	padding: 0;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out
+}
+.thumb-grid:hover a.btn {
+	color: #90c923
+}
+.thumb-grid:hover .page-img {
+	transform: translateY(-10px)
+}

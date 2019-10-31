@@ -1,0 +1,78 @@
+﻿@model _PropertyPagination
+@{
+    string prefix = Model.Prefix;
+
+    IEnumerable<SelectListItem> cities = ViewBag.Cities as IEnumerable<SelectListItem>,
+                                districts = ViewBag.Districts as IEnumerable<SelectListItem> ??
+                                                                 Enumerable.Empty<SelectListItem>();
+}
+
+<div id="find_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="property_search_form">
+                    <form id="searchForm" action="@Url.Action("Index", "Property")" method="get" class="property_filter_input">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                @Html.DropDownList($"{prefix}{nameof(Model.City)}", cities,
+                                $"Thành Phố", new
+                                {
+                                    @class = "selectpicker form-control",
+                                    id = nameof(Model.City)
+                                })
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                @if (!cities.Any(x => x.Selected))
+                                {
+                                    @Html.DropDownList($"{prefix}{nameof(Model.District)}", districts, $"{Html.DisplayNameFor(x => x.District)}", new
+                                     {
+                                        @class = "selectpicker form-control",
+                                        id = nameof(Model.District),
+                                        disabled = "True"
+                                    })
+                                }
+                                else
+                                {
+                                    @Html.DropDownList($"{prefix}{nameof(Model.District)}", districts, $"{Html.DisplayNameFor(x => x.District)}", new
+                                     {
+                                        @class = "selectpicker form-control",
+                                        id = nameof(Model.District),
+                                    })
+                                }
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                @Html.DropDownList($"{prefix}{nameof(Model.Status)}", ViewBag.Statuses as IEnumerable<SelectListItem>,
+                                $"Trạng Thái", new
+                                {
+                                    @class = "selectpicker form-control",
+                                    id = nameof(Model.Status)
+                                })
+                            </div>
+                            <div class="col-md-3 col-sm-6 hidden-sm hide-visibility">
+                                <input type="text" name="trash" class="form-control" />
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                @Html.DropDownList($"{prefix}{nameof(Model.Type)}", ViewBag.Types as IEnumerable<SelectListItem>,
+                                $"Loại Hình", new
+                                {
+                                    @class = "selectpicker form-control",
+                                    id = nameof(Model.Type)
+                                })
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <input placeholder="Giá Thấp Nhất" class="form-control" name="@($"{prefix}{nameof(Model.FromPriceValue)}")" id="@nameof(Model.FromPriceValue)" value="@Model.FromPriceValue" />
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <input placeholder="Giá Cao Nhất" class="form-control" name="@($"{prefix}{nameof(Model.ToPriceValue)}")" id="@nameof(Model.ToPriceValue)" value="@Model.ToPriceValue" />
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <input type="submit" name="search" class=" btn btn-default" value="Tìm Kiếm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

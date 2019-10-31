@@ -1,0 +1,4647 @@
+/**
+
+* Template Name: Uniland - Real Estate HTML5 Template 
+* Version: 1.0.6
+* Author: Unicoder
+* Email: unicoder16@gmail.com
+* Developed By: Unicoder
+* Last Update: 6th November, 2018
+* Author URL: www.unicoderbd.com
+
+**/
+
+/*======================= 
+Fonts and Files 
+=========================*/
+/*	
+	Google Fonts Documentation link
+	https://developers.google.com/fonts/docs/getting_started 	
+*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,500i,600,600i,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i');
+
+
+/*======================= 
+Import CSS Files 
+========================*/
+@import url('animate.min.css');
+@import url('jquery.fancybox.css');
+@import url('owl.css');
+
+
+/*===================================================
+Table of CSS Content arrage with every section name
+=====================================================
+1. Default CSS
+2. Top Header CSS
+3. Nav Header CSS
+4. Slider CSS
+5. Slider Animation css
+6. Find Part / Property Search Home Page
+7. Offer Part / Service Feature
+8. Recent property Section
+9. Service Section CSS
+10. Featured Property Section
+11. Booking Home Banner Section
+12. Our Team Section CSS
+13. Client Feedback Section CSS
+14. Recent News and News Thumbnail CSS
+15. Register Banner CSS
+16. Footer CSS
+17. Bottom Footer CSS
+18. Page Banner and Title
+19. About Us Page
+	19.1 Who We Are CSS Start
+	19.2 About Description CSS Start
+20. Blog List Page
+21. Blog Sidebar CSS
+22. Blog Grid Page
+23. Blog Detail page Start
+24. Property Grid Page
+	24.1 Property Filter CSS
+	24.2 Property Thumbnail CSS
+25. Property Sidebar
+26. Property List Page Start
+27. Agents Page CSS
+28. Agent Profile Page CSS
+29. Properties Search Page CSS
+30. Contact Page CSS
+31. Error Page CSS
+32. Service Page CSS
+33. Submit Property Page CSS
+34. Single Property Page CSS
+35. My Account CSS
+36. Modal-Box Popup CSS
+37. FAQ Page CSS
+38. Terms And Condition CSS
+39. Home Page 2 CSS
+40. Offer Style 2 CSS
+41. Popular Property and Location
+42. Service Section Style 2
+43. Achivment Section
+44. Submit Property Banner
+45. Client Feedback Style 2
+46. Home Page Style 3
+47. Home page Style 4
+48. Offer Style 3
+49. Feature Property Tab
+50. Popular Locations Section
+51. Service Section Style 3
+52. Home Page Style 5
+53. Pricing Table
+54. Extra Information Pages
+
+======================================================*/
+
+/*=======================
+1. Default CSS 
+=========================*/
+body {
+ font-size: 14px;
+ color: #818181;
+ font-family: 'Raleway', sans-serif;
+ line-height: 26px;
+ font-weight: 400;
+ background: #f5f5f5;
+ overflow-x: hidden
+}
+a{
+ text-decoration:none;
+ cursor:pointer
+}
+a:hover, a:focus, a:visited{
+ text-decoration:none;
+ outline:none
+}
+h1, h2, h3, h4, h5, h6{
+ font-family: 'Montserrat', sans-serif;
+ margin:0px;
+ text-transform: uppercase
+}
+img{
+ width:100%
+}
+p{
+ font-size:14px;
+ line-height:26px;
+ color:#717171;
+ font-family: 'Raleway', sans-serif;
+ font-weight: 500;
+ margin-bottom:10px
+}
+ul,li{
+	list-style:none;
+	margin:0;
+	padding:0
+}
+label{
+	margin-bottom:0px
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #999;
+  opacity: 1
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #999;
+  opacity: 1
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #999;
+  opacity: 1
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #999;
+  opacity: 1
+}
+.btn-default{
+	border:none
+}
+.seccondary_btn{
+	border:none
+}
+.btn-default{
+	border: none
+}
+/*========= Form control ============*/
+.form-control {
+	background: #fdfdfd;
+	border: 1px solid #ececec;
+	font-family: "Montserrat",sans-serif;
+	font-weight: 400;
+	padding: 9px 20px;
+	text-align: left;
+	width: 100%;
+	margin-bottom: 20px;
+	color: #999
+}
+textarea {
+	background: #fdfdfd;
+	border: 1px solid #ececec;
+	resize: none;
+	min-height: 130px
+}
+.login_and_Signup {
+	background: #f1f1f1
+}
+a.btn-link {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	text-decoration: none
+}
+.btn {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 14px;
+	text-transform: uppercase;
+	display: inline-block;
+	text-shadow: none;
+	cursor:pointer;
+	border: 2px solid transparent;
+	padding: 8px 25px;
+}
+.bootstrap-select > select {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	z-index: -1;
+	left: 0;
+	margin: 0
+}
+.bootstrap-select.form-control {
+	padding: 0;
+	margin-bottom: 20px;
+	min-height: 100%;
+	border: none
+}
+.bootstrap-select .btn-option {
+	width: 100%;
+	text-align: left;
+	padding: 9px 20px;
+	background: #fdfdfd;
+    border: 1px solid #ececec;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400
+}
+.bootstrap-select > .dropdown-menu {
+	width: 100%;
+	background: #fdfdfd;
+	border: 1px solid #ececec;
+	box-shadow: none;
+	margin-top: -1px;
+	border-top: none;
+	padding: 0 10px 10px 10px;
+	min-width: 100%
+}
+.bootstrap-select .dropdown-menu.inner {
+	position: static;
+	background: transparent;
+	box-shadow: none;
+	width: 100%;
+	min-width: 100%
+}
+.bootstrap-select .dropdown-menu.inner li a {
+	color: #a1a1a1;
+	padding: 0 10px
+}
+.bootstrap-select .dropdown-menu.inner li a:hover,
+.bootstrap-select .dropdown-menu.inner li a:focus {
+	color: #fff
+}
+.bootstrap-select.open .dropdown-menu {
+	display: block;
+}
+.bootstrap-select .caret {
+	float: right;
+	margin-top: 12px
+}
+.bootstrap-select .bs-searchbox input {
+	height: 40px;
+	margin-bottom: 10px;
+	padding: 0 10px;
+	background: #fff
+}
+.bootstrap-select.open .caret {
+	transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+}
+
+.submit_property > a, 
+.scroll-btn, .btn, 
+.btn-link, 
+.fileupload-example-label, 
+.radio_check label,
+.list_table tbody tr td a,
+.sidebar_img .quantity,
+.member-name,
+.team_img img,
+.post-title,
+.btn-read {
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out
+}
+.section_title_blue,.section_title_white{
+	display: inline-block;
+	width: 100%
+}
+.section_title_blue,
+.section_title_white,
+.section_title_green {
+	line-height:50px
+}
+section {
+	padding: 80px 0
+}
+#profile_setting {
+	padding: 80px 0
+}
+#slider, #slider-fixed {
+	padding: 0;
+	margin-top: 125px
+}
+.page_title{
+	color: #fff
+}
+.third_title > h4{
+	font-size:22px;
+	font-weight:600;
+	text-transform:uppercase;
+	line-height:40px
+}
+.title-row{
+	display: table;
+	width: 100%;
+	padding-bottom: 20px
+}
+.innner_title{
+	line-height:40px
+}
+.sub-title{
+	width: 100%;
+	padding-left: 15%;
+	padding-right: 15%
+}
+.sub-title p{
+	padding: 15px 0;
+	font-size: 15px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	text-align: center
+}
+.socail_area > ul > li {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 2px;
+	text-align: center;
+	width: 30px
+}
+.socail_area > ul > li > a{
+	font-size:13px;
+	display:block;
+	color: #fff
+}
+.post-title, 
+.property-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 30px
+}
+.property-text > span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 30px;
+	display: inline-block;
+	width: 100%
+}
+.property-text blockquote {
+	font-style: normal;
+	padding-left: 0;
+	color: #717171
+}
+.property-title {
+	text-transform: inherit;
+	font-weight: 500;
+	-moz-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-webkit-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	transition: all 300ms ease
+}
+.property_list .property-title {
+	display: inline-block
+}
+.owl-theme .owl-dots .owl-dot,
+.scroll-to-top {
+	display: none
+}
+#our_team .owl-theme .owl-controls,
+#recent_property .owl-theme .owl-controls,  
+#featured .owl-theme .owl-controls
+{
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: -64px
+}
+.owl-theme .owl-controls .owl-nav [class*="owl-"]
+ {
+	cursor: pointer;
+	display: inline-block;
+	font-size: 18px;
+	height: 38px;
+	line-height: 36px;
+	margin-left: 5px;
+	text-align: center;
+	width: 38px
+}
+.sidebar-widget .owl-theme .owl-controls
+{
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: -50px
+}
+.sidebar-widget .owl-theme .owl-controls .owl-nav [class*="owl-"]{
+	cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    height: 35px;
+    line-height: 33px;
+    margin-left: 5px;
+    text-align: center;
+    width: 35px 
+}
+.owl-theme .owl-controls .owl-nav [class*="owl-"]{
+	color: #fff;
+	-moz-transition: all 0.2s ease;
+	-ms-transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease
+}
+.inner-title{
+	margin-bottom: 20px;
+	line-height: 35px
+}
+.detail_text .property-text{
+	padding: 0
+}
+.property_grid .hover_property ul li:first-child a,
+.property_list .hover_property ul li:first-child a{
+	position:relative;
+	opacity: 0;
+	z-index: 10;
+	-moz-transform: translateX(-50px);
+	-webkit-transform: translateX(-50px);
+	-ms-transform: translateX(-50px);
+	-o-transform: translateX(-50px);
+	transform: translateX(-50px)
+}
+.property_grid .hover_property ul li:last-child a,
+.property_list .hover_property ul li:last-child a {
+	position:relative;
+	opacity: 0;
+	z-index: 10;
+	-moz-transform: translateX(50px);
+	-webkit-transform: translateX(50px);
+	-ms-transform: translateX(50px);
+	-o-transform: translateX(50px);
+	transform: translateX(50px)
+}
+.property_grid:hover .hover_property ul li:first-child a,
+.property_grid:hover .hover_property ul li:last-child a,
+.property_list:hover .hover_property ul li:first-child a,
+.property_list:hover .hover_property ul li:last-child a{
+	opacity: 1;
+	-moz-transform: translateX(0);
+	-webkit-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+	-moz-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-webkit-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease
+}
+.color-panel {
+	position: fixed;
+	right: -225px;
+	top: 150px;
+	z-index: 999;
+	-webkit-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	-o-transition: all 500ms ease-in-out;
+	-moz-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out
+}
+.color-panel.open {
+	right: 0
+}
+.on-panel {
+	height: 45px;
+	left: -45px;
+	position: absolute;
+	top: 0;
+	width: 45px;
+	cursor: pointer
+}
+.on-panel img {
+	padding: 10px
+}
+.panel-box {
+  padding: 14px 10px 14px 20px;
+  width: 225px;
+}
+.panel-box .panel-title {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 10px
+}
+.color-box {
+	display: table;
+	width: 100%;
+	text-align: left
+}
+.color-box li{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	cursor: pointer
+}
+.scroll-btn{
+	position: fixed;
+	right: 30px;
+	bottom: 50px;
+	width: 35px;
+	height: 35px;
+	line-height: 33px;
+	text-align: center;
+	color: #fff;
+	z-index: 9
+}
+.color-panel {
+	background-color: #fff;
+}
+.color-box li.green {
+	background-color:#90c923
+}
+.color-box li.blue {
+	background-color:#44a9ff
+}
+.color-box li.red {
+	background-color:#fa5656
+}
+.color-box li.purple {
+	background-color:#9786ff
+}
+.color-box li.yellow {
+	background-color:#ffcc17
+}
+.color-box li.orange {
+	background-color:#ff9728
+}
+.color-box li.magento {
+	background-color:#ff4ab0
+}
+.color-box li.turquoise {
+	background-color:#40dcb5
+}
+.color-box li.lemon {
+	background-color:#abe645
+}
+/*===============================
+2. Top Header CSS Start 
+================================*/
+#top_header{
+	line-height:40px
+}
+.top_contact > ul > li{
+	font-size:13px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400
+}
+.top_contact > ul > li > i{
+	font-weight:bold;
+	padding-right:5px
+}
+.top_right{
+	float:right
+}
+.top_right > ul > li{
+	float:left;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:400;
+	font-size: 13px
+}
+.top_right > ul > li{
+	padding:0px 15px
+}
+.top_right > ul > li:last-child{
+	padding-right:0px
+}
+.top_right > ul > li > a:last-child{
+	padding-right:0px
+}
+.dropdown > a{
+	padding:15px 0px
+}
+.toggle_area{
+	width: 450px;
+	background: #fff
+}
+.lan-drop{
+	position:relative
+}
+.toogle_btn{
+	border-radius:0px;
+	background-color:transparent;
+	border:none;
+	font-size:13px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:400;
+	padding:15px 0px
+}
+.toogle_btn:hover{
+	background:none
+}
+.toogle_btn:focus, .toogle_btn.focus{
+	background-color:transparent
+}
+.page_title{
+	text-align:center
+}
+.toggle_close{
+	opacity:1
+}
+input[type=radio]:checked{
+  border: 5px solid #0DFF92
+}
+input[type=radio]:checked{
+  background: #0DFF92
+}
+.radio_option > label{
+  padding-right:20px;
+  padding-left:5px
+}
+.signup_option > ul > li:nth-child(1){
+	width:48%;
+	float:left
+}
+.signup_option > ul > li:nth-child(2){
+	width:48%;
+	margin-left:16px;
+	float:left
+}
+.signup_option > ul > li > .property_submit{
+	margin-bottom:16px;
+	font-weight:normal
+}
+.signup_option > ul > li > label{
+	font-size:13px;
+	font-family: 'Montserrat', sans-serif;
+	text-transform:capitalize;
+	font-weight:400;
+	padding-left:10px
+}
+.submit_area > span {
+	display: inline-block;
+	font-family: "Raleway",sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 46px;
+	text-transform: capitalize
+}
+.modal-footer{
+	text-align:center
+}
+.modal-footer > span{
+	font-size:13px;
+	text-transform:capitalize;
+	font-weight:normal;
+	font-family: 'Raleway', sans-serif;
+	display:block
+}
+.modal-footer span a{
+	display:block;
+	font-family: 'Montserrat', sans-serif
+}
+.modal-body > p{
+	font-family: 'Montserrat', sans-serif;
+	text-transform:capitalize;
+	padding-bottom:20px
+}
+.modal-header .inner-title{
+	text-transform: inherit;
+	margin:0;
+	color: #fff;
+	font-weight: 500
+}
+.login_option ul li .property_submit{
+	text-align:center;
+}
+.login_option ul li .btn-default{
+	width:100%;
+	text-align:center
+}
+.lan-drop.open .dropdown-menu{
+	display: block
+}
+.top_right ul li .dropdown-menu{
+	min-width: auto;
+	background-color: #fff;
+	margin: 0;
+	border: none
+}
+.top_right ul li .dropdown-menu > li > a{
+	text-transform: uppercase;
+	font-size: 13px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:500;
+	line-height: 30px;
+	padding:0 20px
+}
+/*---- Header Fixed CSS ----*/
+#header.fixed-header #top_header {
+    display: none
+}
+#header.fixed-header {
+    background-color: rgba(0, 0, 0, 1);
+	z-index: 999
+}
+#header {
+    animation-fill-mode: both;
+    width: 100%;
+    z-index: 999;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+@keyframes menu_sticky {
+0% {
+    margin-top: -100px
+}
+50% {
+    margin-top: -90px
+}
+100% {
+    margin-top: 0
+}
+}
+@keyframes menu_sticky {
+0% {
+    margin-top: -100px
+}
+50% {
+    margin-top: -90px
+}
+100% {
+    margin-top: 0
+}
+}
+#header.fixed-header {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2)
+}
+#header.fixed-header {
+  animation-duration: 1s;
+  animation-name: menu_sticky;
+  animation-timing-function: ease-out;
+  left: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100
+}
+#header.fixed-header #nav_header {
+	min-height: 65px;
+	background: #fff
+}
+#header.fixed-header .navbar-brand,
+#header.fixed-header .nav_text > li > a {
+	line-height: 65px
+}
+#header.fixed-header .submit_property {
+	padding-top: 8px;
+	padding-bottom: 8px
+}
+
+/*---- For where navigation under the map and not used nav fixed ----*/
+.nav-down #header{
+	position: static
+}
+.nav-down #header.fixed-header{
+	position: static;
+	animation: none
+}
+.nav-down #map-banner{
+	margin-top: 0
+}
+.nav-down #header.fixed-header .nav_text > li > a {
+	line-height: 85px
+}
+.nav-down #header.fixed-header #nav_header{
+	min-height: 85px;
+	background: #f5f5f5
+}
+/*===============================
+3. Nav Header CSS Start 
+================================*/
+#nav_header{
+	min-height:85px
+}
+.navbar-default .navbar-nav li a {
+	color: #444
+}
+.nav_text > li > a{
+	font-family: 'Montserrat', sans-serif;
+	font-weight:400;
+	line-height:86px;
+	padding:0 20px;
+	font-size: 14px
+}
+.navbar-nav li a .fa.fa-caret-down {
+  font-size: 10px;
+}
+.nav li {
+	position: relative
+}
+.dropdown-menu {
+	position: absolute;
+	z-index: 1000;
+	left: 0;
+	top: 100%;
+	float: left;
+	min-width: 200px;
+	display: none;
+	padding: 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: none;
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .175);
+	box-shadow: 0 3px 8px rgba(0, 0, 0, .175)
+}
+.dropdown-menu ul {
+	position: absolute;
+	z-index: 1000;
+	left: 100%;
+	top: 100%;
+	float: left;
+	min-width: 200px;
+	display: none;
+	padding: 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: none;
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .175);
+	box-shadow: 0 3px 8px rgba(0, 0, 0, .175)
+}
+.dropdown-menu li a {
+	display: block;
+	padding: 0 20px;
+	clear: both;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 40px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	white-space: nowrap
+}
+.dropdown-menu li a i {
+	position: absolute;
+	right: 20px;
+	text-align: right;
+	top: 12px;
+}
+.nav-down #header.fixed-header .submit_property,
+.submit_property {
+  float: right;
+  padding: 18px 0;
+  padding-left: 30px
+}
+.submit_property > a{
+	font-size:14px;
+	font-family: 'Montserrat', sans-serif;
+	padding:12px 20px;
+	font-weight:500;
+	position:relative;
+	display:inline-block;
+	float:right;
+	color: #fff
+}
+.submit_property > a > i {
+	position: absolute;
+	font-size: 11px;
+	padding: 6px 7px 6px 8px;
+	border: 3px solid;
+	border-radius: 100%;
+	top: 11px;
+	left: -15px;
+	display: none
+}
+.my_nav{
+	padding:0px
+}
+
+
+/*==============================
+4. Slider CSS Start 
+================================*/
+.item{
+	position:relative
+}
+.carousel-inner .item:before{
+	content:"";
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	width:100%;
+	height: 100%
+}
+.lef_btn, .right_btn{
+	text-transform:uppercase;
+	border:2px solid;
+	padding:5px 15px;
+	font-family: 'Montserrat', sans-serif;
+	font-size:14px;
+	font-weight:600;
+	position:absolute;
+	top:45%
+}
+.carousel_positon{
+	position:relative
+}
+.lef_btn{
+	left:20px
+}
+.right_btn{
+	right:20px
+}
+.carousel-indicators li{
+	border-radius:0px;
+	height:3px;
+	width:50px;
+	border-color:transparent
+}
+.carousel-indicators li.active{
+	border-radius:0px;
+	height:3px;
+	width:50px;
+	border-color:transparent;
+	margin:1px
+}
+#slider .carousel-caption{
+	top: 50%;
+	width: 100%;
+	margin: 0 auto;
+	left: 0px;
+	right: 0px;
+	-moz-transform: translate(0%,-50%);
+	-webkit-transform: translate(0%,-50%);
+	-ms-transform: translate(0%,-50%);
+	-o-transform: translate(0%,-50%);
+	transform: translate(0%,-50%)
+}
+#slider .carousel-caption > h1{
+	font-size:38px
+}
+.slider-subtitle{
+	text-transform:uppercase;
+	margin-top:30px
+}
+.slider_btn{
+	margin-top:55px
+}
+.slider_btn a{
+	margin: 0 3px
+}
+.slider_text {
+	width: 70%;
+	margin:0 auto;
+	padding: 50px 0;
+	overflow: hidden
+}
+.slider_text > p {
+	margin: 0 auto;
+	padding-top: 30px;
+	font-size: 16px;
+	padding-left: 6%;
+	padding-right: 6%;
+	font-weight: 500;
+	line-height: 28px
+}
+
+/*===============================
+5. Slider Animation css
+=================================*/
+#slider .item .property_search_form {
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	opacity: 0
+}
+#slider .item .slider_text{
+	-moz-animation-delay: 0.6s;
+	-ms-animation-delay: 0.6s;
+	-o-animation-delay: 0.6s;
+	-webkit-animation-delay: 0.6s;
+	animation-delay: 0.6s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s
+}
+#slider .item .property-text {
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+	opacity: 0
+}
+#slider .carousel-caption h1 {
+	-moz-animation-delay: 1s;
+	-ms-animation-delay: 1s;
+	-o-animation-delay: 1s;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	opacity: 0
+}
+#slider .carousel-caption .looking-for {
+	-moz-animation-delay: 2s;
+	-ms-animation-delay: 2s;
+	-o-animation-delay: 2s;
+	-webkit-animation-delay: 1.5s;
+	animation-delay: 2s;
+	opacity: 0
+}
+#slider .carousel-caption .slider_text p {
+	-moz-animation-delay: 1.6s;
+	-ms-animation-delay: 1.6s;
+	-o-animation-delay: 1.6s;
+	-webkit-animation-delay: 1.6s;
+	animation-delay: 1.6s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	opacity: 0
+}
+#slider .carousel-caption .slider-subtitle {
+	-moz-animation-delay: 2s;
+	-ms-animation-delay: 2s;
+	-o-animation-delay: 2s;
+	-webkit-animation-delay: 2s;
+	animation-delay: 2s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	opacity: 0
+}
+.carousel-caption .slider_btn {
+	animation-delay: 2s;
+	animation-duration: 1s
+}
+#slider .item.active .carousel-caption .slider_text p,
+#slider .carousel-caption .slider-subtitle,
+#slider .item.active .carousel-caption h1,
+#slider .item.active .property-text {
+	animation-name: fadeInUp;
+}
+.page-style-2 #slider .item.active .carousel-caption h1,
+#slider .item.active .looking-for {
+	animation-name: fadeInDown;
+}
+#slider .item.active .slider_text,
+#slider .item .property_search_form{
+	animation-name: fadeIn
+}
+
+/*------ use all the active class here -------*/
+#slider .item.active .carousel-caption,
+#slider .item.active .carousel-caption .slider_text p,
+#slider .carousel-caption .slider-subtitle,
+#slider .item.active .carousel-caption h1,
+#slider .item.active .property_search_form,
+#slider .item.active .property-text,
+#slider .item.active .looking-for {
+	animation-duration: 1.5s;
+	animation-fill-mode: both;
+	opacity: 1
+}
+#slider .item.active .slider_text{
+	animation-duration: 1s;
+	animation-fill-mode: both
+}
+#slider .item .carousel-caption .slider_btn{
+	opacity: 0
+}
+#slider .item.active .carousel-caption .slider_btn {
+	animation-name: fadeInUp
+}
+#slider .item.active .carousel-caption .slider_btn {
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	opacity: 1
+}
+#slider .item:nth-child(1) .carousel-caption .slider_text{
+	text-align: left;
+	float: left
+}
+#slider .item:nth-child(1) .carousel-caption .slider_text > p {
+	padding-left: 0
+}
+#slider .item:nth-child(3) .carousel-caption .slider_text {
+	text-align: right;
+	float: right
+}
+#slider .item:nth-child(3) .carousel-caption .slider_text > p {
+	padding-right: 0
+}
+
+/*========================================
+6. Find Part / Property Search Home Page
+==========================================*/
+#find_area .property_search_form {
+  padding-top: 50px;
+  padding-bottom: 30px
+}
+.find_text{ 
+	width: 80%; 
+	height: 250px; 
+	position: relative
+} 
+.find_text:before{ 
+	content:""; 
+	position: absolute; 
+	left:100%;
+	top: 0px; 
+	width: 0; 
+	height: 0; 
+	border-top: 125px solid transparent; 
+	border-left: 45px solid; 
+	border-bottom: 125px solid transparent
+}
+.find_text span{
+	font-size: 25px;
+	font-weight:700;
+	position: absolute;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	width: 280px;
+	left: 45px;
+	right: 0;
+	top: 50%;
+	line-height:35px;
+	display:block;
+	-moz-transform:translateY(-50%);
+	-webkit-transform:translateY(-50%);
+	-ms-transform:translateY(-50%);
+	-o-transform:translateY(-50%);
+	transform:translateY(-50%)
+}
+.tabs_edit{
+	border:none
+}
+#find_area .tabs_edit {
+	padding: 0 30px
+}
+.tabs_edit > li > a{
+	font-family: 'Montserrat', sans-serif;
+	font-weight:700;
+	text-transform:uppercase;
+	border-radius:0px;
+	padding:12px 25px;
+	border:none;
+	-moz-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-webkit-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease
+}
+.tabs_edit > li.active > a, 
+.tabs_edit > li.active > a:focus,
+.tabs_edit > li > a:hover{
+	border:none
+}
+.property_filter_input{
+	width: 100%
+}
+.property_filter_input input{
+	width: 100%;
+	height: 46px;
+	margin-bottom: 20px
+}
+.property_filter_input > div.row{
+	margin-left: -10px;
+	margin-right: -10px
+}
+.property_filter_input > div.row > div{
+	padding-left: 10px;
+	padding-right: 10px
+} 
+.property_filter_input input.input-address{
+    width: 100%;
+    padding: 0px 15px;
+    height: 45px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border: none;
+	color: #818181;
+	font-size: 14px;
+	background: #fff
+}
+.property_filter_input select option{
+	padding: 5px 10px;
+	color: #2a2a2a
+}
+.form_part ul li{
+	float:left;
+	padding-right:25px;
+	padding-bottom:25px
+}
+.form_area .tab-content .active{
+	display:grid
+}
+
+/*========================================
+7. Offer Part / Service Feature 
+==========================================*/
+
+#offer{
+	padding-top:80px;
+	padding-bottom: 0
+}
+.circle_area {
+  height: 60px;
+  margin-bottom: 10px;
+  position: relative;
+  text-align: center;
+  width: 60px;
+}
+#offer .circle_area::before {
+	position: absolute;
+	content: "";
+	border-width: 10px;
+	top: 50px;
+	left: 0;
+	border-style: solid;
+}
+.circle_area [class^="flaticon-"]::before, 
+.circle_area [class*=" flaticon-"]::before, 
+.circle_area [class^="flaticon-"]::after, 
+.circle_area [class*=" flaticon-"]::after {
+	color: #fff;
+    font-size: 26px;
+    height: 30px;
+    line-height: 60px;
+    margin: 0 auto;
+    width: 30px;
+    z-index: 1;
+}
+.offer-title{
+	text-align:left;
+	padding:15px 0px;
+	font-size: 15px
+}
+.offer_area > p{
+	text-align:left
+}
+.offer_area{
+	position:relative;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out
+}
+.offer_area a.btn-link {
+	display: inline-block;
+	margin-bottom: 10px
+}
+/*=======================================
+8. Recent property Section
+=========================================*/
+.property_area{
+	padding-top:40px
+}
+.property_link {
+	position: absolute;
+	font-family: 'Montserrat', sans-serif;
+	right: 15px;
+	top: 11px;
+	font-weight: 400;
+	font-size: 14px
+}
+.property_link:hover {
+	text-decoration: underline
+}
+.property_grid .sale_amount,
+.property_list .sale_amount {
+	bottom: 0;
+	display: inline-block;
+	font-family: "Montserrat",sans-serif;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 6px 15px;
+	position: absolute;
+	right: 0;
+}
+.property-text{
+	padding:15px
+}
+.property-text > span{
+	font-size:13px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:400
+}
+.property-text > span > i {
+	font-size: 14px;
+	padding-right: 7px;
+	text-align: center;
+	width: 16px
+}
+.property_grid .property-text p{
+	padding-top:10px;
+	margin: 0
+}
+.hover_property > ul > li > a {
+	display: block
+}
+.bed_area{
+	height:50px;
+	border-top: 1px solid #e5e5e5;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out
+}
+.bed_area ul li {
+	line-height: 50px;
+	font-size: 13px;
+	font-weight: 400;
+	padding-left: 20px
+}
+.bed_area ul li.flat-icon {
+	float: right;
+	height: 50px;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	width: 50px;
+	border-left: 1px solid #e5e5e5
+}
+.bed_area ul li.flat-icon [class^="flaticon-"]::before, 
+.bed_area ul li.flat-icon [class*=" flaticon-"]::before, 
+.bed_area ul li.flat-icon [class^="flaticon-"]::after, 
+.bed_area ul li.flat-icon [class*=" flaticon-"]::after {
+	margin: 0 auto;
+	color: #5a5a5a;
+	display: table;
+	font-size: 24px;
+	width: 50px;
+	height: 50px;
+	line-height: 50px
+}
+.bed_area ul li:first-child {
+	float: left;
+	font-family: "Montserrat",sans-serif;
+	font-size: 15px;
+	font-weight: 500
+}
+.slider_arrow ul li{
+	float:left;
+	margin-left:3px;
+	color: #fff;
+	-moz-transition: all 0.2s ease;
+	-ms-transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease
+}
+
+.slider_arrow ul li i{
+	padding:10px 15px;
+	font-size:20px;
+	cursor:pointer
+}
+
+.hover_property{
+	position:absolute;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	top:50%;
+	left:50%;
+	visibility: hidden;
+	display: none
+}
+.hover_property ul li{
+	float:left;
+	margin:0px 3px;
+	-moz-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease
+}
+.hover_property ul li a{
+	padding:6px 12px;
+	cursor:pointer
+}
+.property_grid:hover .hover_property,
+.property_list:hover .hover_property{
+	visibility: visible
+}
+/* .property_grid:hover .sale_btn,
+.property_list:hover .sale_btn,
+.property_grid:hover .sale_amount{
+	display:none
+} */
+.img_area{
+  display:block;
+  vertical-align: middle;
+  overflow: hidden;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s
+}
+.img_area:before {
+  content: "";
+  position: absolute;
+  display: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity:0;
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out
+}
+.property_grid:hover .img_area:before,
+.property_list:hover .img_area:before{
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity:1
+}
+.img_area img {
+	-moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out
+}
+.img_area:hover img {
+	-webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/*======================================== 
+9. Service Section CSS
+==========================================*/
+#service_part .title-row{
+	text-align: center
+}
+.service_area{
+	padding:30px 20px;
+	text-align:center;
+	margin-bottom:30px;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: perspective(1px) translateZ(0);
+	transform: perspective(1px) translateZ(0);
+	box-shadow: 0 0 1px transparent;
+	position: relative;
+	-webkit-transition-property: color;
+	transition-property: color;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s
+}
+.service_area:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-transform: scale(.9);
+	transform: scale(.9);
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out
+}
+.service_area:hover:before{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+.service_icon{
+	height:64px;
+	width:64px;
+	margin:0 auto;
+	position: relative
+}
+.service_icon [class^="flaticon-"]::before, 
+.service_icon [class*=" flaticon-"]::before, 
+.service_icon [class^="flaticon-"]::after, 
+.service_icon [class*=" flaticon-"]::after{
+	display: table;
+    font-size: 45px;
+    line-height: 60px;
+    margin: 0 auto;
+    text-align: center;
+}
+.service_title{
+	padding:20px 0px
+}
+.service_area > p{
+	padding-bottom: 10px
+}
+a.btn-read{
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	font-weight: 500
+}
+
+/*=======================================
+10. Featured Property Section 
+=========================================*/
+
+
+/*=======================================
+11. Booking Home Banner Section
+=========================================*/
+#book_appartment{
+	position: relative;
+	width: 100%
+}
+.appartment_area  .find_text{
+	height:240px
+}
+.appartment_area .find_text:before{
+	border-bottom: 120px solid transparent;
+    border-top: 120px solid transparent
+}
+
+.appartment_area .find_text span{
+	font-size:32px
+}
+.booking_house{
+	padding: 80px 0
+}
+.booking_house p{
+	font-size:30px;
+	font-family:'Montserrat', sans-serif;
+	line-height:40px;
+	text-align:center;
+	text-transform:uppercase;
+	color: #fff;
+	margin: 0
+}
+
+/*=====================================
+12. Our Team Section CSS 
+=======================================*/
+.team_img{
+	position:relative;
+	display:block;
+	margin-bottom: 30px
+}
+.profile-pic {
+	overflow: hidden
+}
+.team_img img {
+	-ms-transform: scale(1);
+	-moz-transform: scale(1);
+	-webkit-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1)
+}
+.team_img:hover .profile-pic img {
+	-ms-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1)
+}
+.member-name{
+	text-transform:capitalize;
+	display:block;
+	font-weight: 400;
+	color: #717171
+}
+.member_info span{
+	text-transform:uppercase;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif ;
+	font-size:12px;
+	font-weight:400
+}
+.member_info {
+    display: block;
+    padding: 30px 0;
+    text-align: center;
+    width: 100%
+}
+.team_img:hover .member_info{
+    
+}
+.member_info .socail_area{
+	padding-top:10px
+}
+
+/*====================================
+13. Client Feedback Section CSS 
+======================================*/
+#feedback{
+	position:relative;
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position: center center
+}
+#feedback:before{
+	content:"";
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:100%
+}
+.fedback_area{
+	text-align:center;
+	display:block
+}
+.feedback p{
+	color: #a9a9a9;
+    margin: 0 auto;
+    padding-bottom: 50px;
+	padding-top: 20px;
+    width: 68%
+}
+.avata{
+	height:55px;
+	width:55px;
+	border-radius:100%;
+	margin-bottom: 15px
+}
+.client-name{
+	color: #fff
+}
+.testimonial_person > span{
+	text-transform:capitalize;
+	font-size:13px
+}
+.testimonials-carousel .owl-controls .owl-nav{
+	display: none
+}
+#feedback .owl-theme .owl-dots .owl-dot {
+    display: inline-block
+}
+.testimonial_person{
+	width: 100%;
+	margin-bottom: 20px
+}
+
+/*=============================================
+14. Recent News and News Thumbnail CSS 
+===============================================*/
+#recent_news {
+	overflow: hidden
+}
+#recent_news .title-row{
+	text-align: center
+}
+.news_text{
+	padding: 20px
+}
+.post-info{
+	font-size: 13px;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: capitalize;
+	font-style: italic;
+	font-weight: 400
+}
+.post-info span{
+	padding-right: 10px
+}
+.blog-content {
+	padding-bottom: 10px;
+	padding-top: 20px;
+}
+.news_text .read_btn a{
+	display:block
+}
+.news_area{
+  position: relative;
+  display:block;
+  background: #fff;
+  box-shadow: 0 0 8px #e5e5e5
+}
+.news_area:hover:before{
+  right: 0
+}
+.news_part{
+	padding-top:40px
+}
+.news_img{
+  display:block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s
+}
+.news_img:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: scale(.8);
+  transform: scale(.8);
+  opacity: 0;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out
+}
+.news_img:hover::before{
+	opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out
+}
+.news_eye{
+	position:absolute;
+	background-color: #fff;
+	border-radius:50%;
+	top:50%;
+	left:50%;
+	display:none;
+	opacity:0;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%)
+
+}
+.news_eye > i{
+	font-size:20px;
+	padding:20px;
+	cursor:pointer
+}
+.news_img:hover .news_eye{
+	opacity: 1;
+	display:block
+}
+
+/*====================================
+15. Register Banner CSS 
+======================================*/
+#register-banner{
+	padding:40px 0px
+}
+.reg_banner > span{
+	font-size:14px;
+	font-style:italic;
+	font-family:'Montserrat', sans-serif
+}
+.reg_banner{
+	color: #fff;
+	line-height: 30px
+}
+.register_btn{
+	text-align: right
+}
+
+/*===================================
+16. Footer CSS 
+=====================================*/
+.footer_contact li a, 
+.who_text p,
+.who_list, 
+.footer_contact p,
+.ftr-list > span{
+	color:#bcbcbc
+}
+#footer {
+	padding: 50px 0
+}
+.footer-logo{
+	padding-bottom: 20px
+}
+.footer-logo a{
+	display: block;
+	width:150px
+}
+.footer-title h4{
+	line-height: 50px;
+	color: #fff;
+	padding-bottom: 20px
+}
+.footer_contact{
+	padding-bottom: 20px
+}
+.footer_widget .socail_area{
+	margin-left: -15px;
+    margin-right: -15px
+}
+.four_title > h6 {
+  line-height: 26px;
+  color: 45px
+}
+.footer_contact li i {
+  float: left;
+  font-size: 14px;
+  margin: 7px 15px 7px 0
+}
+.footer_contact li {
+  line-height: 26px
+}
+.footer_contact .ftr-list {
+  display: table
+}
+.footer_contact ul li{
+	padding-bottom:15px
+}
+.footer_contact ul li a{
+	font-family: 'Raleway', sans-serif;
+	font-weight:500
+}
+.news_letter{
+	padding-top:15px;
+}
+.news_email{
+	height:45px;
+	padding:10px 20px;
+	width:100%;
+	font-size:14px;
+	margin-bottom:10px;
+	color: #717171
+}
+.touch-title {
+	color: #fff;
+	font-weight: 500;
+	line-height: 26px
+}
+.ftr-list > span {
+	font-family:'Montserrat', sans-serif
+}
+
+/*============================ 
+17. Bottom Footer CSS 
+==============================*/
+#bottom_footer{
+	padding:20px 0px
+}
+.reserve_text > span{
+	text-align:center;
+	color: #fff;
+	font-size:13px;
+	display:block;
+	font-family:'Montserrat', sans-serif
+}
+
+/*=====================================
+18. Page Banner and Title
+=======================================*/
+
+#banner{
+	background-size:cover;
+	position:relative;
+	margin-top: 125px
+}
+
+#banner:before{
+	content:"";
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:100%;
+}
+.page_title{
+	display:inline-block;
+	float:left
+}
+.banner_area {
+	display: table;
+	width: 100%
+}
+.page_location{
+	float:right;
+	text-transform:capitalize;
+	line-height: 24px
+}
+.page_location > i{
+	padding:0px 5px
+}
+
+
+/*===================================================
+19. About Us Page 
+=====================================================*/
+
+
+/*---------------------------------- 
+	19.1 Who We Are CSS Start 
+-----------------------------------*/
+#who_are{
+	margin-top:80px;
+	padding: 0
+}
+.who_text{
+	padding: 70px 0;
+	padding-left:35%;
+	padding-right:20px
+}
+.who_text > p{
+	padding-top:20px
+}
+.who_list{
+	padding-top:20px
+}
+.who_list ul li i{
+	font-size:14px;
+	padding-right:20px;
+	padding-top:10px
+}
+
+/*=================================== 
+	19.2 About Description CSS Start 
+=====================================*/
+#about_description{
+	padding: 70px 0
+}
+.accordion{
+	padding-top:30px
+}
+.accordion > .panel-group > .accordion_panel{
+	margin-top:10px
+}
+.accordion > .panel-group > .accordion_panel:first-child{
+	margin-top:0px
+}
+.accordion_panel{
+	border:none;
+	box-shadow:none
+}
+.accordion_panel > .accordian_title{
+	border:none;
+	border-radius:0px;
+	padding:0px
+}
+.accordian_title > .panel-title > a{
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	font-weight:400;
+	padding:10px 15px;
+	display:block
+}
+.accordian_title > .panel-title > a > span{
+	float:right;
+	font-size:14px
+}
+.panel-default > .panel-heading + .panel-collapse > .accordian_para{
+	border:none;
+	padding:10px 15px
+}
+.misson_area{
+	padding-top:30px
+}
+.misson_area > ul > li{
+	padding-bottom:20px
+}
+.misson_area > ul > li > img{
+	width:80px;
+	float:left
+}
+.misson_text{
+	padding-left:20px;
+	display:table
+}
+.misson_text > span{
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	font-weight:700;
+	text-transform:uppercase
+}
+.misson_text p{
+	padding-top:3px
+}
+
+
+/*============================================= 
+20. Blog List Page 
+===============================================*/
+.blog_list .news_area{
+	margin-bottom:50px;
+}
+.pagination_area {
+	display: inline-block;
+	padding-top: 30px
+}
+.pagination {
+	margin:0px;
+	display:block
+}	
+.pagination  > li{
+	padding-right:10px;
+	float:left
+}
+.pagination  > li > a,
+.pagination  > li > span{
+	border:none;
+	text-transform:uppercase;
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	font-weight:600;
+	padding:8px 17px;
+	display: block
+}
+.pagination  > li:first-child > a, 
+.pagination  > li:first-child > span,
+.pagination  > li:last-child > a, 
+.pagination  > li:last-child > span{
+	border-radius:0px
+}
+.pagination > li:last-child {
+  padding-right: 0
+}
+/*==================================
+21. Blog Sidebar CSS 
+====================================*/
+.side_bar{
+	padding:30px
+}
+.widget-title {
+	line-height: 40px;
+	margin-bottom: 12px
+}
+.search_form{
+	position:relative
+}
+.search_form > button{
+	position:absolute;
+	right:10px;
+	top:10px;
+	cursor:pointer;
+	background: none;
+	width: 20px;
+	height: 20px;
+	border: none;
+	padding: 0
+}
+.categories li{
+	padding: 8px 0px
+}
+.categories li a{
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	display:table
+}
+.recent-post  li{
+	padding: 10px 0
+}
+.recent-post li a{
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	font-weight:400;
+	display:block;
+	-moz-transition: all 300ms ease;
+	-webkit-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease
+}
+.recent-post li span{
+	text-transform:capitalize;
+	padding-top:5px;
+	display:block;
+	font-style:italic;
+	font-weight:400;
+	font-family:'Montserrat', sans-serif;
+	font-size:12px
+}
+.recent-post li span i{
+	padding-left:10px
+}
+.populer_comment{
+	border:0px
+}
+.populer_comment li{
+	padding-right:10px
+}
+.populer_comment li a{
+	border:none;
+	color: #989898;
+	border-radius:0px;
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	text-transform:uppercase;
+	font-weight:500;
+	padding:10px 20px;
+	position:relative
+}
+.populer_comment li.active a:before{
+	content:"";
+	position:absolute;
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent; 
+	border-right: 10px solid transparent; 
+	top:40px;
+	left:40%
+}
+.tab-pane .post_area > ul > li > span > i{
+	padding-left:0px
+}
+.sidebar-widget .tab-content{
+	overflow: hidden
+}
+.tab-pane .post_area {
+	padding-top: 30px
+}
+.tag_area{
+	width:100%;
+	display:inline-block
+}
+.tag_area li{
+	float:left;
+	padding-right:4px;
+	padding-bottom:4px
+}
+.tag_area li a{
+	font-size:13px;
+	font-family:'Montserrat', sans-serif;
+	text-transform:capitalize;
+	padding:8px 12px;
+	font-weight:400;
+	display:block
+}
+.archives li a{
+	font-size:13px;
+	font-family:'Montserrat', sans-serif;
+	text-transform:capitalize;
+	font-weight:400;
+	display:block
+}
+.archives li{
+	padding:5px 0px
+}
+/*==============================
+22. Blog Grid Page 
+================================*/
+.blog_grid .news_area {
+	margin-bottom: 30px
+}
+/*==============================
+23. Blog Detail page Start 
+================================*/
+.news_text > p > span{
+	font-family:'Montserrat', sans-serif;
+	font-style:italic;
+	padding:0px 20px;
+	display:inline-block
+}
+.detail_area > .socail_area{
+	width:100%;
+	display:inline-block;
+	padding: 15px 20px
+}
+blockquote {
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	margin: 10px 0;
+	font-weight:500;
+	padding: 10px 0;
+	font-style: italic;
+	padding-left: 30px
+}
+.socail_area > span{
+	float:left;
+	text-transform:uppercase;
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	font-weight:600;
+	line-height: 40px
+}
+.user-comments {
+  padding-bottom: 30px
+}
+.comment_area{
+	padding-top:50px;
+	border-bottom:2px solid
+}
+.author_img{
+	float:left
+}
+.author_img > img{
+	width:70px
+}
+.author_text{
+	padding-left:30px;
+	display:table
+}
+.author_info {
+	margin-bottom: 10px
+}
+.author_name{
+	display:inline-block;
+	text-transform: inherit;
+	font-weight: 400;
+	color: #5a5a5a
+}
+.author_info span{
+	padding-left:30px;
+	font-style:italic;
+	font-family:'Montserrat', sans-serif;
+	font-size:12px;
+	font-weight:400
+}
+.author_text > .btn-default{
+	margin-top: 10px;
+	padding: 3px 15px;
+	text-transform: inherit;
+	font-weight: 400;
+	font-size: 13px
+}
+.user-comments > li {
+	border-bottom: 1px solid #ececec;
+	padding: 20px 0
+}
+.replied{
+	margin-left:100px
+}
+.reply_form textarea.form-control{
+	height: 150px;
+	padding: 10px 15px;
+	margin-top: 10px;
+	resize: none
+}
+.replay{
+	padding-top:50px
+}
+.reply_form > .btn-default{
+	margin-top:30px
+}
+/*=============================
+24. Property Grid Page 
+==============================*/
+
+/*----------------------------
+	24.1 Property Filter CSS 
+-----------------------------*/
+.property_sorting{
+	margin-bottom: 30px;
+	display: inline-block;
+	width: 100%
+}
+.show_type{
+	height:40px;
+	padding:10px
+}
+.property_show{
+	float: left
+}
+.property_view{
+	float:right
+}
+.property_view > ul > li{
+	float:left;
+	display:inline-block;
+	padding-left:10px
+}
+.property_view ul li > span{
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	text-transform:capitalize;
+	line-height: 45px;
+	padding-right: 10px
+}
+.property_filter .bootstrap-select.form-control {
+	float: right;
+	width: auto;
+	margin: 0
+}
+.property_view ul li a {
+	display: block;
+	font-size: 14px;
+	padding: 9px 15px
+}
+/*--------------------------------
+	24.2 Property Thumbnail CSS 
+----------------------------------*/
+.property_grid {
+	overflow: hidden;
+	margin-bottom: 30px;
+	width: 100%;
+	border: 1px solid #e5e5e5
+}
+.property_list {
+	display: flex;
+	margin-bottom: 30px;
+	overflow: hidden;
+	width: 100%
+}
+.sale_btn {
+	display: inline-block;
+	font-family: "Montserrat",sans-serif;
+	font-size: 10pt;
+	font-weight: 400;
+	left: 10px;
+	padding: 2px 12px;
+	position: absolute;
+	top: 10px;
+	z-index: 1
+}
+.featured_btn {
+	display: inline-block;
+	font-family: "Montserrat",sans-serif;
+	font-size: 10pt;
+	font-weight: 400;
+	right: 10px;
+	padding: 2px 10px;
+	position: absolute;
+	top: 10px;
+	color: #fff;
+	z-index: 1
+}
+.showing_property .pagination_area{
+	padding-top:15px
+}
+.gm-style-iw .property_grid{
+	width: 300px
+}
+.quantity {
+	display: flex;
+	margin-left: -8px;
+	margin-right: -8px;
+}
+.quantity > ul {
+	display: inline-block;
+	overflow: hidden;
+	width: 100%
+}
+.quantity ul li {
+	display: inline-block;
+	font-weight: 500;
+	padding: 0 8px
+}
+.quantity li span {
+	display: table;
+	white-space: nowrap;
+	color: #5a5a5a
+}
+.list_type .quantity{
+	margin-left: -12px;
+	margin-right: -12px
+}
+.list_type .quantity ul li {
+  padding: 0 12px;
+}
+/*================================== 
+25. Property Sidebar 
+====================================*/
+.advance_search .search_form{
+	padding:0px;
+}
+.advance_search .search_form .btn-default{
+	width:100%;
+	text-align:center
+}
+.agent_full{
+	width:100%;
+	display:inline-block
+}
+.sidebar_img .property-text{
+	padding:10px
+}
+.property_price{
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	font-weight:500
+}
+.price-slider{
+	width: 100%
+}
+.sidebar-widget{
+	margin-bottom: 40px
+}
+.price_range {
+  padding-bottom: 20px;
+}
+.jslider .jslider-value{
+	font-family:'Montserrat', sans-serif;
+	font-size:12px;
+	font-weight:500
+}
+.feedback_small {
+	padding: 30px 15px;
+    display: block;
+    text-align: center;
+	background: #fff
+}
+.feedback_small  .owl-controls .owl-nav {
+	display: none
+}
+.sidebar_tesimonial .owl-theme .owl-dots .owl-dot {
+  display: inline-block
+}
+.sidebar_agent .team_img{
+	margin-bottom: 0
+}
+.sidebar_img{
+	position:relative;
+	display:block;
+	overflow: hidden
+}
+.sidebar_img .quantity li,
+.sidebar_img .quantity li span {
+	color: #fff
+}
+.sidebar_img .quantity {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	padding: 10px;
+	left: 0;
+	margin: 0;
+	z-index:2;
+	transform: translateY(70px);
+	-moz-transform: translateY(70px);
+	-ms-transform: translateY(70px);
+	-o-transform: translateY(70px);
+	-webkit-transform: translateY(70px);
+	
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+50,000000+100&0+0,0.4+50,0.8+100 */
+background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.8) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.8) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
+}
+.sidebar_img::before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	display: none;
+	height: 100%;
+	z-index:1
+}
+.slide_featured .thumb:hover .sidebar_img .quantity {
+	transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	-webkit-transform: translateY(0);
+}
+.slide_featured .thumb:hover .sidebar_img::before {
+	display: block
+}
+/*====================================
+26. Property List Page Start 
+======================================*/
+.list_type {
+	padding: 15px;
+	position: relative;
+	width: 70%
+}
+.list_type > .text_area{
+	padding:0 0px 11px
+}
+.property_list .property-text {
+  padding: 0 0 10px
+}
+.list_type > .bed_area {
+  bottom: 15px;
+  left: 15px;
+  position: absolute;
+  right: 15px;
+  border: none
+}
+/*=====================================
+27. Agents Page CSS 
+=======================================*/
+.agent_area{
+	padding-bottom:30px
+}
+.agent_part > .pagination_area{
+	padding-top:15px
+}
+.agent_show{
+	display:table;
+	width:100%
+}
+/*=====================================
+28. Agent Profile Page CSS 
+=======================================*/
+.agent-intro{
+	margin-bottom: 20px
+}
+.profile_person > .socail_area{
+	margin-top:10px;
+	padding: 10px
+}
+.profile_person .socail_area ul {
+  text-align: center
+}
+.profile_data ul li span{
+	font-size:14px;
+	font-weight:400;
+	width:100px;
+	display:inline-block
+}
+.profile_data ul li span, 
+.agent_detail ul li {
+    color: #333333;
+	font-family: "Montserrat",sans-serif
+}
+.profile_data ul li {
+  color: #8a8a8a;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px 0
+}
+.profile_description p{
+	padding:20px 0px
+}
+.agent-info{
+	margin-bottom: 50px
+}
+/*=============================================
+29. Properties Search Page CSS 
+===============================================*/
+.property_search{
+	position:relative
+}
+.type_select{
+	width:12%;
+	display: inherit;
+	float: left
+}
+.type_select .bootstrap-select {
+	margin-bottom: 0
+}
+.search_property{
+	width:88%;
+	padding-left:20px
+}
+.search_icon{
+	position:absolute;
+	top:10px;
+	right:10px;
+	border:none;
+	background-color:transparent
+}
+.title {
+   font-weight: bold
+}
+#infowindow-content {
+   display: none
+}
+#map #infowindow-content {
+   display: inline
+}
+.search_map{
+	padding:30px 0px
+}
+.search_map #find_area {
+	background: transparent
+}
+.search_map #find_area .property_search_form {
+	padding-top: 0;
+	margin-top: -50px
+}
+.search_map #map{
+	height:500px
+}
+/*==========================================
+30. Contact Page CSS 
+============================================*/
+.contact_message textarea.form-control {
+	height: 215px;
+	padding: 10px 15px;
+	resize: none
+}
+.contact_area > p{
+	padding:20px 0px
+}
+.contact_right > p{
+	font-family:'Montserrat', sans-serif;
+	font-weight: 400
+}
+.contact_map{
+	padding-top: 10px
+}
+.contact_map #map{
+	height: 436px
+}
+.contact_right .inner-title{
+	margin-bottom: 10px
+}
+.contact_message label.error {
+	position: absolute;
+	left: 15px;
+	bottom: -5px;
+	font-size: 12px
+}
+.error-handel > div {
+	display: none
+}
+/*===================================
+31. Error Page CSS 
+=====================================*/
+#page_error {
+  padding: 120px 0;
+}
+.error_area{
+	text-align:center
+}
+.page_error{
+	font-size:100px;
+	font-family:'Montserrat', sans-serif;
+	font-weight:700;
+	display:block;
+	line-height: 140px
+}
+.error_area > p{
+	font-size:14px;
+	font-weight:500;
+	padding:20px 0px
+}
+/*===================================
+32. Service Page CSS 
+====================================*/
+.service_circle{
+	width:120px;
+	height:120px;
+	border-radius:100px;
+	float:left;
+	position: relative
+}
+.service_circle [class^="flaticon-"]::before, 
+.service_circle [class*=" flaticon-"]::before, 
+.service_circle [class^="flaticon-"]::after, 
+.service_circle [class*=" flaticon-"]::after {
+	color: #fff;
+    display: table;
+    font-size: 45px;
+    line-height: 115px;
+    margin: 0 auto;
+}
+.service_text{
+	padding-left:30px;
+	display:table
+}
+.service_detail > ul > li{
+	padding-bottom:50px
+}
+.service_banner{
+	background:url(../img/banner/tech-staff.png) no-repeat;
+	background-size:cover;
+	position:relative
+}
+.service_banner:before{
+	content:"";
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:100%;
+	background-color:rgba(30,34,63,0.8)
+}
+.banner_text {
+	padding: 30px;
+	position: relative;
+	z-index: 99
+}
+.banner_text p{
+	padding:30px 0px
+}
+.featured_sidebar .slider_arrow{
+	display:inline-block
+}
+.service_property{
+	display:inline-block
+}
+.service_feature{
+	padding-top:50px
+}
+.service_property{
+	padding-top:30px
+}
+.service_text .service_title{
+	padding-top: 5px;
+	padding-bottom: 15px
+}
+/*==========================================
+33. Submit Property Page CSS 
+===========================================*/
+.property_submit, .form_description {
+    background: #fdfdfd none repeat scroll 0 0;
+    border: 1px solid #ececec
+}
+.form_description{
+	width:100%;
+	height:250px;
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	padding:15px;
+	resize: none
+}
+.submit_checkbox{
+	width:15px;
+	height:15px;
+	float:left
+}
+.check_submit ul li span{
+	text-transform:capitalize;
+	padding-left:30px;
+	font-size:14px;
+	font-family: 'Raleway', sans-serif
+}
+.check_submit ul li {
+	display: inline-block;
+	padding: 5px 15px;
+	width: 33%
+}
+.check_submit ul li:last-child{
+	padding-bottom:0px
+}
+.check_submit ul li input[type="checkbox"] {
+    display: none;
+    margin: 5px 0 0;
+}
+.submit_checkbox {
+    float: left;
+    height: 15px;
+    width: 15px;
+}
+.check_submit ul li label {
+    font-family: "Montserrat",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 35px;
+    position: relative;
+    text-transform: capitalize;
+	display: block
+}
+.check_submit ul li label::before {
+    background-color: #fdfdfd;
+    border: 2px solid #d0d0d0;
+    box-sizing: border-box;
+    content: "";
+    display: inline-block;
+    height: 19px;
+    left: 0;
+    margin-right: 10px;
+    position: absolute;
+    top: 3px;
+    transition: border-color 0.3s ease 0s;
+    width: 19px;
+}
+.check_submit ul li input[type="checkbox"]:checked + label::before {
+    background-color: #f9f9f9;
+    border: medium none transparent;
+    color: #fff;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 12px;
+    line-height: 19px;
+    position: absolute;
+    text-align: center;
+    top: 3px;
+}
+.browse_submit span{
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	text-transform:uppercase;
+	font-weight:700;
+	line-height:24px;
+	padding-bottom:10px;
+	display:inline-block
+}
+.browse_submit {
+    margin-top: 20px;
+}
+#fileupload-example-1,
+#fileupload-example-2,
+#fileupload-example-3{
+  height: 0;
+  width: 0
+}
+.fileupload-example-label {
+    background: #fdfdfd none repeat scroll 0 0;
+    border: 2px dashed #efefef;
+    cursor: pointer;
+    font-family: "Montserrat",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 70px 0;
+    text-align: center;
+    width: 100%;
+}
+.browse_submit > p{
+	font-family:'Montserrat', sans-serif;
+	font-size:13px;
+	text-transform:capitalize;
+	line-height: 45px
+}
+.browse_submit > p > span{
+	text-transform:uppercase;
+	font-weight:500
+}
+.video_upload{
+	padding-top:40px
+}
+.video_upload > .property_submit{
+	margin-bottom:10px
+}
+.browse_submit > .btn-default{
+	float:left;
+	margin-right:20px
+}
+.submit_form > div .alert {
+    border: medium none;
+    border-radius: 0;
+    font-weight: 400;
+    left: 100%;
+    margin-left: 30px;
+    position: absolute;
+    top: 0;
+    width: 31%;
+}
+.submit_form > div .alert::before {
+    border-style: solid;
+    border-width: 10px 60px 40px 30px;
+    content: "";
+    left: -60px;
+    position: absolute;
+    top: 5px;
+    z-index: -1;
+}
+.submit_form > div .alert::before {
+    border-color: transparent #fcf8e3 transparent transparent;
+}
+.basic_information,
+.description,
+.property_location,
+.check_feature,
+.upload_media,
+.property_owner {
+	margin-bottom: 30px;
+	position: relative
+}
+/*---- Switch butto -------*/
+.important_facts {
+    padding: 10px 0;
+}
+.important_facts > label {
+    display: inline-block;
+    font-family: "Montserrat",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 44px
+}
+.radio_check {
+    border-radius: 22px;
+    float: right;
+    height: 44px;
+    overflow: hidden;
+    position: relative;
+    width: 90px
+}
+.radio_check input[type="checkbox"] {
+    display: none;
+}
+.radio_check label {
+    background: #ededed none repeat scroll 0 0;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    transform: translateX(0px);
+    width: 135px;
+}
+.radio_check input[type="checkbox"]:checked + label {
+    background: #90c923 none repeat scroll 0 0;
+    color: #fff;
+    transform: translateX(-44px);
+}
+.radio_check label span {
+    line-height: 44px;
+}
+.radio_check label span:first-child {
+    float: left;
+}
+.radio_check label span:last-child {
+    float: right;
+}
+.radio_check label::before {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 17px;
+    content: "";
+    height: 34px;
+    position: absolute;
+    right: 51px;
+    top: 5px;
+    width: 34px;
+    z-index: 1;
+}
+
+/*=========================================
+34. Single Property Page Start 
+===========================================*/
+.single_type{
+	width:60%
+}
+.single_type > li{
+	background-color:transparent;
+	width:15%;
+	border:none;
+	height: auto;
+	position: relative
+}
+.single_type > li:after{
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: rgba(255, 255, 255, 0.5)
+}
+.single_type > li.active{
+	background-color:transparent;
+	width:15%;
+	border:none;
+	height: auto
+}
+.single_type > li.active:after{
+	background: rgba(255, 255, 255, 0)
+}
+.single_type > .active > img{
+	border: 4px solid #fff
+}
+.property_slider{
+	margin-bottom: 30px
+}
+.property_slider .carousel-inner .item::before {
+	background: transparent
+}
+.detail_text .text_area{
+	padding:0px
+}
+.detail_text .property-title {
+	font-weight: 700;
+	text-transform: uppercase;
+	white-space: normal
+}
+.property-summary2 {
+	padding:15px 25px;
+	background: #fff;
+	margin-bottom: 50px
+}
+.more_information .profile_data ul li span, 
+.property-summary2 .profile_data ul li span {
+	width:auto
+}
+.more_information .profile_data ul,
+.property-summary2 .profile_data ul {
+	display: inline-block
+}
+.more_information .profile_data ul li,
+.property-summary2 .profile_data ul li {
+	float: left;
+	line-height: 30px;
+	width: 33.33%
+}
+.more_information{
+	padding-top:30px
+}
+.single_video video{
+	width:100%;
+	background: #fff
+}
+.single_video{
+	padding-top:50px
+}
+.info-list > ul > li{
+	font-size:14px;
+	padding-bottom:15px;
+	width: 33.33%;
+	float: left
+}
+.info-list > ul > li > span{
+	padding-right:8px
+}
+.single_feature {
+	display: table;
+	margin-top: 50px;
+	width: 100%
+}
+.rating-box {
+	margin-top: 50px
+}
+.user-rating {
+	display: inline-block
+}
+.rating-animation {
+	margin-bottom: 20px
+}
+.br-widget > a,
+.user-rating ul li{
+	color: #cecece;
+	float: left;
+	font-size: 18px;
+	height: 26px;
+	position: relative;
+	width: 16px;
+}
+.br-widget > a:before,
+.user-rating ul li:before {
+   content: "\2605";
+   position: absolute;
+}
+.people-rating {
+	margin-top: 50px
+}
+.br-current-rating {
+  float: left;
+  padding-left: 30px;
+  line-height: 26px
+}
+.ratingcomments {
+	height: 150px;
+    padding: 10px 15px;
+    resize: none;
+	width: 100%;
+	margin-bottom: 15px;
+	font-family:'Montserrat', sans-serif
+}
+.rating-form .form-group {
+	margin-bottom: 0
+}
+.rating-form .form-group .form-control {
+	height: 40px
+}
+.box-header {
+  color: #717171;
+  padding-bottom: 10px;
+}
+.single_map {
+	margin-top: 50px
+}
+.single_map #map{
+	height:270px
+}
+.property_listing > .profile_data{
+	padding:15px 25px;
+	background: #ffffff
+}
+.property_listing > .profile_data > ul > li > span{
+	width:115px
+}
+.agent_detail ul li{
+	font-size:14px;
+	font-family:'Montserrat', sans-serif;
+	text-decoration:underline
+}
+.agent_detail ul li span{
+	text-transform:uppercase;
+	font-weight: 500
+}
+.single_agent{
+	margin-top: 50px
+}
+.agent_detail{
+	padding-top: 15px
+}
+.agent_detail p{
+	padding-top: 10px
+}
+.inner-feature {
+	margin-top: 50px;
+	width: 100%
+}
+.inner-feature .owl-theme .owl-controls {
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: -64px
+}
+.inner-feature .owl-theme .owl-controls .owl-nav [class*="owl-"]{
+	cursor: pointer;
+	display: inline-block;
+	font-size: 18px;
+	height: 34px;
+	line-height: 33px;
+	margin-left: 5px;
+	text-align: center;
+	width: 34px
+}
+.property_slider .carousel-inner > .item > img, 
+.property_slider .carousel-inner > .item > a > img {
+	height: auto
+}
+.agent_details img{
+	width: 60px;
+	border-radius: 100%
+}
+.author_img {
+	float: left
+}
+.agent_info .author_name {
+	width: 100%
+}
+.message_agent {
+	padding-top: 30px
+}
+.agent_info {
+	display: table;
+	font-family: "Montserrat",sans-serif;
+	padding: 3px 0;
+	margin-left: 70px;
+}
+.contact_agent {
+	border-radius: 4px;
+	box-shadow: 0 0 5px #d2d2d2;
+	padding: 25px;
+}
+
+/*=====================================
+35. My Account CSS 
+=======================================*/
+.prifile_picture{
+	margin-bottom: 30px;
+	position: relative
+}
+.settings_links ul {
+	border-bottom: 1px solid #ececec;
+	padding: 25px 30px
+}
+.settings_links{
+	background: #fff;
+    width: 100%;
+}
+.settings_links ul span {
+	font-family:'Montserrat', sans-serif;
+	line-height: 35px;
+	display: block;
+	font-weight: 400
+}
+.settings_links ul li a {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 5px 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+	text-transform:capitalize;
+	font-weight: 500
+}
+.settings_links ul li a [class^="flaticon-"]::before, 
+.settings_links ul li a [class*=" flaticon-"]::before, 
+.settings_links ul li a [class^="flaticon-"]::after, 
+.settings_links ul li a [class*=" flaticon-"]::after {
+	display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+	font-size: 16px
+}
+.settings_links ul li a i{
+	padding-right:10px
+}
+.settings_links ul li a span{
+	float: right
+}
+.tabcontent {
+    float: left;
+    width: 100%;
+    border-left: none;
+	display:none
+}
+#profile{
+	display:block
+}
+.information_form{
+	width:100%
+}
+.profile_label{
+	text-transform:capitalize;
+	font-family:'Montserrat', sans-serif;
+	text-align:left;
+	font-size:14px;
+	padding-bottom: 10px;
+	width:100%;
+	padding-top:8px;
+	font-weight: 400
+}
+#fileupload-example-4{
+	padding:0
+}
+.information_form textarea.form-control{
+	height:200px;
+	width:100%;
+	padding:10px 20px;
+	border:none;
+	resize: none;
+	border: 1px solid #f1f1f1
+}
+.save_change p{
+	padding-top:20px
+}
+.save_change p span{
+	font-family:'Montserrat', sans-serif;
+	font-size:14px;
+	font-weight:600;
+	text-transform:uppercase
+}
+.avata-form input[type="file"]{
+	display: none
+}
+.avata-form .avata-edit {
+	cursor: pointer;
+	height: 30px;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	top: 10px;
+	width: 30px;
+}
+.avata-form .avata-edit [class^="flaticon-"]::before, 
+.avata-form .avata-edit [class*=" flaticon-"]::before, 
+.avata-form .avata-edit [class^="flaticon-"]::after, 
+.avata-form .avata-edit [class*=" flaticon-"]::after {
+	display: table;
+	text-align: center;
+	margin: 0 auto
+}
+.avata-info {
+	display: inline-block;
+	font-family:'Montserrat', sans-serif;
+	font-size:15px
+}
+.avata-info > span {
+  display: inline-block;
+  width: 50px;
+}
+.save_change {
+	margin-top: 15px
+}
+/*--- My Property Page ---*/
+.list_table {
+	width: 100%
+}
+.list_table thead tr td:first-child {
+    padding-left: 15px
+}
+.list_table thead tr td {
+    padding: 0 10px
+}
+.list_table thead tr td {
+    color: #fff;
+    font-family: "Montserrat",sans-serif;
+    line-height: 50px
+}
+.list_table tbody tr td:first-child {
+    padding-left: 15px
+}
+.list_table tbody tr td {
+    padding: 30px 10px;
+	font-family: "Montserrat",sans-serif;
+	border-bottom: 1px solid #eee;
+	font-weight: 400
+}
+.list_table tbody tr td:nth-child(1) img {
+    float: left;
+    margin-right: 10px;
+    width: 120px
+}
+.list_table tbody tr td .property-text {
+    float: left;
+    padding: 0;
+    width: 160px
+}
+.listing_price, .sender_name {
+    font-family: "Montserrat",sans-serif
+}
+.list_table tbody tr td .property-title {
+	line-height: normal
+}
+.list_table tbody tr td:last-child span a {
+    display: inline-block;
+    font-size: 13px;
+    width: 100%
+}
+.list_table .due {
+  color: #f00;
+  font-weight: 500;
+}
+.list_table tbody tr td.rating{
+    font-size: 11px;
+}
+.my_property_list .list_table tr td:last-child {
+	width: 80px
+}
+/*--- Message Page ---*/
+.message_table ul li a, 
+.msg_header {
+	display: inline-block;
+	padding: 12px;
+	position: relative;
+	width: 100%
+}
+.message_table ul li img, .msg_header img {
+    border-radius: 100%;
+    float: left;
+    height: 55px;
+    margin-right: 20px;
+    width: 55px
+}
+.message_table ul li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0
+}
+.message_table ul li:first-child {
+	padding-top: 0
+}
+.message_table ul li .ping {
+    color: #fff;
+    font-size: 12px;
+    left: -15px;
+    padding: 0 8px;
+    position: absolute;
+    top: -15px
+}
+.message_table ul li .ping::before {
+    border-style: solid;
+    border-width: 10px;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 14px
+}
+.message_table ul li a, .msg_header {
+    display: inline-block;
+    padding: 12px;
+    position: relative;
+    width: 100%
+}
+.listing_price, .sender_name {
+    font-family: "Montserrat",sans-serif
+}
+.message_table ul li a p, .msg_header p {
+    font-size: 13px
+}
+.message_table ul li .datetime, .msg_header datetime {
+    font-family: "Montserrat",sans-serif;
+    position: absolute;
+	font-size: 13px;
+	font-weight: 400;
+    right: 20px;
+    top: 18px;
+	text-align: right
+}
+.msg_text {
+    padding: 60px 15px 30px;
+    position: relative
+}
+.msg_text datetime {
+    font-family: "Montserrat",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    left: 15px;
+    position: absolute;
+    text-decoration: underline;
+    top: 20px
+}
+.msg_replay {
+	padding: 15px;
+	width: 100%;
+}
+.msg_replay p {
+    color: #a9a9a9;
+    font-size: 13px
+}
+.msg_replay .input-group textarea {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #f1f1f1;
+    border-top: 1px solid #f1f1f1;
+    font-weight: 400;
+    height: 120px;
+    margin-bottom: 10px;
+    padding: 15px;
+    resize: none;
+    width: 100%;
+	font-weight: 400;
+	font-size: 13px;
+	color: #717171
+}
+.invoice-info ul li {
+    font-family: "Montserrat",sans-serif;
+    font-weight: 400;
+    line-height: 35px;
+}
+.invoice-info ul li span {
+    display: inline-block;
+    width: 120px;
+}
+.invoice-box {
+    padding-top: 30px;
+}
+address .inner-title {
+    font-weight: 500;
+    margin: 0;
+    padding: 10px 0;
+    text-transform: inherit;
+}
+.invoice-liner {
+	border-bottom: 2px solid;
+	padding-bottom: 30px
+}
+.invoice-header {
+	padding: 15px 20px
+}
+.invoice-table {
+	padding-top: 20px
+}
+.invoice-table .list_table tbody tr td {
+  padding: 10px
+}
+.invoice-table .list_table tbody tr td {
+	border: none;
+	color: #717171
+}
+.invoice-table .list_table tbody tr td:nth-child(4){
+	font-size: 14px
+}
+.invoice-table .list_table tbody tr td:last-child {
+	text-align: right
+}
+.invoice-table .list_table tbody tr:nth-last-child(-n+2) td {
+	padding: 0 10px;
+	font-weight: 500
+}
+.invoice-table .list_table tbody tr:last-child td {
+	padding-bottom: 20px
+}
+.invoice-table .list_table tbody {
+	padding-bottom: 20px;
+	border-bottom: 2px solid
+}
+.invoice-list .list_table tbody tr:hover td {
+	background: #f8f8f8
+}
+.pay-now {
+	display: inline-block;
+	width: 100%
+}
+.pay-now a{
+	float: right
+}
+.final-price {
+	padding: 20px 0
+}
+.final-price ul {
+	display: inline-block;
+	width: 100%
+}
+.final-price ul li {
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-family: "Montserrat",sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+}
+.final-price ul li:first-child {
+	width: 80%;
+	text-align: right
+}
+.final-price ul li:last-child {
+	width: 20%;
+	text-align: right
+}
+.payment-note p {
+	padding: 15px 0;
+	font-size: 13px;
+}
+.replay-form {
+	background: #f5f5f5;
+	padding: 15px 15px 0 15px;
+}
+.replay-form textarea {
+	background: #fff;
+	font-size: 13px;
+	min-height: 60px;
+	line-height: 20px;
+	padding: 15px;
+	resize: none;
+}
+.comments-list .author_info span {
+	font-size: 13px;
+	font-weight: 400
+}
+.replay-form button {
+	padding: 4px 15px;
+	font-weight: 400;
+	text-transform: inherit
+}
+.comments-list .comment_description.replied {
+	background: #f5f5f5;
+	padding: 15px;
+	margin: 0
+}
+.author_text a.action {
+	padding-right: 15px;
+	line-height: 30px;
+	display:none;
+	font-size: 13px;
+	float: right;
+	font-weight: 400;
+	color: #a4a4a4
+}
+.author_text:hover > .author_info > a.action {
+	display: block
+}
+.change_password {
+	position: relative
+}
+.submit_form .change_password .alert{
+	width: 47%
+}
+/*==========================================
+36. Modal-Box Popup
+============================================*/
+.registation .form-control {
+	text-align: left
+}
+.registation .radio_option {
+	margin-bottom: 15px
+}
+.modal-header {
+  padding: 20px 30px;
+}
+/*==========================================
+37. FAQ Page CSS
+============================================*/
+.info-pages{
+	padding:30px;
+	background: #fff
+}
+.info-pages .inner-title {
+	margin-bottom: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+.faq-form {
+	margin-top: 30px;
+	position: relative
+}
+.search_question {
+	width: 100%;
+	height: 50px;
+	border: none;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	text-transform: capitalize;
+	padding-left: 20px;
+	font-weight: 400
+}
+.info-pages .search_icon{
+	right:15px;
+	top:12px
+}
+.info-pages .panel-default > .panel-heading + .panel-collapse > .accordian_para{
+	padding:20px
+}
+.faq_brochure{
+	padding-top:30px
+}
+.faq_brochure .btn-default{
+	width:100%;
+	margin-bottom:10px;
+	border: none;
+	line-height: 40px
+}
+.faq_brochure .btn-default i{
+	padding-right:5px
+}
+/*==========================================
+38. Terms And Condition CSS
+============================================*/
+.terms_sidebar{
+	padding:30px
+}
+.terms_sidebar > ul > li{
+	padding-bottom:20px
+}
+.terms_sidebar > ul > li:last-child{
+	padding-bottom:0px
+}
+.terms_sidebar > ul > li a{
+	font-family:'Montserrat', sans-serif
+}
+.terms_description > span{
+	padding:20px 0px;
+	display:block
+}
+.terms_description > span strong{
+	font-family:'Montserrat', sans-serif;
+	font-weight:600
+}
+.terms_titile{
+	line-height:30px;
+	padding-bottom: 20px;
+	padding-top: 20px
+}
+.terms_deals{
+	padding-left:100px;
+}
+.deal_title{
+	line-height:30px;
+	padding-bottom: 20px;
+	padding-top: 20px
+}
+/*==========================================
+39. Home Page 2 CSS
+============================================*/
+.page-style-2 #slider .item .carousel-caption,
+.page-style-2 #slider .item.active .carousel-caption{
+	background-color:transparent
+}
+header.video-header {
+	position: absolute;
+	width: 100%;
+	top:0;
+	z-index: 1000
+}
+header.video-header  #top_header,
+header.video-header #nav_header {
+	background: none;
+}
+.video-header .navbar-default .navbar-nav {
+	padding: 20px 0
+}
+.fixed-header.video-header .navbar-default .navbar-nav{
+	padding: 0
+}
+.fixed-header.video-header .navbar-default .navbar-nav > li > a {
+	color: #444
+}
+.video-header .navbar-default .navbar-nav > li > a,
+.video-header .navbar-default .navbar-nav > li > a > i {
+	line-height: 40px
+}
+#video-background {
+	height: 90vh;
+	position: relative;
+	padding:0;
+	overflow: hidden
+}
+#video-background:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 9
+}
+#video-background video {
+	position: fixed;
+	top: -150px;
+	min-width: 100%;
+	z-index: -99;
+}
+#video-background .property_filter_input input.input-address {
+	height: 55px;
+	padding: 0 50px 0 30px;
+}
+#video-background .property_filter_input input[type="submit"] {
+	background: url("../img/icons/find-location.png") repeat scroll 0 0 / cover ;
+	height: 25px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 25px;
+	top: 15px;
+	width: 25px;
+}
+#video-background .carousel-caption{
+	margin:0px;
+	width: 100%;
+	display:block;
+	top: 50%;
+	-ms-transform: translateY(-40%);
+	-moz-transform: translateY(-40%);
+	-webkit-transform: translateY(-40%);
+	-o-transform: translateY(-40%);
+	transform: translateY(-40%)
+}
+#video-background .carousel-caption .slider_btn {
+	text-align: center;
+	margin-top: 25px
+}
+#video-background .carousel-caption span {
+	color: #fff;
+    display: inline-block;
+    font-family: "Montserrat",sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    padding-top: 50px;
+    text-align: center;
+    width: 100%
+}
+#video-background .carousel-caption h1{
+	font-size:36px;
+	padding-bottom:40px;
+	text-align: center
+}
+/*===============================================
+40. Offer Style 2 CSS
+===============================================*/
+#offer-style-2 .offer-title {
+	text-align: center
+}
+#offer-style-2 .circle_area {
+	margin: 0 auto;
+	margin-bottom: 10px
+}
+#offer-style-2 .offer_area,
+#offer-style-2 .offer_area p{
+	text-align: center
+}
+/*===================================================
+41. Popular Property and Location
+=====================================================*/
+#popular-category .section_title_blue,
+#popular-category .sub-title {
+	text-align: center
+}
+.overlay-title{
+	color: #fff
+}
+.category-text span {
+	font-style: italic
+}
+.category-grid{
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 30px
+}
+.category-grid .ctg-grid {
+	-moz-transform: scale(1);
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out
+}
+.category-grid:hover .ctg-grid{
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1)
+}
+.category-grid .overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	color: #fff;
+	text-align: center
+}
+.category-text {
+	position: relative;
+	top: 50%;
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%)
+}
+.category-img {
+	width: 100%
+}
+
+.ctg-1 {
+	height: 350px;
+	background: url('../img/category_grid/appartment.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+.ctg-2 {
+	height: 350px;
+	background: url('../img/category_grid/condos.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+.ctg-3 {
+	height: 350px;
+	background: url('../img/category_grid/single_house.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+.ctg-4 {
+	height: 730px;
+	background: url('../img/category_grid/villa.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+/*=======================================================
+42. Service Section Style 2
+========================================================*/
+#service_part2 .section_title_blue {
+	text-align: center
+}
+#service_part2 .sub-title {
+	text-align: center
+}
+/*======================================================
+43. Achivment Section
+=======================================================*/
+#achivment {
+	background-size: cover;
+	background-position: center center;
+	padding: 70px 0;
+	position: relative
+}
+#achivment:before{
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	top:0;
+	left:0
+}
+.fact-counter {
+	position: relative;
+	z-index: 2
+}
+.achievement .counting{
+	text-align: center;
+	color: #fff;
+	padding-bottom:30px;
+	position: relative
+}
+.achievement .counting::after{
+	position: absolute;
+	content: "";
+	width: 30px;
+	height: 5px;
+	border-radius: 5px;
+	z-index: 1;
+	top:75%;
+	left:50%;
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%)
+}
+.achievement .subject{
+	text-align: center;
+	color: #fff
+}
+/*=======================================================
+44. Submit Property Banner
+========================================================*/
+#property-submit {
+	padding: 70px 0;
+	background: url('../img/banner/house-closing.png') no-repeat fixed;
+	background-position: center center;
+	background-size: cover;
+	position: relative
+}
+#property-submit::before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	top:0;
+	left:0
+}
+.banner-element {
+	position: relative;
+	z-index: 2;
+	text-align: center
+}
+.banner-element .banner-title {
+	text-transform: inherit
+}
+/*=========================================================
+45. Client Feedback Style 2
+==========================================================*/
+.testimonial-part2 {
+	padding-top: 30px
+}
+.feedback-text2 {
+	padding:30px;
+	position: relative
+}
+.feedback-text2::before{ 
+	content:""; 
+	position: absolute; 
+	right: 100%; 
+	bottom: -35px;
+	left:30px;
+	width: 0; 
+	height: 0; 
+	border-left: 0px solid transparent;
+    border-right:35px solid transparent;
+	-moz-transform: rotate(20deg);
+	-ms-transform: rotate(20deg);
+	-o-transform: rotate(20deg);
+	transform: rotate(20deg)
+}
+.testimonial-part2 .testimonial_person {
+	margin-top: 50px
+}
+#feedback2 .owl-theme .owl-controls .owl-nav {
+	text-align: center;
+	margin-top: 30px
+}
+#feedback2 .owl-theme .owl-controls .owl-dots {
+	display: none !important
+}
+/*=====================================================
+46. Home Page Style 3
+======================================================*/
+#map-banner {
+	position: relative;
+	width: 100%;
+	z-index: 99;
+	overflow: hidden;
+	margin-top: 125px
+}
+#map-banner.visible {
+	overflow: visible
+}
+#find-location {
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	-moz-transform: translate(-50%, 100%);
+	-webkit-transform: translate(-50%, 100%);
+	-ms-transform: translate(-50%, 100%);
+	-o-transform: translate(-50%, 100%);
+	transform: translate(-50%, 100%)
+	
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out
+}
+#find-location.open{
+	-moz-transform: translate(-50%, 50px);
+	-webkit-transform: translate(-50%, 50px);
+	-ms-transform: translate(-50%, 50px);
+	-o-transform: translate(-50%, 50px);
+	transform: translate(-50%, 50px)
+}
+#find-location .property_filter_input {
+	padding: 15px 30px 10px
+}
+.form-up-btn {
+	font-family:'Montserrat', sans-serif;
+	font-weight: 500;
+	color: #fff;
+	padding: 0 30px;
+	line-height: 50px;
+	cursor: pointer
+}
+.form-up-btn span {
+	padding-left: 15px
+}
+.form-up-btn span i{
+	-moz-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out
+}
+#find-location.open .form-up-btn span i {
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg)
+}
+.homepage-map #map {
+	width: 100%;
+	height: 710px
+}
+.marker-style {
+	text-align: center;
+	width: 20px;
+	height: 20px;
+	margin-left: -10px !important;
+	margin-top: -50px !important
+}
+.marker-style img {
+	position: absolute !important;
+	top: -1px !important;
+	bottom: 0px !important;
+	right: 0px;
+	left: 0px;
+	margin: auto !important
+}
+.cluster > div {
+	color: #0d1c42 !important;
+	text-align: center !important;
+	font-size: 12px !important;
+	z-index: 3;
+	font-family:'Montserrat', sans-serif !important;
+	line-height: 44px !important
+}
+.infobox-wrapper .property_grid {
+	background: #fff;
+	margin-left: -25px;
+	width: 270px;
+	margin-bottom: 80px;
+	position: relative;
+	box-shadow: 1px 1px 5px #cecece
+}
+.infobox-wrapper::before {
+	content: "";
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	background: transparent;
+	border-top: 10px solid #fff;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid transparent;
+	bottom: 60px;
+	z-index: 10;
+	left: 35%
+}
+.infobox-wrapper > img {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 30px;
+	right: 10px;
+	opacity: 0.9;
+	z-index: 10
+}
+.infobox-wrapper .img_area::before {
+	display: none !important
+}
+.infobox-wrapper .property_grid:hover .sale_amount {
+	display: inherit
+}
+.infobox-wrapper .property-text {
+	padding: 15px
+}
+.infobox-wrapper .property-title {
+	text-transform: inherit;
+	font-weight: 500;
+	font-size: 14px
+}
+/*=======================================================
+47. Home page Style 4
+========================================================*/
+.slider-search-2 h1 {
+	padding: 15px 30px;
+	display: table;
+	font-size: 24px;
+	position: relative
+}
+.slider-search-2 h1:before{
+  border-left: 0 solid transparent;
+  border-right: 25px solid transparent;
+  content: "";
+  height: 0;
+  left: 20px;
+  position: absolute;
+  right: 100%;
+  bottom: -30px;
+  -moz-transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+  width: 0
+}
+.slider-search-2 .property_search_form {
+	padding: 0;
+	margin-top: 30px
+}
+.advance-page {
+	display: table;
+	margin-top: 15px
+}
+.advance-page a{
+	text-transform: inherit;
+	font-weight: 500
+}
+.slider-search-2 > span{
+	display: inline-block;
+	width: 100%;
+	color: #fff;
+	text-align: left;
+	font-family:'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	padding-top: 20px
+}
+.slider-search-2 .property_filter_input {
+	background: #fff;
+	padding: 20px 20px 0px
+}
+.page-style-4 #slider .carousel-caption {
+	width: 70%
+}
+#slider-fixed {
+	background: url('../img/slider/fixed-slider.png') no-repeat fixed;
+	background-size: cover;
+	background-position: center center;
+	height: 80vh;
+	position: relative
+}
+.fix-banner {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+#slider-fixed:before{
+	position: absolute;
+	content:"";
+	width: 100%;
+	height: 100%;
+	z-index:1
+}
+#slider-fixed .carousel-caption {
+	left: 0;
+	top: 50%;
+	width: 100%;
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%)
+}
+.slider-search-2 {
+    width: 85%
+}
+/*===============================================
+48. Offer Style 3
+================================================*/
+#offer-style-3 .offer_area {
+	background: none;
+	padding: 15px;
+	position: relative;
+	z-index: 10
+}
+#offer-style-3 .offer-title,
+#offer-style-3 .offer_area,
+#offer-style-3  .offer_area > p {
+	text-align: center
+}
+#offer-style-3 .offer_area::before {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(0.9);
+  -moz-transition: all 0.3s ease-in-out 0s;
+  -ms-transition: all 0.3s ease-in-out 0s;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -o-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+  z-index: -1;
+}
+#offer-style-3 .circle_area {
+	background-color: transparent;
+	width: 60px;
+	height: 60px;
+	margin: 0 auto
+}
+#offer-style-3 .circle_area [class^="flaticon-"]::before, 
+#offer-style-3 .circle_area [class*=" flaticon-"]::before, 
+#offer-style-3 .circle_area [class^="flaticon-"]::after, 
+#offer-style-3 .circle_area [class*=" flaticon-"]::after  {
+	font-size: 40px;
+}
+/*===============================================
+49. Feature Property Tab
+================================================*/
+
+#property-tab {
+	position: relative
+}
+#property-tab .title-row {
+	text-align: center
+}
+.filter-tabs{
+	margin: 0 0 50px;
+	position: relative;
+	text-align: center
+}
+.filter-btns li {
+	background: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "Montserrat",sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	margin: 5px;
+	padding: 6px 20px;
+	position: relative;
+	text-transform: uppercase;
+	-moz-transition: all 300ms ease 0s;
+	-webkit-transition: all 300ms ease 0s;
+	-ms-transition: all 300ms ease 0s;
+	-o-transition: all 300ms ease 0s;
+	transition: all 300ms ease 0s
+}
+.filter-list .mix {
+	display: none
+}
+.filter-list .property_grid {
+	margin-bottom: 30px;
+	overflow: hidden;
+	width: 100%
+}
+.filter-list .property-text {
+	padding-left: 15px;
+	padding-right: 15px;
+	border-bottom: 1px solid #fff
+}
+/*==============================================
+50. Popular Locations Section
+===============================================*/
+.location-img {
+	width: 100%;
+	height: 350px
+}
+.loc-1 {
+	background: url('../img/category_grid/miami.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+.loc-2 {
+	background: url('../img/category_grid/newyork.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+.loc-3 {
+	background: url('../img/category_grid/losangeles.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+.loc-4 {
+	background: url('../img/category_grid/chicago.png') no-repeat;
+	background-size: cover;
+	background-position: center center
+}
+/*===============================================
+51. Service Section Style 3
+================================================*/
+#service_part3 .title-row {
+	text-align: center
+}
+#service_part3 .service_area {
+	background: transparent;
+	margin:0
+}
+.service-devider {
+	display: table;
+	width: 100%
+}
+.service-devider > div {
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+	padding:0;
+	margin:0
+}
+/*================================================
+52 Home Page Style 5
+=================================================*/
+.slider-property .looking-for{
+	padding: 15px 30px;
+	display: table;
+	position: relative
+}
+.slider-property .looking-for:before{
+	border-left: 0 solid transparent;
+	border-right: 25px solid transparent;
+	content: "";
+	height: 0;
+	left: 20px;
+	position: absolute;
+	right: 100%;
+	bottom: -30px;
+	-moz-transform: rotate(20deg);
+	-webkit-transform: rotate(20deg);
+	-ms-transform: rotate(20deg);
+	-o-transform: rotate(20deg);
+	transform: rotate(20deg);
+	width: 0
+}
+.slider-property .property-text {
+	padding: 30px;
+	background: #fff;
+	display: table;
+	text-align: left;
+	margin-top: 30px;
+	width: 60%
+}
+.slider-property .property-text span{
+	color: #a4a4a4
+}
+
+.slider-property .sale_amount {
+	font-size:14px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:600;
+	margin-top: 10px;
+	background-color: transparent
+}
+/*==========================================
+53. Pricing Table
+===========================================*/
+#pricing {
+	padding: 80px 0 100px 0;
+}
+#pricing .title-row {
+	text-align: center;
+	margin-bottom: 50px
+}
+.common-plan {
+	text-align: center;
+	padding: 90px 30px 50px 30px;
+	background: #ffffff;
+	position: relative
+}
+.common-plan span {
+	padding: 10px 0;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	text-transform: uppercase;
+	width: 120px;
+	text-align: center
+}
+.common-plan .price{
+	font-size: 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700
+}
+.common-plan p{
+	padding: 15px 0;
+	position: relative
+}
+.common-plan p:before {
+	position: absolute;
+	content: "";
+	width: 50px;
+	height: 5px;
+	border-radius: 5px;
+	bottom: -5px;
+	left: 50%;
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%)
+}
+.features {
+	padding: 15px 0
+}
+.features li{
+	text-align: center;
+	padding: 10px 0;
+	color: #717171
+}
+.feature-plan {
+	text-align: center;
+	padding: 60px 30px 20px;
+	position: relative;
+	z-index:10;
+	top: -20px
+}
+.feature-plan:before {
+	position: absolute;
+	content: "";
+	left: -30px;
+	right: -30px;
+	top: -30px;
+	bottom: -30px;
+	background: #fff;
+	box-shadow: 0 0 10px #acacac;
+	z-index: -1
+}
+.feature-plan span {
+	padding: 10px 0;
+	position: absolute;
+	top: -10px;
+	left: -30px;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	text-transform: uppercase;
+	width: 120px;
+	text-align: center
+}
+.feature-plan .price{
+	font-size: 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700
+}
+.feature-plan p{
+	padding: 15px 0;
+	position: relative
+}
+.feature-plan p:before {
+	position: absolute;
+	content: "";
+	width: 50px;
+	height: 5px;
+	border-radius: 5px;
+	bottom: -5px;
+	left: 50%;
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%)
+}
+.features {
+	padding: 15px 0
+}
+.features li{
+	text-align: center;
+	padding: 10px 0;
+	color: #717171
+}
+/*===========================================
+54. Extra Information Pages
+============================================*/
+#mission {
+	padding: 80px 0
+}
+.mission_video {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	position: relative
+}
+.mission_video video {
+	width: 100%
+}
+.info-pages .sub-title {
+	padding: 0;
+	width: 100%
+}
+.info-pages .sub-title p{
+	text-align: left
+}
+.box-title{
+	padding: 10px 0
+}
+.info-pages .icon{
+	font-size: 34px;
+	padding: 20px 0 10px 0;
+	display: table
+}
+.facts {
+	margin-top: 50px
+}
+.oppertunity {
+	display: flex;
+	margin-top: 50px;
+	width: 100%
+}
+.caeer-grid {
+	padding: 30px;
+	margin-bottom: 30px
+}
+.caeer-grid ul {
+	padding-bottom: 30px
+}
+.caeer-grid p{
+	margin-bottom: 30px
+}
+.testimonials .feedback p {
+	width: 100%;
+	text-align: left;
+	color: #717171;
+	padding: 0 0 15px 0
+}
+.testimonials .feedback {
+	background: #f5f5f5;
+	padding: 15px;
+	margin-bottom: 30px
+} 
+.testimonials .testimonial_person img{
+	float: left;
+	margin-right: 15px;
+	margin-bottom:0;
+	width: 45px;
+	height: 45px;
+	border: 1px solid #f1f1f1
+}
+.testimonials {
+	margin-top: 50px
+}
+.awards-list {
+	margin-top: 50px
+}
+.award {
+	padding: 15px;
+	background: #fff;
+	margin-bottom: 30px
+}
+/*==============================
+55. search-box-map
+===============================*/
+.search-box-map #find-location {
+	width: 320px;
+	bottom: 50%;
+	left: 10%;
+	position: absolute;
+	-webkit-transform: translateY(50%);
+	-ms-transform: translateY(50%);
+	transform: translateY(50%);
+	-ms-transition: all 300ms ease-in-out 0s;
+	-webkit-transition: all 300ms ease-in-out 0s;
+	transition: all 300ms ease-in-out 0s;
+}
+.search-box-map #find-location .property_filter_input {
+	padding: 20px 20px 0 20px
+}
+.search-box-map .property_filter_input select,
+.search-box-map .property_filter_input input.input-address,
+.search-fixed-right .property_filter_input select,
+.search-fixed-right .property_filter_input input.input-address{
+	height: 40px;
+	margin-bottom: 10px;
+}
+.property_filter_input .price-filter {
+  height: 50px;
+  margin-right: 5px
+}
+.property_filter_input .jslider .jslider-bg .v,
+.property_filter_input .jslider .jslider-bg i {
+	height: 3px
+}
+.search-form-title {
+	margin-bottom: 20px
+}
+.search-box-map .jslider .property_filter_input select,
+.search-box-map .jslider .property_filter_input input.input-address{
+	background: #fff
+}
+.search-fixed-right .property_filter_input .price-filter {
+	margin-right: -10px;
+}
+.full-map #map {
+	height: 100vh
+}
+.half-wide-map {
+	width: 70%;
+}
+.half-wide-map #map {
+	height: 100vh;
+	width: 100%;
+	float: left
+}
+.search-fixed-right {
+	float: right;
+	width: 30%
+}
+.search-fixed-right #find-location {
+	position: static;
+	transform: none
+}
+.search-fixed-right #find-location .property_filter_input {
+	height: 100vh
+}

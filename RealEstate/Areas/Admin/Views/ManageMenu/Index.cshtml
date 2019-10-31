@@ -1,0 +1,446 @@
+﻿@model PropertyMenuViewModels
+@{
+    ViewBag.Title = "Quản Lí Danh Mục";
+}
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("nestable/nestable.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <style>
+        .myadmin-dd .dd-list .dd-item .dd-handle {
+            background: #ffffff;
+            border: 1px solid rgba(120, 130, 140, 0.13);
+            padding: 8px 16px;
+            height: auto;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            border-radius: 0;
+        }
+
+        .myadmin-dd-empty .dd-list .dd3-content {
+            height: auto;
+            border: 1px solid rgba(120, 130, 140, 0.13);
+            padding: 8px 16px 8px 46px;
+            background: #ffffff;
+            font-weight: 400;
+        }
+
+        .myadmin-dd-empty .dd-list .dd3-handle {
+            border: 1px solid rgba(120, 130, 140, 0.13);
+            border-bottom: 0;
+            background: #ffffff;
+            height: 36px;
+            width: 36px;
+        }
+
+        .dd3-handle:before {
+            color: #99abb4;
+            top: 7px;
+        }
+
+        .dd3-content > i:hover {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("jqueryui/jquery-ui.min.js")"></script>
+    <script src="@Url.AppVendors("nestable/jquery.nestable.js")"></script>
+    <script type="text/javascript">
+        jQuery.fn.extend({
+            attrs: function (attributeName) {
+                return this.map(function () { return $(this).attr('id'); }).get();
+            }
+        });
+
+        $(document).ready(function () {
+            var updateOutput = function (e) {
+                var list = e.length ? e : $(e.target),
+                    output = list.data('output');
+                if (window.JSON) {
+                    output.val(window.JSON.stringify(list.nestable('serialize')));
+                } else {
+                    output.val('JSON browser support required for this feature.');
+                }
+            };
+
+            //1
+            $('#nestable1').nestable({
+                group: 1,
+                maxDepth: 1
+            }).on('change', updateOutput);
+
+            updateOutput($('#nestable1').data('output', $('#nestable1-output')));
+
+            //2
+            $('#nestable2').nestable({
+                group: 2,
+                maxDepth: 1
+            }).on('change', updateOutput);
+
+            updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+
+            //3
+            $('#nestable3').nestable({
+                group: 3,
+                maxDepth: 1
+            }).on('change', updateOutput);
+
+            updateOutput($('#nestable3').data('output', $('#nestable3-output')));
+        });
+
+        function saveChanges() {
+            var settings = {
+                title: 'Update UI',
+                text: 'Saving',
+                allowOutsideClick: () => !Swal.isLoading(),
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    $.ajax({
+                        url: '@Url.Action("UpdatePosition")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            propertyTypes: $($('#nestable1').nestable('serialize')).attrs('id'),
+                            propertyStatusCodes: $($('#nestable2').nestable('serialize')).attrs('id'),
+                            blogTypes: $($('#nestable3').nestable('serialize')).attrs('id'),
+                        }
+                    }).done(function () {
+                        swal(
+                            'Đã Lưu!',
+                            'Chỉnh Sửa Của Bạn Đã Được Cập Nhật.',
+                            'success'
+                        );
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            }
+
+            Swal.fire(settings);
+        }
+
+        function addPropertyType() {
+            var settings = {
+                title: 'Saving',
+                allowOutsideClick: () => !Swal.isLoading(),
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    $.ajax({
+                        url: '@Url.Action("CreatePropertyType")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            name: $('input[name="propertyType"]').val()
+                        }
+                    }).done(function (data) {
+                        $('ol#propertyTypeContainer>li:nth-child(1)').append(
+                            `<li class="dd-item dd3-item" data-id="${data.Id}">
+                                <div class="dd-handle dd3-handle"></div>
+                                <div class="dd3-content">
+                                    ${data.Name}
+                                    <i onclick="deletePropertyType(${data.Id})" class="fa fa-minus float-right m-r-20"></i>
+                                </div>
+                            </li>`);
+                        $('input[name="propertyType"]').val('');
+                        Swal.close();
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            }
+
+            Swal.fire(settings);
+        }
+
+        function deletePropertyType(id) {
+            swal({
+                title: 'Bạn có chắc không?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '@Url.Action("DeletePropertyType")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            id
+                        }
+                    }).done(function (data) {
+                        $("ol#propertyTypeContainer").find("li[data-id='" + data + "']").remove();
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
+
+        function addPropertyStatusCode() {
+            var settings = {
+                title: 'Saving',
+                allowOutsideClick: () => !Swal.isLoading(),
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    $.ajax({
+                        url: '@Url.Action("CreatePropertyStatusCode")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            name: $('input[name="propertyStatusCode"]').val()
+                        }
+                    }).done(function (data) {
+                        $('ol#propertyStatusCodeContainer>li:nth-child(1)').append(
+                            `<li class="dd-item dd3-item" data-id="${data.Id}">
+                                <div class="dd-handle dd3-handle"></div>
+                                <div class="dd3-content">
+                                    ${data.Name}
+                                    <i onclick="deletePropertyStatusCode(${data.Id})" class="fa fa-minus float-right m-r-20"></i>
+                                </div>
+                            </li>`);
+                        $('input[name="propertyStatusCode"]').val('');
+                        Swal.close();
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            }
+
+            Swal.fire(settings);
+        }
+
+        function deletePropertyStatusCode(id) {
+            swal({
+                title: 'Bạn có chắc không?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '@Url.Action("DeletePropertyStatusCode")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            id
+                        }
+                    }).done(function (data) {
+                        $("ol#propertyStatusCodeContainer").find("li[data-id='" + data + "']").remove();
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
+
+        function addBlogType() {
+            var settings = {
+                title: 'Saving',
+                allowOutsideClick: () => !Swal.isLoading(),
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    $.ajax({
+                        url: '@Url.Action("CreateBlogType")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            name: $('input[name="blogType"]').val()
+                        }
+                    }).done(function (data) {
+                        $('ol#blogTypeContainer>li:nth-child(1)').append(
+                            `<li class="dd-item dd3-item" data-id="${data.Id}">
+                                <div class="dd-handle dd3-handle"></div>
+                                <div class="dd3-content">
+                                    ${data.Name}
+                                    <i onclick="deleteBlogType(${data.Id})" class="fa fa-minus float-right m-r-20"></i>
+                                </div>
+                            </li>`);
+                        $('input[name="blogType"]').val('');
+                        Swal.close();
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            }
+
+            Swal.fire(settings);
+        }
+
+        function deleteBlogType(id) {
+            swal({
+                title: 'Bạn có chắc không?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteBlogType")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            id
+                        }
+                    }).done(function (data) {
+                        $("ol#blogTypeContainer").find("li[data-id='" + data + "']").remove();
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        swal(
+                            'Lỗi!',
+                            errorThrown,
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
+    </script>
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box; margin-bottom: 25px">Sắp Xếp Danh Mục</h4>
+        <button type="button" onclick="saveChanges()" class="btn btn-success waves-effect waves-light mr-2 float-right">Save</button>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Loại Dự Án</h4>
+                        <div class="myadmin-dd-empty dd" id="nestable1">
+                            <ol id="propertyTypeContainer" class="dd-list">
+                                <li class="dd-item dd3-item" data-id="-1">
+                                    <div class="dd3-content form-material col-12">
+                                        <input name="propertyType" type="text" class="form-control col-8" />
+                                        <button type="button" onclick="addPropertyType()" class="btn btn-info col-2 float-right">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </li>
+                                @foreach (var item in Model.PropertyTypes)
+                                {
+                                    <li class="dd-item dd3-item" data-id="@item.Id">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">
+                                            @item.Name
+                                            <i onclick="deletePropertyType(@item.Id)" class="fa fa-minus float-right m-r-20"></i>
+                                        </div>
+                                    </li>
+                                }
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Loại Giao Dịch</h4>
+                        <div class="myadmin-dd-empty dd" id="nestable2">
+                            <ol id="propertyStatusCodeContainer" class="dd-list">
+                                <li class="dd-item dd3-item" data-id="-1">
+                                    <div class="dd3-content form-material col-12">
+                                        <input name="propertyStatusCode" type="text" class="form-control col-8" />
+                                        <button type="button" onclick="addPropertyStatusCode()" class="btn btn-info col-2 float-right">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </li>
+                                @foreach (var item in Model.PropertyStatusCode)
+                                {
+                                    <li class="dd-item dd3-item" data-id="@item.Id">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">
+                                            @item.Name
+                                            <i onclick="deletePropertyStatusCode(@item.Id)" class="fa fa-minus float-right m-r-20"></i>
+                                        </div>
+                                    </li>
+                                }
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Loại Bài Viết</h4>
+                        <div class="myadmin-dd-empty dd" id="nestable3">
+                            <ol id="blogTypeContainer" class="dd-list">
+                                <li class="dd-item dd3-item" data-id="-1">
+                                    <div class="dd3-content form-material col-12">
+                                        <input name="blogType" type="text" class="form-control col-8" />
+                                        <button type="button" onclick="addBlogType()" class="btn btn-info col-2 float-right">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </li>
+                                @foreach (var item in Model.BlogProperty)
+                                {
+                                    <li class="dd-item dd3-item" data-id="@item.Id">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">
+                                            @item.Name
+                                            <i onclick="deleteBlogType(@item.Id)" class="fa fa-minus float-right m-r-20"></i>
+                                        </div>
+                                    </li>
+                                }
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.AntiForgeryToken()

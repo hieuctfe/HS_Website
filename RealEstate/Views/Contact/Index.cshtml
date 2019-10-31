@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Liên Hệ";
+}
+
+@section CustomScripts
+{
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback="></script>
+    <script src="@Url.ClientAppAssets("js/map.scripts.js")"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-106986305-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script>
+        //if ($contact.length) {
+        //    $contact.validate({  //#contact-form contact form id
+        //        rules: {
+        //            firstname: {
+        //                required: true    // Field name here
+        //            },
+        //            lastname: {
+        //                required: true    // Field name here
+        //            },
+        //            email: {
+        //                required: true, // Field name here
+        //                email: true
+        //            },
+        //            subject: {
+        //                required: true
+        //            },
+        //            message: {
+        //                required: true
+        //            }
+        //        },
+
+        //        messages: {
+        //            firstname: "Please enter your First Name", //Write here your error message that you want to show in contact form
+        //            lastname: "Please enter your Last Name", //Write here your error message that you want to show in contact form
+        //            email: "Please enter valid Email", //Write here your error message that you want to show in contact form
+        //            subject: "Please enter your Subject", //Write here your error message that you want to show in contact form
+        //            message: "Please write your Message" //Write here your error message that you want to show in contact form
+        //        },
+
+        //        submitHandler: function (form) {
+        //            $('#send').attr({ 'disabled': 'true', 'value': 'Sending...' });
+        //            $.ajax({
+        //                type: "POST",
+        //                url: "email.php",
+        //                data: $(form).serialize(),
+        //                success: function () {
+        //                    $('#send').removeAttr('disabled').attr('value', 'Send');
+        //                    $("#success").slideDown("slow");
+        //                    setTimeout(function () {
+        //                        $("#success").slideUp("slow");
+        //                    }, 5000);
+        //                    form.reset();
+        //                },
+        //                error: function () {
+        //                    $('#send').removeAttr('disabled').attr('value', 'Send');
+        //                    $("#error").slideDown("slow");
+        //                    setTimeout(function () {
+        //                        $("#error").slideUp("slow");
+        //                    }, 5000);
+        //                }
+        //            });
+        //            return false; // required to block normal submit since you used ajax
+        //        }
+
+        //    });
+        //}
+    </script>
+}
+@{ Html.RenderPartial($"_Banner_Section"); }
+<section id="contact">
+    <div class="container">
+        <h2 class="section_title_blue"><span>UNILAND</span> Realestate</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact_area">
+                    <p>Real Estate xin hân hạnh được phục vụ quý khách</p>
+                    <form id="contact-form" class="contact_message" action="email.php" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <input class="form-control" id="subject" type="text" name="subject" placeholder="Họ Và Tên">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <input class="form-control" id="email" type="text" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <input class="form-control" id="firstname" type="text" name="firstname" placeholder="Tiêu Đề">
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <textarea class="form-control" id="message" name="message" placeholder="Nội Dung"></textarea>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <input id="send" class="btn btn-default" type="submit" value="Gửi">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="error-handel">
+                                    <div id="success">Your email sent Successfully, Thank you.</div>
+                                    <div id="error"> Error occurred while sending email. Please try again later.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contact_right">
+                            <h5 class="inner-title">Địa Chỉ</h5>
+                            <p>Số 3 Lê Văn Tám, Phường 1, Thành phố Cao Lãnh</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact_right">
+                            <h5 class="inner-title">Thông Tin Liên Hệ</h5>
+                            <p>027.73853814 <a href="mailto:quangcaohuongsen.2018@gmail.com">quangcaohuongsen.2018@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact_map">
+                    <div id="map" class="map-canvas"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

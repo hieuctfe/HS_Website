@@ -1,0 +1,395 @@
+﻿@model IEnumerable<PropertyViewModels>
+@{
+    ViewBag.Title = "Dự Án Bất Động Sản";
+
+    int length = Model.Count(),
+        totalPages = ViewBag.TotalPages;
+
+    var routeValues = new RouteValueDictionary
+    {
+        ["SortField"] = ViewBag.SortField,
+        ["PageIndex"] = ViewBag.PageIndex,
+        ["PageSize"] = ViewBag.PageSize,
+        ["SearchValue"] = ViewBag.SearchValue,
+    };
+
+    string defaultQueryString = Html.BuildQueryString(routeValues),
+            action = ViewContext.RouteData.Values["action"].ToString(),
+            controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("perfect-scrollbar-1.4.0/css/perfect-scrollbar.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppCustoms("css/switchBtn.css")" rel="stylesheet" />
+    <style>
+        .table-responsive thead > tr > th {
+            white-space: nowrap;
+            vertical-align: unset;
+            text-align: center;
+        }
+
+        .table-responsive tbody > tr > td {
+            white-space: nowrap;
+        }
+
+        .table-responsive {
+            position: relative;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppVendors("perfect-scrollbar-1.4.0/dist/perfect-scrollbar.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <!--CheckBoxFunction-->
+    <script src="@Url.AppCustoms("js/checkbox-mylib.js")"></script>
+
+    <script type="text/javascript">
+        var $table = $('#show-table');
+        var $tbody = $table.children('tbody');
+        var $btnDeleteMany = $('#btnDeleteMany');
+        var $btnDisplayMore = $('#btnDisplayMore');
+        var routeValues = $tbody.attr('data-routeValues');
+
+        var $multiChecknoxesModule = MyLib.Ui.MultiCheckBoxes({
+            checkboxAllSelector: '#checkbox_all',
+            checkboxListSelector: '#show-table tbody tr td:first-child'
+        });
+
+        $multiChecknoxesModule.init();
+
+        function deleteRecord(sendData, currentNumberOfRows) {
+            if (sendData.ids.length == 0) {
+                swal('', 'Lựa Chọn Ít Nhất Một Sản Phẩm Để Thực Hiện Thao Tác Này', 'warning');
+            } else {
+                $.ajax({
+                    url: '@Url.Action("Delete")',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: sendData
+                    }).done(function () {
+                        swal(
+                            'Đã Xóa!',
+                            'Dữ Liệu Đã Được Xóa Khỏi Danh Sách.',
+                            'success'
+                        ).then(() => {
+                            var pattern = /pageindex=(\d+)/i;
+                            if ($tbody.attr('data-numberOfRows') == currentNumberOfRows) {
+                                var pageIndex = routeValues.match(pattern)[1];
+
+                                if (pageIndex > 1) {
+                                    routeValues = routeValues.replace(pattern, `PageIndex=${pageIndex - 1}`);
+                                }
+                            }
+                            window.location = `@Url.Action("Index")?${routeValues}`;
+                        });
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    swal(
+                        'Lỗi!',
+                        errorThrown,
+                        'error'
+                    );
+                });
+            }
+        }
+
+        $btnDeleteMany.on('click', function () {
+            swal({
+                title: 'Bạn có chắc không?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không'
+            }).then((result) => {
+                if (result.value) {
+                    deleteRecord({
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                        ids: $multiChecknoxesModule.getSelectedItemValues(),
+                    }, $multiChecknoxesModule.getSelectedItemValues().length);
+                }
+            });
+        });
+
+        $btnDisplayMore.on('click', function () {
+            var $th = $table.find('thead').find('tr').find(`th:nth-child(4),
+                                                  th:nth-child(5),
+                                                  th:nth-child(7),
+                                                  th:nth-child(8),
+                                                  th:nth-child(9),
+                                                  th:nth-child(10),
+                                                  th:nth-child(11),
+                                                  th:nth-child(12)`);
+            var $td = $table.find('tbody').find('tr').find(`td:nth-child(4),
+                                                  td:nth-child(5),
+                                                  td:nth-child(7),
+                                                  td:nth-child(8),
+                                                  td:nth-child(9),
+                                                  td:nth-child(10),
+                                                  td:nth-child(11),
+                                                  td:nth-child(12)`);
+            var $this = $(this);
+            var $icon = $this.find('i');
+            var $text = $this.find('span');
+
+            if ($icon.hasClass('fa-eye')) {
+                $icon.removeClass('fa-eye');
+                $icon.addClass('fa-eye-slash');
+                $text.text('Ẩn Thuộc Tính');
+                $th.removeClass('d-md-none');
+                $td.removeClass('d-md-none');
+            } else {
+                $icon.removeClass('fa-eye-slash');
+                $icon.addClass('fa-eye');
+                $text.text('Hiển Thị Thêm');
+                $th.addClass('d-md-none');
+                $td.addClass('d-md-none');
+            }
+        });
+
+        $table.find('tbody').on('click', '.deleteButton', function (event) {
+            var $deleteBtn = $(this);
+            swal({
+                title: 'Bạn có chắc không?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không'
+            }).then((result) => {
+                if (result.value) {
+                    deleteRecord({
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                        ids: $deleteBtn.attr('data-id'),
+                    }, 1);
+                }
+            });
+        });
+
+        $table.find('tbody').on('click', '.displayButton', function (event) {
+            var $displayButton = $(this);
+            $.ajax({
+                url: '@Url.Action("Display")',
+                method: 'GET',
+                dataType: 'json',
+                data: {
+                    id: $displayButton.attr('data-id')
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                swal(
+                    'Lỗi!',
+                    errorThrown,
+                    'error'
+                );
+            });
+        });
+
+        $table.find('tbody').on('click', '.featuredButton', function (event) {
+            var $displayButton = $(this);
+            $.ajax({
+                url: '@Url.Action("Featured")',
+                method: 'GET',
+                dataType: 'json',
+                data: {
+                    id: $displayButton.attr('data-id')
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                swal(
+                    'Lỗi!',
+                    errorThrown,
+                    'error'
+                );
+            });
+        });
+
+        $table.find('tbody').on('click', '.updateButton', function (event) {
+            window.location = `@Url.Action("Update")?id=${$(this).attr('data-id')}`;
+        });
+
+        var container = new PerfectScrollbar('.table-responsive', {
+            wheelPropagation: true
+        });
+
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Danh sách dự án</h4>
+        <div class="row m-t-10">
+            @using (Html.BeginForm(action, controller, FormMethod.Get, new { @class = "col-4" }))
+            {
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.FirstOrDefault().SearchValue, new { @class = "form-control", placeholder = "Tên Dự Án" })
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success">
+                            <span class="fas fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+                @Html.HiddenFor(x => x.FirstOrDefault().SortField)
+                @Html.HiddenFor(x => x.FirstOrDefault().PageSize)
+            }
+            <div class="col-8">
+                <button id="btnDeleteMany" class="btn btn-danger waves-effect waves-light mr-2 float-right">
+                    <i class="fas fa-trash"></i> <span class="hidden-sm-down">Xóa</span>
+                </button>
+                <button id="btnDisplayMore" class="btn btn-success waves-effect waves-light mr-2 float-right d-none d-md-block">
+                    <i class="fas fa-eye"></i> <span class="hidden-sm-down">Hiển Thị Thêm</span>
+                </button>
+                <a href="@Url.Action("Create")" class="btn btn-info waves-effect waves-light mr-2 float-right" role="button">
+                    <i class="mdi mdi-library-plus"></i>
+                    <span class="hidden-sm-down m-t-10">Thêm Mới</span>
+                </a>
+            </div>
+        </div>
+        @if (length == 0)
+        {
+            <div class="m-t-40 text-center"><h2>Không Có Dữ Liệu Phù Hợp</h2></div>
+        }
+        else
+        {
+            <nav>
+                @{
+                    if (ViewBag.TotalPages > 1)
+                    {
+                        routeValues["PageSize"] = ViewBag.PageSize;
+                        routeValues["SortField"] = ViewBag.SortField;
+                        Html.RenderAction("RenderPaging", "SiteAdmin",
+                                    new
+                                    {
+                                        pageView = new _PageView
+                                        {
+                                            Action = action,
+                                            Controller = controller,
+                                            PageIndex = ViewBag.PageIndex,
+                                            TotalPage = ViewBag.TotalPages,
+                                            ShowPage = 7,
+                                            RouteValues = routeValues
+                                        }
+                                    });
+                        routeValues["PageIndex"] = ViewBag.PageIndex;
+                    }
+                }
+            </nav>
+
+            <div class="table-responsive">
+                <table id="show-table" class="table m-t-30 table-hover" data-paging="true">
+                    <thead>
+                        <tr>
+                            @{ var model = new Property(); }
+                            <th class="p-b-5">
+                                <input id="checkbox_all" class="chk-col-light-green" type="checkbox">
+                                <label for="checkbox_all">Tất Cả</label>
+                            </th>
+                            <th>@Html.BuildSortFieldFor(x => model.Code, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th>@Html.BuildSortFieldFor(x => model.Name, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.UIOption.IsDisplay, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.IsFeatured, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th>@Html.BuildSortFieldFor(x => model.Price, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.Area, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.NumberOfBedRoom, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.NumberOfBathRoom, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.HasCarGarage, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.District, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th class="d-md-none">@Html.BuildSortFieldFor(x => model.City, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th>@Html.BuildSortFieldFor(x => model.PropertyStatusCode.Name, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th>@Html.BuildSortFieldFor(x => model.PropertyType.Name, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th>@Html.BuildSortFieldFor(x => model.OrderStatus, nameof(model), ViewBag.SortField as string, action, controller, routeValues, null)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-routeValues="@defaultQueryString" data-numberOfRows="@length">
+                        @for (int i = 0; i < length; i++)
+                        {
+                            int selector = (ViewBag.PageIndex - 1) * (ViewBag.PageSize);
+                        <tr>
+                            <td>
+                                <input value="@Model.ElementAt(i).Id" id="checkbox_@(selector + i + 1)" class="filled-in chk-col-light-blue" type="checkbox">
+                                <label class="" for="checkbox_@(selector + i + 1)">@(selector + i + 1)</label>
+                            </td>
+                            <td>@Model.ElementAt(i).Code.MaxLength()</td>
+                            <td>
+                                <img src="@Model.ElementAt(i).AvatarPath" alt="@Model.ElementAt(i).AvatarName" width="100" />
+                                @Model.ElementAt(i).Name.MaxLength()
+                            </td>
+                            <td class="d-md-none">
+                                <button data-id="@Model.ElementAt(i).Id" type="button"
+                                        class="btn btn-secondary displayButton btn-toggle @(Model.ElementAt(i).IsDisplay ? "active" : string.Empty)"
+                                        data-toggle="button" aria-pressed="@Model.ElementAt(i).IsDisplay" autocomplete="off">
+                                    <div class="handle"></div>
+                                </button>
+                            </td>
+                            <td class="d-md-none">
+                                <button data-id="@Model.ElementAt(i).Id" type="button"
+                                        class="btn btn-secondary featuredButton btn-toggle @(Model.ElementAt(i).IsFeatured ? "active" : string.Empty)"
+                                        data-toggle="button" aria-pressed="@Model.ElementAt(i).IsFeatured" autocomplete="off">
+                                    <div class="handle"></div>
+                                </button>
+                            </td>
+                            @{string price = Model.ElementAt(i).PriceFormated.IsNullOrEmpty() ? "<span class='label label-warning'>Liên Hệ</span>" : Model.ElementAt(i).PriceFormated;}
+                            <td>@Html.Raw(price)</td>
+                            <td class="d-md-none">@Model.ElementAt(i).AreaFormated</td>
+                            <td class="d-md-none">@Model.ElementAt(i).NumberOfBedRoom</td>
+                            <td class="d-md-none">@Model.ElementAt(i).NumberOfBathRoom</td>
+                            <td class="d-md-none">
+                                @if (Model.ElementAt(i).HasGarage)
+                                {
+                                    <span class="label label-info">Có</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-inverse">Không</span>
+                                }
+                            </td>
+                            <td class="d-md-none">@Model.ElementAt(i).District.MaxLength()</td>
+                            <td class="d-md-none">@Model.ElementAt(i).City.MaxLength()</td>
+                            <td>@Model.ElementAt(i).Status.MaxLength()</td>
+                            <td>@Model.ElementAt(i).Type.MaxLength()</td>
+                            <td>@Model.ElementAt(i).OrderStatus</td>
+                            <td>
+                                <button data-id="@Model.ElementAt(i).Id" class="btn waves-effect waves-light btn-warning updateButton" data-toggle="tooltip" data-original-title="Sửa">
+                                    <i class="mdi mdi-box-cutter m-t-10"></i>
+                                    <span class="hidden-md-down"></span>
+                                </button>
+                                <button data-id="@Model.ElementAt(i).Id" class="btn waves-effect waves-light btn-danger deleteButton" data-toggle="tooltip" data-original-title="Xóa" type="button">
+                                    <i class="mdi mdi-delete m-t-10"></i>
+                                    <span class="hidden-md-down"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        }
+                </table>
+            </div>
+        }
+        <nav>
+            @{
+                if (ViewBag.TotalPages > 1)
+                {
+                    routeValues["PageSize"] = ViewBag.PageSize;
+                    routeValues["SortField"] = ViewBag.SortField;
+                    Html.RenderAction("RenderPaging", "SiteAdmin",
+                                new
+                                {
+                                    pageView = new _PageView
+                                    {
+                                        Action = action,
+                                        Controller = controller,
+                                        PageIndex = ViewBag.PageIndex,
+                                        TotalPage = ViewBag.TotalPages,
+                                        ShowPage = 7,
+                                        RouteValues = routeValues
+                                    }
+                                });
+                }
+            }
+        </nav>
+    </div>
+</div>
+@Html.AntiForgeryToken()

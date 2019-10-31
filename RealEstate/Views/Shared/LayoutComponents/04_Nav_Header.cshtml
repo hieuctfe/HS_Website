@@ -1,0 +1,57 @@
+﻿<!-- Nav Header Start -->
+<div id="nav_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <nav class="navbar navbar-default nav_edit">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img class="nav-logo" src="@Url.ClientAppAssets("img/logo1.png")" style="width:125px;" alt=""></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse my_nav" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right nav_text">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Danh Sách Dự Án <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Loại Dự Án <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                        @{ Html.RenderAction("RenderPropertyTypeMenu", "SiteClient"); }
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dạng Dự Án<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                        @{ Html.RenderAction("RenderPropertyStatusMenu", "SiteClient"); }
+                                    </li>
+                                    <li><a href="@Url.Action("Featured", "Home")" role="button">Dự Án Nổi Bật </a></li>
+                                    <li><a href="@Url.Action("Index", "Home")" role="button">Tất Cả </a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Danh Sách Bài Viết <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Loại Bài Viết <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                        @{ Html.RenderAction("RenderCategoryMenu", "SiteClient"); }
+                                    </li>
+                                    <li><a href="@Url.Action("Index", "Blog")">Tất Cả</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "AboutUs")" role="button" >Về Chúng Tôi </a>
+                            </li>
+                            <li><a href="@Url.Action("Index", "Contact")">Liên Hệ</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Nav Header End -->

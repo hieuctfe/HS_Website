@@ -1,0 +1,26 @@
+﻿@{ 
+    string sourcePath = "LayoutComponents/";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @{ Html.RenderPartial($"{sourcePath}01_Header"); }
+    @RenderSection("CustomStyles", required: false)
+</head>
+<body class="fix-header fix-sidebar card-no-border">
+    @{ Html.RenderPartial($"{sourcePath}02_Body_Preloader"); }
+    <div id="main-wrapper">
+        @{ Html.RenderAction("RenderTopBar", "SiteAdmin"); }
+        @{ Html.RenderAction("RenderLeftSidebar", "SiteAdmin"); }
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                @{ Html.RenderPartial($"{sourcePath}05_Body_MW_PW_Breadcrumb"); }
+                @RenderBody()
+            </div>
+            @{ Html.RenderPartial($"{sourcePath}06_Body_MW_PW_Footer"); }
+        </div>
+    </div>
+    @{ Html.RenderPartial($"{sourcePath}07_Body_Script"); }
+    @RenderSection("CustomScripts", required: false)
+</body>
+</html>

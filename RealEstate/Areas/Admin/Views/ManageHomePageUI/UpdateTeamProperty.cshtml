@@ -1,0 +1,118 @@
+﻿@model IEnumerable<HomeUITeamViewModels>
+@{
+    ViewBag.Title = "Chỉnh Sửa Team Trang Chủ";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+    int index = 0;
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("cropper/cropper.min.css")" rel="stylesheet" />
+
+    <style>
+        .img-container {
+            min-height: 300px;
+        }
+
+        .no-image-background {
+            background: white;
+            display: flex;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            line-height: 300px;
+        }
+
+        .activeCropper {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        #image-popup-gallery img {
+            cursor: pointer
+        }
+
+        .btn-delete {
+            top: calc(0px - 5px);
+            right: calc(0px + 5px);
+            padding: 0;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            outline: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        form label {
+            color: black;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper-init-multi-image-modified.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var cropper = new MyLib.CropperFactory({ $CropperModal: '#modalCropper' });
+            var $mainForm = $('#accordion');
+
+            $mainForm.find('.form-material').each(function (index, e) {
+                cropper.Create(`#slider${index + 1}`, 1, NaN, 'list', true, index++);
+            });
+
+            $("button[name='addTeam']").on('click', function () {
+                $.ajax({
+                    url: '@Url.Action("RenderHomeTeamForm", "SiteAdmin")',
+                    dataType: 'json'
+                }).done(function (data, textStatus, jqXHR) {
+                    var index = $mainForm.find('.form-material').length || 0;
+                    $mainForm.append(data.replace(/{{index}}/g, index).replace(/{{i}}/g, index + 1));
+
+                    cropper.Create(`#slider${index + 1}`, 1, NaN, 'list', true, index++);
+                    }).fail(function () {
+                        swal('Error', 'Error at loading team form, Please contact to the administrator', 'error');
+                    });
+            });
+
+            $("button[name='removeTeam']").on('click', function () {
+                $mainForm.children('.card').last().remove();
+            });
+        });
+
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box; margin-bottom: 25px">Cập Nhật Team (recommend: more than 4)</h4>
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Save Changes</button>
+        <button type="button" name="removeTeam" class="btn btn-outline-danger waves-effect waves-light mr-2 float-right">Remove Team</button>
+        <button type="button" name="addTeam" class="btn btn-outline-info waves-effect waves-light mr-2 float-right">Add Team</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post, new { id = "mainFormContainer" }))
+        {
+            @Html.AntiForgeryToken()
+            <div id="accordion">
+                @{ index = 0; }
+                @foreach (var team in Model)
+                {
+                    ViewBag.Index = (index++ + 1).ToString();
+                    Html.RenderPartial("_Team_Sidebar_Item", team);
+                }
+            </div>
+        }
+    </div>
+</div>
+@{ Html.RenderPartial("ViewComponents/_ImageCropperModal"); }

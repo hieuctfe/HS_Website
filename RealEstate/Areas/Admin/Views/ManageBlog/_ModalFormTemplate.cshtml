@@ -1,0 +1,39 @@
+﻿@model ManagePostAttributeViewModels
+
+
+<form class="form-material col-12 m-t-20">
+    Tạo Mới: 
+    @Html.TextBoxFor(x => x.ItemName, new { @class = "form-control col-4 m-l-20", placeholder = "Tên" })
+    @Html.ValidationMessageFor(x => x.ItemName)
+    <button id="create-popup-management" type="button" class="btn btn-info m-l-10">
+        <i class="fa fa-plus"></i> 
+    </button>
+</form>
+<div class="table-responsive table-popup-management col-12 m-t-20">
+    <table class="table col-3 color-table muted-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Model.ModalName</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 0; }
+            @foreach (var item in Model.Item)
+            {
+                <tr>
+                    <td>@(++i)</td>
+                    <td>
+                        @item.name.MaxLength(40)
+                    </td>
+                    <td>
+                        <button data-id="@item.id" class="btn waves-effect waves-light btn-outline-secondary btnDelete-popup-management" type="button">
+                            <i class="mdi mdi-delete"></i> Xóa
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

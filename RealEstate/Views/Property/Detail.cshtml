@@ -1,0 +1,529 @@
+﻿@model PropertyDetailPageViewModels
+@{
+    ViewBag.Title = "Chi Tiết Dự Án";
+    var basicInfor = Model.DetailInformation;
+    var searchObj = Model.PropertyPagination;
+
+    var headerImages = basicInfor.HeaderImages.ToList();
+
+    string prefix = $"{nameof(Model.PropertyPagination)}.";
+    int commentCount = basicInfor.Comments.ToList().Count;
+
+    IEnumerable<SelectListItem> cities = ViewBag.Cities as IEnumerable<SelectListItem>,
+                                districts = ViewBag.Districts as IEnumerable<SelectListItem> ??
+                                                                 Enumerable.Empty<SelectListItem>();
+}
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")" rel="stylesheet" />
+    <style>
+        .quantity > ul > li {
+            text-align:center;
+        }
+
+        #@nameof(Model.PropertyPagination.FromPriceValue),
+        #@nameof(Model.PropertyPagination.ToPriceValue),
+        #@nameof(Model.PropertyPagination.Bed),
+        #@nameof(Model.PropertyPagination.Bath)
+        {
+            min-height:38px;
+            margin-bottom:0px;
+        }
+
+        .bg-section {
+            padding-top: 15px;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1)
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('input#FromPriceValue').TouchSpin({
+            min: 0,
+            max: 999999999999,
+            prefix: 'Từ &nbsp;',
+            initval: "",
+            step: 500000,
+            forcestepdivisibility: 'none',
+            verticalbuttons: true,
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default'
+        });
+
+        $('input#ToPriceValue').TouchSpin({
+            min: 0,
+            max: 999999999999,
+            prefix: 'Đến ',
+            initval: "",
+            step: 500000,
+            forcestepdivisibility: 'none',
+            verticalbuttons: true,
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default'
+        });
+
+        $(".area_filter").slider({
+            from: 0,
+            to: 1000,
+            step: 10,
+            smooth: true,
+            round: 0,
+            dimension: "m²",
+            skin: "plastic"
+        });
+
+        $('input#@nameof(searchObj.Bed)').TouchSpin({
+            min: 0,
+            max: 100,
+            prefix: '<i class="fa fa-bed"></i>',
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $('input#@nameof(searchObj.Bath)').TouchSpin({
+            min: 0,
+            max: 100,
+            prefix: '<i class="fa fa-bath"></i>',
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $(function () {
+            var $city = $('#@nameof(Model.PropertyPagination.City)');
+            var $district = $('#@nameof(Model.PropertyPagination.District)');
+
+            $city.on('change', function () {
+                let $this = $(this);
+                let options = `<option value="">@Html.DisplayNameFor(x => x.PropertyPagination.District)</option>`;
+                if ($this.val() === '') {
+                    $district.prop('disabled', true);
+                    $district.empty();
+                    $district.html(options);
+                    $district.selectpicker('refresh');
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("GetDistricts")',
+                        dataType: 'json',
+                        method: 'get',
+                        data: {
+                            cityName: $this.val()
+                        }
+                    }).done(function (data) {
+                        $district.prop('disabled', false);
+
+                        $.each(data, function (i, ele) {
+                            options += `<option value="${ele}">${ele}</option>`;
+                        });
+                        $district.empty();
+                        $district.html(options)
+                        $district.selectpicker('refresh');
+                    }).fail(function () {
+                        swal('Error at loading districts, Please contact to the administrator', '', 'error');
+                    });
+                }
+            });
+
+            var $orderBy = $('#@nameof(Model.PropertyPagination.SortField)');
+
+            $orderBy.on('change', function () {
+                let $this = $(this);
+                let $form = $('#searchForm');
+
+                $('<input />').attr('type', 'hidden')
+                    .attr('name', "@($"{prefix}{nameof(Model.PropertyPagination.SortField)}")")
+                    .attr('value', $this.val())
+                    .appendTo($form);
+                $form.submit();
+            });
+        });
+
+        function submitComment() {
+            setTimeout(() => {
+                console.log($(".field-validation-error").length);
+                if ($(".field-validation-error").length == 0) {
+                    var settings = {
+                        title: 'Gửi Bình Luận',
+                        text: 'Saving',
+                        allowOutsideClick: () => !Swal.isLoading(),
+                        onBeforeOpen: () => {
+                            swal(
+                                'Đã Lưu!',
+                                'Gửi Bình Luận Thành Công',
+                                'success'
+                            )
+                        }
+                    }
+                    Swal.fire(settings);
+                }
+            }, 0);
+
+        }
+    </script>
+}
+@{ Html.RenderPartial($"_Banner_Section_Detail"); }
+
+<!-- Single Property Start -->
+<section id="single_property">
+    <div class="container">
+        <div class="row bg-section">
+            <div class="col-md-4">
+                <div class="property_sidebar">
+                    <div class="property_listing sidebar-widget">
+                        <h4 class="inner-title">Tổng Quan Dự Án</h4>
+                        <div class="profile_data">
+                            <ul>
+                                <li><span>Mã Dự Án :</span> @basicInfor.Code</li>
+                                <li><span>Loại Dự Án :</span> @basicInfor.Type</li>
+                                <li><span>Trạng Thái :</span> @basicInfor.Status</li>
+                                <li><span>Giá :</span> @basicInfor.PriceFormated VND</li>
+                                <li><span>Diện Tích :</span> @basicInfor.AreaFormated</li>
+                                <li><span>Phòng Ngủ :</span> @basicInfor.NumberOfBedRoom</li>
+                                <li><span>Phòng Tắm :</span> @basicInfor.NumberOfBathRoom</li>
+                                <li><span>Garage :</span> @basicInfor.NumberOfGarage</li>
+                                <li><span>Bể Bơi :</span> @(basicInfor.HasSwimming ? "Có" : "Không")</li>
+                                <li><span>Vườn :</span> @(basicInfor.HasGarden ? "Có" : "Không")</li>
+                                <li>
+                                    <span>Đánh Giá :</span>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        string className = "fa-star-o";
+                                        if (!double.IsNaN(basicInfor.Rating) && i < basicInfor.Rating)
+                                        {
+                                            className = "fa-star";
+                                        }
+                                        <i class="fa @className" aria-hidden="true"></i>
+                                    }
+                                    @commentCount
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="property_listing sidebar-widget">
+                        <h4 class="inner-title">Thông Tin Liên Hệ</h4>
+                        <div class="profile_data">
+                            <ul>
+                                <li><span>Người rao :</span> @basicInfor.ContactName</li>
+                                <li><span>Số điện thoại:</span> @basicInfor.ContactPhone</li>
+                                <li><a href="mailto:batdongsanphumy.net@gmail.com"><span>Email :</span>@basicInfor.ContactEmail</a></li>
+                                <li><span>Địa Chỉ :</span> @basicInfor.ContactAddress</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <form id="searchForm" action="@Url.Action("Index", "Home")" method="get">
+                        <div class="property_sidebar col-12">
+                            <div class="price_range sidebar-widget">
+                                <h4 class="widget-title">Diện Tích</h4>
+                                <div class="area-filter">
+                                    <span class="price-slider">
+                                        <input class="area_filter" type="text" name="@($"{prefix}{nameof(searchObj.AreaValue)}")" value="@searchObj.AreaValue" />
+                                    </span>
+                                </div>
+                            </div>
+                            <h4 class="widget-title">Giá</h4>
+                            <div class="row float-left">
+                                <div class="col-sm-12">
+                                    <input name="@($"{prefix}{nameof(searchObj.FromPriceValue)}")" id="@nameof(searchObj.FromPriceValue)" value="@searchObj.FromPriceValue" />
+                                </div>
+                                <div class="col-sm-12" style="margin-top:10px;">
+                                    <input name="@($"{prefix}{nameof(searchObj.ToPriceValue)}")" id="@nameof(searchObj.ToPriceValue)" value="@searchObj.ToPriceValue" />
+                                </div>
+                            </div>
+                            <div class="advance_search sidebar-widget">
+                                <h4 class="widget-title">Tìm Kiếm Nâng Cao</h4>
+                                <div class="search_form">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-6">
+                                            @Html.DropDownList($"{prefix}{nameof(searchObj.City)}", cities,
+                                            $"Thành Phố", new
+                                            {
+                                                @class = "selectpicker form-control",
+                                                id = nameof(searchObj.City)
+                                            })
+                                        </div>
+                                        <div class="col-md-12 col-sm-6">
+                                            @if (!cities.Any(x => x.Selected))
+                                            {
+                                                @Html.DropDownList($"{prefix}{nameof(searchObj.District)}", districts, $"{Html.DisplayNameFor(x => searchObj.District)}", new
+                                                 {
+                                                    @class = "selectpicker form-control",
+                                                    id = nameof(searchObj.District),
+                                                    disabled = "True"
+                                                })
+                                            }
+                                            else
+                                            {
+                                                @Html.DropDownList($"{prefix}{nameof(searchObj.District)}", districts, $"{Html.DisplayNameFor(x => searchObj.District)}", new
+                                                 {
+                                                    @class = "selectpicker form-control",
+                                                    id = nameof(searchObj.District),
+                                                })
+                                            }
+                                        </div>
+                                        <div class="col-md-12 col-sm-6">
+                                            @Html.DropDownList($"{prefix}{nameof(searchObj.Status)}", ViewBag.Statuses as IEnumerable<SelectListItem>,
+                                            $"Trạng Thái", new
+                                            {
+                                                @class = "selectpicker form-control",
+                                                id = nameof(searchObj.Status)
+                                            })
+                                        </div>
+                                        <div class="col-md-12 col-sm-6">
+                                            @Html.DropDownList($"{prefix}{nameof(searchObj.Type)}", ViewBag.Types as IEnumerable<SelectListItem>,
+                                            $"Loại Hình", new
+                                            {
+                                                @class = "selectpicker form-control",
+                                                id = nameof(searchObj.Type)
+                                            })
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => searchObj.Bed, new
+                                           {
+                                               @class = "form-control",
+                                               Name = $"{prefix}{nameof(searchObj.Bed)}",
+                                               Id = nameof(searchObj.Bed),
+                                               value = "",
+                                            })
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextBoxFor(model => searchObj.Bath, new
+                                            {
+                                                @class = "form-control",
+                                                Name = $"{prefix}{nameof(searchObj.Bath)}",
+                                                Id = nameof(searchObj.Bath),
+                                                value = "",
+                                            })
+                                        </div>
+                                        <div class="col-md-12 col-sm-6" style="margin-top:20px;">
+                                            <button name="search" class="btn btn-default" type="submit">Tìm Kiếm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="featured_sidebar sidebar-widget">
+                        <h4 class="widget-title">Dự Án Nổi Bật</h4>
+                        <div class="slide_featured">
+                            @foreach (var property in Model.Featured)
+                            {
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="sidebar_img">
+                                            <a href="@Url.Action("Detail", new { id = property.Id })"><img src="@property.AvatarPath" alt="@property.AvatarName"></a>
+                                            <div class="sale_btn">@property.Type</div>
+                                            <div class="quantity">
+                                                <ul>
+                                                    <li><span>Diện Tính</span>@property.AreaFormated m²</li>
+                                                    <li><span>Phòng Ngủ</span>@property.NumberOfBedRoom</li>
+                                                    <li><span>Phòng Tắm</span>@property.NumberOfBedRoom</li>
+                                                    <li><span>Nhà Xe</span>@property.NumberOfGarage</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="property-text">
+                                            <a href="@Url.Action("Detail", new { id = property.Id })"><h6 class="property-title">@property.Name</h6></a>
+                                            <div class="property_price">@property.PriceFormated VND</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="touch-in white-bg col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="property_slider">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    @for (int i = 0; i < headerImages.Count; i++)
+                                    {
+                                        <div class="item @(i == 0 ? "active" : string.Empty)">
+                                            <img src="@headerImages[i].path" alt="@headerImages[i].name">
+                                        </div>
+                                    }
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" style="color: rgba(0,0,0,0.9);" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <div class="lef_btn"><</div>
+                                    <span class="sr-only"><</span>
+                                </a>
+                                <a class="right carousel-control" style="color: rgba(0,0,0,0.9);" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <div class="right_btn">></div>
+                                    <span class="sr-only">></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="detail_text">
+                            <div class="property-text">
+                                <h4 class="property-title">@basicInfor.Name</h4>
+                                <span><i class="fa fa-map-marker" aria-hidden="true"></i> @basicInfor.Address </span>
+                                @Html.Raw(basicInfor.DetailDescription)
+                            </div>
+                        </div>
+                        <div class="more_information">
+                            <h4 class="inner-title">Thông Tin Khác</h4>
+                            <div class="profile_data">
+                                <ul>
+                                    <li><span>Phòng Ngủ:</span> @basicInfor.NumberOfBathRoom</li>
+                                    <li><span>Loại Hình:</span> @basicInfor.Type</li>
+                                    <li><span>Quận/Huyện:</span> @basicInfor.District</li>
+                                    <li><span>Phòng Bếp:</span> @basicInfor.NumberOfBedRoom</li>
+                                    <li><span>Trạng Thái:</span> @basicInfor.Status</li>
+                                    <li><span>Thành Phố:</span> @basicInfor.City</li>
+                                    <li><span>Garage:</span> @basicInfor.NumberOfGarage</li>
+                                    <li><span>Vườn:</span> @(basicInfor.HasSwimming ? "Có" : "Không")</li>
+                                    <li><span>Bể Bơi:</span> @(basicInfor.HasSwimming ? "Có" : "Không")</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="rating-box">
+                            <h4 class="inner-title">Đánh Giá</h4>
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger m-t-20" })
+                            <form id="formComment" action="@Url.Action("Submit", "Comment")" method="post" class="rating-form">
+                                @Html.Hidden("PropertyId", Model.DetailInformation.Id)
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12 rating-animation">
+                                        <div class="star-rating">
+                                            <select id="example-reversed" name="Rating" autocomplete="off">
+                                                <option value="1">Rất Tệ</option>
+                                                <option value="2">Tệ</option>
+                                                <option value="3" selected="selected">Bình Thường</option>
+                                                <option value="4">Tốt</option>
+                                                <option value="5">Rất Tốt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        @Html.TextBoxFor(model => model.DetailInformation.CreateComment.Owner, new
+                                   {
+                                       @class = "form-control",
+                                       placeholder = "Nhập tên*",
+                                        Name = $"Owner"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DetailInformation.CreateComment.Owner, null,
+                                            new Dictionary<string, object>()
+                                            {
+                                                ["Name"] = $"Owner",
+                                                ["data-valmsg-for"] = $"Owner"
+                                            })
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        @Html.TextBoxFor(model => model.DetailInformation.CreateComment.EmailAddress, new
+                                   {
+                                       @class = "form-control",
+                                       placeholder = "Nhập Email*",
+                                        Name = $"EmailAddress"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DetailInformation.CreateComment.EmailAddress, null,
+                                            new Dictionary<string, object>()
+                                            {
+                                                ["Name"] = $"EmailAddress",
+                                                ["data-valmsg-for"] = $"EmailAddress"
+                                            })
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        @Html.TextAreaFor(model => model.DetailInformation.CreateComment.Description, new
+                                   {
+                                       @class = "ratingcomments",
+                                       placeholder = "Viết bình luận...",
+                                        Name = $"Description"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.DetailInformation.CreateComment.Description, null,
+                                            new Dictionary<string, object>()
+                                            {
+                                                ["Name"] = $"Description",
+                                                ["data-valmsg-for"] = $"Description"
+                                            })
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <input id="send" onclick="submitComment()" class="btn btn-default"
+                                               value="Gửi" type="submit" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Commsnts -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="people-rating ">
+                            @if (commentCount != 0)
+                            {
+                                <h4 class="inner-title">@commentCount đánh giá cho @basicInfor.Name </h4>
+                                Html.RenderPartial("ViewComponents/_Comment", basicInfor.Comments);
+                            }
+                            else
+                            {
+                                <h4 class="inner-title">Dự Án Hiện Chưa Có Đánh Giá </h4>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- End Property Comments -->
+            </div>
+        </div>
+        <!-- Related Property -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inner-feature">
+                    <h4 class="inner-title">Dự Án Liên Quan</h4>
+                    <div class="property_slide">
+                        @foreach (var property in Model.Related)
+                        {
+                            <div class="item">
+                                <div class="property_grid">
+                                    <div class="img_area">
+                                        <div class="sale_btn">@property.Status</div>
+                                        <div class="featured_btn">@property.Type</div>
+                                        <a href="@Url.Action("Detail", "Home", new { id = property.Id })"><img src="@property.AvatarPath" alt="@property.AvatarName"></a>
+                                        <div class="sale_amount">@property.City</div>
+                                    </div>
+                                    <div class="property-text">
+                                        <a href="@Url.Action("Detail", "Home", new { id = property.Id })">
+                                            <h5 class="property-title">@property.Name</h5>
+                                        </a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> @property.Address </span>
+                                        <div class="quantity">
+                                            <ul class="text-center">
+                                                <li><span>Diện Tích</span>@property.AreaFormated m²</li>
+                                                <li><span>Phòng Ngủ</span>@property.NumberOfBedRoom</li>
+                                                <li><span>Toilet</span>@property.NumberOfBathRoom</li>
+                                                <li><span>Nhà Để Xe</span>@property.NumberOfGarage</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="bed_area">
+                                        <ul>
+                                            <li>@property.PriceFormated VND</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Related Property -->
+    </div>
+</section>
+<!-- Single Property End --> 

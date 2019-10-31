@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PropertyViewModels>
+
+<!-- Recent Property Start -->
+<section id="recent_property">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-row">
+                    <h3 class="section_title_blue">Dự Án <span>Gần Đây</span></h3>
+                </div>
+                @Html.ActionLink("Xem Tất Cả", "Index", "Property", null,new { @class = "property_link" })
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Count() == 0)
+            {
+                <h3 style="text-align:center">Trang Hiện Chưa Có Dữ Liệu Phù Hợp</h3>
+            }
+            @foreach (var prop in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="property_grid">
+                        <div class="img_area">
+                            <div class="sale_btn">@prop.Status</div>
+                            <div class="featured_btn">@prop.Type</div>
+                            <a href="@Url.Action("Detail", "Home", new { id = prop.Id })"><img src="@prop.AvatarPath" alt="@prop.AvatarName"></a>
+                            <div class="sale_amount">@prop.City</div>
+                        </div>
+                        <div class="property-text">
+                            <a href="@Url.Action("Detail", "Home", new { id = prop.Id })">
+                                <h5 class="property-title">@prop.Name</h5>
+                            </a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> @prop.Address </span>
+                            <div class="quantity">
+                                <ul class="text-center">
+                                    <li><span>Diện Tích</span>@prop.AreaFormated m²</li>
+                                    <li><span>Phòng Ngủ</span>@prop.NumberOfBedRoom</li>
+                                    <li><span>Toilet</span>@prop.NumberOfBathRoom</li>
+                                    <li><span>Nhà Để Xe</span>@prop.NumberOfGarage</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bed_area">
+                            <ul>
+                                <li>@prop.PriceFormated VND</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Recent Property End --> 

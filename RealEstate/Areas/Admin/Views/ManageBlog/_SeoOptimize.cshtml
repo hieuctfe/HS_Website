@@ -1,0 +1,100 @@
+﻿@model Seo
+@{
+    string prefix = Model.Prefix;
+}
+
+<div class="form-material col-12 float-left">
+    <div class="row">
+        <div class="col-3">
+            @Html.LabelFor(model => model.AliasName, new { Name = $"{prefix}AliasName" })
+            @Html.TextBoxFor(model => model.AliasName, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}AliasName"
+            })
+            @Html.ValidationMessageFor(model => model.AliasName, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}AliasName",
+                    ["data-valmsg-for"] = $"{prefix}AliasName"
+                })
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(model => model.Title, new { Name = $"{prefix}Title" })
+            @Html.TextBoxFor(model => model.Title, new
+               {
+                   @class = "form-control",
+                   Name = $"{prefix}Title"
+               })
+            @Html.ValidationMessageFor(model => model.Title, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Title",
+                    ["data-valmsg-for"] = $"{prefix}Title"
+                })
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(model => model.FriendlyUrl, new { Name = $"{prefix}FriendlyUrl" })
+            @Html.TextBoxFor(model => model.FriendlyUrl, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}FriendlyUrl"
+            })
+            @Html.ValidationMessageFor(model => model.FriendlyUrl, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}FriendlyUrl",
+                    ["data-valmsg-for"] = $"{prefix}FriendlyUrl"
+                })
+        </div>
+    </div>
+    <div class="row m-t-10">
+        <div class="col-4">
+            @Html.LabelFor(model => model.MetaContent, new { Name = $"{prefix}MetaContent" })
+            @Html.TextAreaFor(model => model.MetaContent, new
+             {
+                @class = "form-control",
+                Name = $"{prefix}MetaContent",
+                rows = 5,
+            })
+            @Html.ValidationMessageFor(model => model.MetaContent, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}MetaContent",
+                    ["data-valmsg-for"] = $"{prefix}MetaContent"
+                })
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(model => model.MetaDescription, new { Name = $"{prefix}MetaDescription" })
+            @Html.TextAreaFor(model => model.MetaDescription, new
+             {
+                @class = "form-control",
+                Name = $"{prefix}MetaDescription",
+                rows = 5,
+            })
+            @Html.ValidationMessageFor(model => model.MetaDescription, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}MetaDescription",
+                    ["data-valmsg-for"] = $"{prefix}MetaDescription"
+                })
+        </div>
+    </div>
+    <div class="row m-t-10">
+        <div class="col-12">
+            @Html.LabelFor(model => model.StructureData, new { Name = $"{prefix}StructureDate" })
+            @Html.TextAreaFor(model => model.StructureData, new
+             {
+                @class = "form-control",
+                Name = $"{prefix}StructureData",
+                rows = 5,
+            })
+            @Html.ValidationMessageFor(model => model.StructureData, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}StructureDate",
+                    ["data-valmsg-for"] = $"{prefix}StructureDate"
+                })
+        </div>
+    </div>
+</div>

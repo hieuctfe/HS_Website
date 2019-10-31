@@ -1,0 +1,13 @@
+﻿.modal-dialog .preloader {
+    opacity: 1 !important;
+    height: auto !important;
+}
+
+.pagination-pt {
+    padding-top: 10px;
+}
+
+.field-validation-error,
+.validation-summary-errors > ul > li {
+    color: red;
+}
