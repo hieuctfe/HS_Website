@@ -222,3 +222,4 @@ C:\Users\sangtt\Source\Repos\HS_Website\RealEstate\obj\Release\RealEstate.csproj
 C:\Users\sangtt\Source\Repos\HS_Website\RealEstate\obj\Release\RealEstate.csproj.CopyComplete
 C:\Users\sangtt\Source\Repos\HS_Website\RealEstate\obj\Release\RealEstate.dll
 C:\Users\sangtt\Source\Repos\HS_Website\RealEstate\obj\Release\RealEstate.pdb
+C:\Users\sangtt\Source\Repos\HS_Website\RealEstate\obj\Release\RealEstate.csprojAssemblyReference.cache

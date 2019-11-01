@@ -13,5 +13,7 @@
         public const string Home_Banner = "Home.Banner";
 
         public const string Home_Footer = "Home.Footer";
+
+        public const string Home_AboutUs = "Home.AboutUs";
     }
 }

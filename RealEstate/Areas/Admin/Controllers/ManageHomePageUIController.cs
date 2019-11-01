@@ -588,5 +588,47 @@
             }
         }
         #endregion
+
+        #region AbouUs
+        [HttpGet]
+        public ActionResult UpdateAboutUs()
+        {
+            UICache aboutUs = _context.UICaches.Find(Page.Home, PageComponent.Home_AboutUs, DataType.Html);
+            if (aboutUs != null)
+            {
+                return View(new HomeUIFooteViewModels { FooterHtml = aboutUs.DataCache });
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateAboutUs(HomeUIFooteViewModels data)
+        {
+            try
+            {
+                using (DbContextTransaction transaction = _context.Database.BeginTransaction())
+                {
+                    UICache aboutUsHtml = _context.UICaches.Find(Page.Home, PageComponent.Home_AboutUs, DataType.Html);
+                    if (aboutUsHtml == null)
+                    {
+                        _context.UICaches.Add(
+                            aboutUsHtml = new UICache(Page.Home, PageComponent.Home_AboutUs, DataType.Html));
+                    }
+                    aboutUsHtml.DataCache = data.FooterHtml;
+
+                    _context.SaveChanges();
+                    transaction.Commit();
+                }
+
+                return RedirectToAction(nameof(UpdateAboutUs));
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
+        #endregion
     }
 }

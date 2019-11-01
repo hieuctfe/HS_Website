@@ -121,6 +121,7 @@
     <Content Include="Areas\Admin\Views\ManageContact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageHomePageUI\_Team_Sidebar_Item.cshtml" />
     <Content Include="Areas\Admin\Views\ManageHomePageUI\UpdateTeamProperty.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageHomePageUI\UpdateAboutUs.cshtml" />
     <None Include="Areas\Admin\Views\ManageProperties\_ContactInformation.cshtml" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -3512,6 +3513,7 @@
     <Compile Include="Areas\Admin\Controllers\ManageAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\Shared\BaseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteAdminController.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -4600,6 +4602,7 @@
     <Content Include="Views\Property\_ContactInformation.cshtml" />
     <Content Include="Views\Property\_Team_Sidebar.cshtml" />
     <Content Include="Views\Property\_Team_Sidebar_Item.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
