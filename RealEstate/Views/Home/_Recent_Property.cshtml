@@ -23,11 +23,11 @@
                         <div class="img_area">
                             <div class="sale_btn">@prop.Status</div>
                             <div class="featured_btn">@prop.Type</div>
-                            <a href="@Url.Action("Detail", "Home", new { id = prop.Id })"><img src="@prop.AvatarPath" alt="@prop.AvatarName"></a>
+                            <a href="@Url.Action("Detail", "Property", new { id = prop.Id })"><img src="@prop.AvatarPath" alt="@prop.AvatarName"></a>
                             <div class="sale_amount">@prop.City</div>
                         </div>
                         <div class="property-text">
-                            <a href="@Url.Action("Detail", "Home", new { id = prop.Id })">
+                            <a href="@Url.Action("Detail", "Property", new { id = prop.Id })">
                                 <h5 class="property-title">@prop.Name</h5>
                             </a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> @prop.Address </span>
                             <div class="quantity">

@@ -21,7 +21,7 @@
 
             routes.MapRoute(name: "PropertyDetails",
                 url: "chi-tiet-bat-dong-san/{title}/{id}",
-                defaults: new { controller = "Home", action = "Detail" }
+                defaults: new { controller = "Property", action = "Detail" }
                 );
 
             routes.MapRoute(name: "AboutUs",

@@ -104,7 +104,7 @@
                         SaveImage(banner);
 
                         ViewBag.Active = index++;
-                        sb.Append(RenderPartialViewToString("~/Views/AboutUs/_Slider_Part_Item.cshtml", banner));
+                        sb.Append(RenderPartialViewToString("~/Views/Home/_Slider_Part_Item.cshtml", banner));
                     });
 
                     UICache bannerHtml = _context.UICaches.Find(Page.Home, PageComponent.Home_Slider, DataType.Html);
@@ -219,7 +219,7 @@
                     list.ForEach(x =>
                     {
                         ViewBag.Active = index++;
-                        sb.Append(RenderPartialViewToString("~/Views/AboutUs/_Offer_Part_Item.cshtml", x));
+                        sb.Append(RenderPartialViewToString("~/Views/Home/_Offer_Part_Item.cshtml", x));
                     });
 
                     UICache offerHtml = _context.UICaches.Find(Page.Home, PageComponent.Home_Offer, DataType.Html);
@@ -275,12 +275,12 @@
                     int index = 0;
                     StringBuilder sb = new StringBuilder();
 
-                    sb.Append(RenderPartialViewToString("~/Views/AboutUs/_Service_Section_Container.cshtml", service));
+                    sb.Append(RenderPartialViewToString("~/Views/Home/_Service_Section_Container.cshtml", service));
                     sb.Append("<div class='row'>");
                     service.Services.ToList().ForEach(x =>
                     {
                         ViewBag.Active = index++;
-                        sb.Append(RenderPartialViewToString("~/Views/AboutUs/_Service_Section_Container_Item.cshtml", x));
+                        sb.Append(RenderPartialViewToString("~/Views/Home/_Service_Section_Container_Item.cshtml", x));
                     });
                     sb.Append("</div>");
 
@@ -339,10 +339,10 @@
 
                     _ImageCropper backgroundImg = achivement.Background.FirstOrDefault();
                     SaveImage(backgroundImg);
-                    container.Append(RenderPartialViewToString("~/Views/AboutUs/_Achivement_Section_Container.cshtml", backgroundImg));
+                    container.Append(RenderPartialViewToString("~/Views/Home/_Achivement_Section_Container.cshtml", backgroundImg));
 
                     achivement.Achivements.ToList().ForEach(x => 
-                        elements.Append(RenderPartialViewToString("~/Views/AboutUs/_Achivement_Section_Container_Item.cshtml", x)));
+                        elements.Append(RenderPartialViewToString("~/Views/Home/_Achivement_Section_Container_Item.cshtml", x)));
 
                     container.Replace("{{elements}}", elements.ToString());
                     UICache achivementHtml = _context.UICaches.Find(Page.Home, PageComponent.Home_Achivement, DataType.Html);
@@ -407,7 +407,7 @@
                 {
                     StringBuilder sb = new StringBuilder();
 
-                    list.ForEach(x => sb.Append(RenderPartialViewToString("~/Views/AboutUs/_Team_Section_Item.cshtml", 
+                    list.ForEach(x => sb.Append(RenderPartialViewToString("~/Views/Home/_Team_Section_Item.cshtml", 
                                         SaveImage(x))));
 
                     UICache teamHtml = _context.UICaches.Find(Page.Home, PageComponent.Home_Team, DataType.Html);
@@ -535,10 +535,10 @@
                     StringBuilder elements = new StringBuilder();
 
                     _ImageCropper backgroundImg = client.Background.FirstOrDefault();
-                    container.Append(RenderPartialViewToString("~/Views/AboutUs/_Client_Feedback_Container.cshtml", SaveImage(backgroundImg)));
+                    container.Append(RenderPartialViewToString("~/Views/Home/_Client_Feedback_Container.cshtml", SaveImage(backgroundImg)));
 
                     client.Clients.ToList().ForEach(x =>
-                        elements.Append(RenderPartialViewToString("~/Views/AboutUs/_Client_Feedback_Container_Item.cshtml", SaveImage(x))));
+                        elements.Append(RenderPartialViewToString("~/Views/Home/_Client_Feedback_Container_Item.cshtml", SaveImage(x))));
 
                     container.Replace("{{elements}}", elements.ToString());
                     UICache achivementHtml = _context.UICaches.Find(Page.Home, PageComponent.Home_Client, DataType.Html);
