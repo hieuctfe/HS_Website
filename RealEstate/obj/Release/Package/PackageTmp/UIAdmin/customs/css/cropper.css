@@ -1,0 +1,64 @@
+﻿.table-responsive tbody > tr > td:nth-child(8) {
+    white-space: nowrap;
+}
+
+.note-editor.note-frame .note-editing-area .note-editable {
+    padding: 20px 10px;
+}
+
+.img-container {
+    min-height: 300px;
+}
+
+.no-image-background {
+    background: white;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    line-height: 300px;
+}
+
+.upload-area .input-area {
+    width: 100px;
+    height: 100px;
+    cursor: pointer
+}
+
+.upload-area .container-area .image-item {
+    display: inline-block;
+}
+
+    .upload-area .container-area .image-item img {
+        cursor: pointer;
+        height: 71px;
+        width: 71px;
+        margin: 5px;
+    }
+
+    .upload-area .container-area .image-item .btn-delete {
+        border-radius: 50%;
+        top: 0px;
+        right: 0px;
+        padding: 0;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+        outline: 0;
+    }
+
+.custom-btn {
+    margin: 5px;
+}
+
+.custom-btn-w100 {
+    width: 100px;
+}
+
+@media (max-width:767px) {
+    .custom-btn-sm-block {
+        width: 100%;
+    }
+}

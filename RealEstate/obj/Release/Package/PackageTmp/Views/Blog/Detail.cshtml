@@ -1,0 +1,230 @@
+﻿@model PostDetailViewModels
+@{
+    ViewBag.Title = "Chi Tiết Bài Viết";
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script type="text/javascript">
+        function submitComment() {
+            setTimeout(() => {
+                console.log($(".field-validation-error").length);
+                if ($(".field-validation-error").length == 0) {
+                    var settings = {
+                        title: 'Gửi Bình Luận',
+                        text: 'Saving',
+                        allowOutsideClick: () => !Swal.isLoading(),
+                        onBeforeOpen: () => {
+                            swal(
+                                'Đã Lưu!',
+                                'Gửi Bình Luận Thành Công',
+                                'success'
+                            )
+                        }
+                    }
+                    Swal.fire(settings);
+                }
+            }, 0);
+
+        }
+    </script>
+}
+
+@{ Html.RenderPartial($"_Banner_Section_Detail"); }
+<!-- Blog Detail Start -->
+<section id="blog_detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="detail_area">
+                    <img src="@Model.HeaderImagePath" alt="@Model.HeaderImageName">
+                    <div class="news_text">
+                        <h4 class="post-title">@Model.Name</h4>
+                        <div class="post-info">
+                            <span>
+                                Đăng Bởi <a href="#">@Model.CreatedBy</a> Ngày @Model.CreatedOn.TimeAgo()
+                                Tags:
+                                @foreach (var item in Model.Labels)
+                                {
+                                    @Html.ActionLink($"{item.Name},", "", "")
+                                }
+                            </span><span><a href="#" class="comment_text"><i class="fa fa-comments-o" aria-hidden="true"></i></a> @Model.CommentCount bình luận</span>
+                        </div>
+                        <div class="blog-content">
+                            @Html.Raw(Model.Content)
+                        </div>
+                    </div>
+                    <div class="socail_area">
+                        <span>share this post in your media: </span>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="comment_area">
+                        <h3 class="inner-title">Bình luận (@Model.CommentCount)</h3>
+                        @if (Model.CommentCount != 0)
+                        {
+                            Html.RenderPartial("ViewComponents/_Comment", Model.Comments.Safe().ToList());
+                        }
+                        else
+                        {
+                            <i>Chưa có bình luận nào !</i>
+                        }
+                    </div>
+                    <div class="replay">
+                        <div class="rating-box">
+                            <h4 class="inner-title">Bình Luận</h4>
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger m-t-20" })
+                            <form id="formComment" action="@Url.Action("Submit", "Comment")" method="post" class="rating-form">
+                                @Html.Hidden("PostId", Model.Id)
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12 rating-animation">
+                                        <div class="star-rating">
+                                            <select id="example-reversed" name="Rating" autocomplete="off">
+                                                <option value="1">Rất Tệ</option>
+                                                <option value="2">Tệ</option>
+                                                <option value="3" selected="selected">Bình Thường</option>
+                                                <option value="4">Tốt</option>
+                                                <option value="5">Rất Tốt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        @Html.TextBoxFor(model => model.CreateComment.Owner, new
+                                   {
+                                       @class = "form-control",
+                                       placeholder = "Nhập tên*",
+                                        Name = $"Owner"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.CreateComment.Owner, null,
+                                            new Dictionary<string, object>()
+                                            {
+                                                ["Name"] = $"Owner",
+                                                ["data-valmsg-for"] = $"Owner"
+                                            })
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        @Html.TextBoxFor(model => model.CreateComment.EmailAddress, new
+                                   {
+                                       @class = "form-control",
+                                       placeholder = "Nhập Email*",
+                                        Name = $"EmailAddress"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.CreateComment.EmailAddress, null,
+                                            new Dictionary<string, object>()
+                                            {
+                                                ["Name"] = $"EmailAddress",
+                                                ["data-valmsg-for"] = $"EmailAddress"
+                                            })
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        @Html.TextAreaFor(model => model.CreateComment.Description, new
+                                   {
+                                       @class = "ratingcomments",
+                                       placeholder = "Viết bình luận...",
+                                        Name = $"Description"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.CreateComment.Description, null,
+                                            new Dictionary<string, object>()
+                                            {
+                                                ["Name"] = $"Description",
+                                                ["data-valmsg-for"] = $"Description"
+                                            })
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <input id="send" onclick="submitComment()" class="btn btn-default"
+                                               value="Gửi" type="submit" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="side_bar">
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Danh Mục</h4>
+                        <ul class="categories">
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <li><a href="@Url.Action("", "")">@category.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Bài Đăng Gần Đây</h4>
+                        <ul class="recent-post">
+                            @foreach (var post in ViewBag.RecentPosts)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Detail", "Blog", new { id = post.Id })">@post.Name</a>
+                                    <span>@(((DateTimeOffset)post.CreatedOn).TimeAgo())<i class="fa fa-comments-o" aria-hidden="true"></i> @post.CommentCount bình luận</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs populer_comment" role="tablist">
+                            <li role="presentation" class="active"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Phổ Biến</a></li>
+                            <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Tương Tác Cao</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="popular">
+                                <div class="post_area">
+                                    <ul class="recent-post">
+                                        @foreach (var post in ViewBag.TopViewPosts)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Detail", "Blog", new { id = post.Id })">@post.Name</a>
+                                                <span><i class="fa fa-eye" aria-hidden="true"></i> @post.ViewCount lượt xem</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="comments">
+                                <div class="post_area">
+                                    <ul class="recent-post">
+                                        @foreach (var post in ViewBag.TopCommentPosts)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Detail", "Blog", new { id = post.Id })">@post.Name</a>
+                                                <span><i class="fa fa-comments-o" aria-hidden="true"></i> @post.CommentCount bình luận</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Tags</h4>
+                        <ul class="tag_area">
+                            @foreach (var label in ViewBag.Labels)
+                            {
+                                <li><a href="@Url.Action("", "")">@label.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Detail End -->

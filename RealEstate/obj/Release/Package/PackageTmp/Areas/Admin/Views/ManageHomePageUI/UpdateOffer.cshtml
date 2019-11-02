@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HomeUIOfferViewModels>
+@{
+    ViewBag.Title = "Chỉnh Sửa Offer Trang Chủ";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+    int index = 0;
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("cropper/cropper.min.css")" rel="stylesheet" />
+
+    <style>
+        form label {
+            color: black;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $mainForm = $('#accordion');
+
+            $("button[name='addOffer']").on('click', function () {
+                $.ajax({
+                    url: '@Url.Action("RenderHomeOfferForm", "SiteAdmin")',
+                    dataType: 'json'
+                }).done(function (data, textStatus, jqXHR) {
+                    var index = $mainForm.find('.form-material').length || 0;
+                    $mainForm.append(data.replace(/{{index}}/g, index).replace(/{{i}}/g, index + 1));
+                    }).fail(function () {
+                        swal('Error', 'Error at loading offer form, Please contact to the administrator', 'error');
+                    });
+            });
+
+            $("button[name='removeOffer']").on('click', function () {
+                $mainForm.children('.card').last().remove();
+            });
+        });
+
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box;">Cập Nhật Offer (recommend 4)</h4>
+
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Save Changes</button>
+        <button type="button" name="removeOffer" class="btn btn-outline-danger waves-effect waves-light mr-2 float-right">Remove Offer</button>
+        <button type="button" name="addOffer" class="btn btn-outline-info waves-effect waves-light mr-2 float-right">Add Offer</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post, new { id = "mainFormContainer" }))
+        {
+            @Html.AntiForgeryToken()
+        <h6 class="card-subtitle" style="display: -webkit-inline-box; margin-bottom: 25px">
+            Visit
+            <a target="_blank" href="https://www.flaticon.com/">here</a> to choose your favorites icon. Then copy <code>class</code> value to icon text box to change the icon
+        </h6>
+            <div id="accordion">
+                @{ index = 0; }
+                @foreach (var offer in Model)
+                {
+                    ViewBag.Index = (index++ + 1).ToString();
+                    Html.RenderPartial("_OfferElement", offer);
+                }
+            </div>
+        }
+    </div>
+</div>

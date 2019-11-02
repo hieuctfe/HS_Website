@@ -1,0 +1,74 @@
+﻿@model ProfileViewModels
+
+<aside class="left-sidebar" data-scroll-to-active="true">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- User profile -->
+        <div class="user-profile" style="background: url(@Url.AppCustoms("images/background/user-info.jpg")) no-repeat;">
+            <!-- User profile image -->
+            <div class="profile-img"> <img src="@Model.Avatar.FirstOrDefault().ImagePath" alt="user" /> </div>
+            <!-- User profile text-->
+            <div class="profile-text">
+                <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">@User.Identity.Name</a>
+                <div class="dropdown-menu animated flipInY">
+                    <a href="@Url.Action("UserProfile", "ManageAccount")" class="dropdown-item"><i class="ti-user"></i> Hồ Sơ Cá Nhân</a> 
+                    <div class="dropdown-divider"></div> <a href="@Url.Action("Logout", "ManageAccount")" class="dropdown-item"><i class="fa fa-power-off"></i> Đăng Xuất</a>
+                </div>
+            </div>
+        </div>
+        <!-- End User profile text-->
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap">Thông Tin Cơ Bản</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="far fa-building"></i><span class="hide-menu">Quản Lí Dự Án</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>@Html.ActionLink("Tạo Mới Dự Án", "Create", "ManageProperties")</li>
+                        <li>@Html.ActionLink("Danh Sách Dự Án", "Index", "ManageProperties")</li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Quản Lí Bài Viết</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>@Html.ActionLink("Tạo Mới Bài Viết", "Create", "ManageBlog")</li>
+                        <li>@Html.ActionLink("Danh Sách Bài Viết", "Index", "ManageBlog")</li>
+                    </ul>
+                </li>
+                <li class="nav-devider"></li>
+                <li class="nav-small-cap">Thông Tin Cá Nhân</li>
+                <li><a class="waves-effect waves-dark" href="@Url.Action("UserProfile", "ManageAccount")"><i class="fas fa-user"></i><span class="hide-menu">Cập Nhật Thông Tin</span></a></li>
+                <li><a class="waves-effect waves-dark" href="@Url.Action("UserProfile", "ManageAccount", new { tab = "password" })"><i class="mdi mdi-key"></i><span class="hide-menu">Đổi Mật Khẩu</span></a></li>
+                <li><a class="waves-effect waves-dark" href="@Url.Action("UserProfile", "ManageAccount", new { tab = "avatar" })"><i class="mdi mdi-file-image"></i><span class="hide-menu">Ảnh Đại Diện</span></a></li>
+                <li class="nav-devider"></li>
+                <li class="nav-small-cap">Tùy Chỉnh Giao Diện</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fab fa-hubspot"></i><span class="hide-menu">Trang Chủ</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>@Html.ActionLink("Tùy Chỉnh Slider", "UpdateBanner", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Cam Kết", "UpdateOffer", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Dịch Vụ", "UpdateService", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Thành Tích", "UpdateAchivement", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Team", "UpdateTeam", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Banner UI", "UpdateBannerBreadCum", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Team UI", "UpdateTeamProperty", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh FeedBack", "UpdateClient", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Footer", "UpdateFooter", "ManageHomePageUI")</li>
+                        <li>@Html.ActionLink("Tùy Chỉnh Trang Giới Thiệu", "UpdateAboutUs", "ManageHomePageUI")</li>
+                    </ul>
+                </li>
+                <li><a class="waves-effect waves-dark" href="@Url.Action("Index", "ManageMenu")"><i class="mdi mdi-sitemap"></i><span class="hide-menu">Tùy Chỉnh Danh Mục</span></a></li>
+                <li class="nav-devider"></li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+    <!-- Bottom points-->
+    <div class="sidebar-footer">
+        <!-- item--><a href="" class="link" data-toggle="tooltip" title="Refresh"><i class="mdi mdi-refresh"></i></a>
+        <!-- item--><a href="@Url.Action("UserProfile", "ManageAccount", new { tab = "password" })" class="link" data-toggle="tooltip" title="Security"><i class="mdi mdi-security"></i></a>
+        <!-- item--><a href="@Url.Action("Logout", "ManageAccount")" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+    </div>
+    <!-- End Bottom points-->
+</aside>

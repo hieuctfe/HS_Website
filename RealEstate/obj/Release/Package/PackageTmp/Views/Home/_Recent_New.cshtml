@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PostViewModels>
+
+<section id="recent_news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-row">
+                    <h3 class="section_title_blue">Tin Tức<span> Gần Đây</span></h3>
+                    <div class="sub-title">
+                        <p>"Không phải lúc nào bạn cố gắng cũng thành công nhưng phải 
+                        luôn cố gắng để không hối tiếc khi thất bại."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var post in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="news_area wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms">
+                        <div class="news_img">
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.Id })"><img src="@post.AvatarPath" alt="@post.AvatarName"></a>
+                            <div class="news_eye"><i class="fa fa-eye" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="news_text">
+                            <a href="@Url.Action("Detail", "Blog", new { id = post.Id })"><h5 class="post-title">@post.Name</h5></a>
+                            <div class="post-info">Đăng Bởi <span style="color:#90c923">@post.CreatedBy</span>@post.CreatedOn.TimeAgo()</div>
+                            <div class="blog-content">
+                                <p>@post.Description</p>
+                            </div>
+                            <a class="btn-read" href="@Url.Action("Detail", "Blog", new { id = post.Id })">Đọc Thêm</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Recent News Section End --> 

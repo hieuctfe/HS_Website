@@ -1,0 +1,49 @@
+﻿@model HomeUITeamViewModels
+@{
+    string index = string.Format("[{0}]", ViewBag.Index != null ? (int.Parse(ViewBag.Index) - 1).ToString() : "{{index}}");
+    string prefix = $"list{index}";
+
+    string i = ViewBag.Index != null ? ViewBag.Index : "{{i}}";
+}
+
+<div class="card">
+    <div class="card-header" id="heading@(i)">
+        <h5 class="mb-0">
+            <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse@(i)" aria-expanded="false" aria-controls="collapseOne">
+                Team @(i)
+            </button>
+        </h5>
+    </div>
+    <div id="collapse@(i)" class="collapse" aria-labelledby="heading@(i)" data-parent="#accordion">
+        <div class="card-body">
+            <div class="form-material row col-12 float-left">
+                <div class="col-8">
+                    @Html.LabelFor(model => model.Name, new { Name = $"{prefix}.Name" })
+                    @Html.TextBoxFor(model => model.Name, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.Name"
+                    })
+                    @Html.ValidationMessageFor(model => model.Name, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.Name",
+                            ["data-valmsg-for"] = $"{prefix}.Name"
+                        })
+                </div>
+                <div class="col-12 m-t-20">
+                    @Html.LabelFor(model => model.AvatarUploaded)
+                    @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                                new _ImageCropper
+                                {
+                                    CropActiveId = $"slider{i}",
+                                    ImageContainer = $"slider{i}Container",
+                                    ImageUploaded = Model?.AvatarUploaded ?? string.Empty,
+                                    ButtonText = "Select Images (630 x 600)"
+                                });
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

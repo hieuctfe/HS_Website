@@ -1,0 +1,25 @@
+﻿@{
+    string sourcePath = "LayoutComponents/";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @{ Html.RenderPartial($"{sourcePath}01_Header"); }
+    @RenderSection("CustomStyles", required: false)
+</head>
+<body class="pagewrap home-page">
+    @{ Html.RenderPartial($"{sourcePath}02_Page_Loader"); }
+    <header id="header">
+        @{ Html.RenderPartial($"{sourcePath}03_Top_Header"); }
+        @{ Html.RenderPartial($"{sourcePath}04_Nav_Header"); }
+    </header>
+    
+    @RenderBody()
+
+    @{ Html.RenderAction("RenderFooter", "SiteClient"); }
+    @{ Html.RenderPartial($"{sourcePath}06_Scroll_To_top"); }
+
+    @{ Html.RenderPartial($"{sourcePath}07_Javascript_Structure"); }
+    @RenderSection("CustomScripts", required: false)
+</body>
+</html>

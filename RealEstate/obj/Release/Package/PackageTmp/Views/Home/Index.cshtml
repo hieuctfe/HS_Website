@@ -1,0 +1,47 @@
+﻿@model HomePageViewModels
+@{
+    ViewBag.Title = "Trang Chủ";
+    var propertyPage = new PropertyPageViewModels();
+    string searchPrefix = $"{nameof(propertyPage.PropertyPagination)}.";
+}
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")" rel="stylesheet" />
+    <style>
+        .hide-visibility {
+            visibility: hidden;
+        }
+
+        #@nameof(propertyPage.PropertyPagination.FromPriceValue),
+        #@nameof(propertyPage.PropertyPagination.ToPriceValue)
+        {
+            min-height:38px;
+            margin-bottom:0px;
+        }
+    </style>
+}
+@section CustomScripts
+{
+    <script src="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $slider = $('section#slider');
+            var $sliderPaginaton = $('ol#slider-Pagination');
+
+            $slider.find('.carousel-caption').each(function (index, e) {
+                $sliderPaginaton.append(`<li data-target="#carousel-example-generic" data-slide-to="${index}" class="${index == 0 ? 'active' : ''}"></li>`);
+            });
+        });
+    </script>
+}
+
+@{ Html.RenderPartial($"_Slider_Part", Model.BannerHtml); }
+<!-- @{ Html.RenderPartial($"_Search_Area", new _PropertyPagination { Prefix = searchPrefix }); } -->
+@{ Html.RenderPartial($"_Offer_Part", Model.OfferHtml); }
+@{ Html.RenderPartial($"_Recent_Property", Model.RecentProperties); }
+@{ Html.RenderPartial($"_Service_Section", Model.ServiceHtml); }
+@{ Html.RenderPartial($"_Featured_Section", Model.FeaturedProperties); }
+@{ Html.RenderPartial($"_Achivement_Section", Model.AchivementHtml); }
+@{ Html.RenderPartial($"_Team_Section", Model.TeamHtml); }
+@{ Html.RenderPartial($"_Client_Feedback", Model.ClientHtml); }
+@{ Html.RenderPartial($"_Recent_New", Model.RecentPosts); }

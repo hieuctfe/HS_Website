@@ -1,0 +1,26 @@
+﻿@model _ImageCropper
+
+<section id="feedback" style="background: url(@Model.ImagePath) no-repeat fixed">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fedback_area">
+                    <div class="row">
+                        <div class="col-ms-12">
+                            <div class="title-row">
+                                <h3 class="section_title_white">Ý Kiến Đóng Góp<span> Từ Khách Hàng</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-ms-12">
+                            <div class="testimonials-carousel">
+                                {{elements}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

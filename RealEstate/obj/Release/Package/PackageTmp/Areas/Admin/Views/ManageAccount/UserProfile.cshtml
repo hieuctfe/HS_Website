@@ -1,0 +1,291 @@
+﻿@model ProfileViewModels
+@{
+    ViewBag.Title = "Profile";
+
+    string tab = ViewBag.Tab;
+
+    bool isInforTab = string.IsNullOrEmpty(tab);
+    bool isPasswordTab = string.IsNullOrEmpty(tab) ? false : tab == "password";
+    bool isAvatarTab = string.IsNullOrEmpty(tab) ? false : tab == "avatar";
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("cropper/cropper.min.css")" rel="stylesheet" />
+    <style>
+        .img-container {
+            min-height: 300px;
+        }
+
+        .no-image-background {
+            background: white;
+            display: flex;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            line-height: 300px;
+        }
+
+        .activeCropper {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #image-popup-gallery img {
+            cursor: pointer
+        }
+
+        .btn-delete {
+            top: calc(0px - 5px);
+            right: calc(0px + 5px);
+            padding: 0;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            outline: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        form label {
+            color: black;
+        }
+    </style>
+}
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper-init-multi-image-modified.js")"></script>
+    <script type="text/javascript">
+        new MyLib.CropperFactory({ $CropperModal: '#modalCropper' })
+            .Create('#avatarCropper', 1, NaN, '@nameof(Model.Avatar)', true, 0);
+
+        function changePassword() {
+            var $form = $('#formPassword');
+            var formData = formToJSON($form[0].elements);
+            var validator = $form.data("validator");
+
+            var settings = {
+                title: 'Change pasword',
+                text: 'Saving',
+                allowOutsideClick: () => !Swal.isLoading(),
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    $.ajax({
+                        url: '@Url.Action("ChangePassword")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            oldPassword: formData.OldPassword,
+                            password: formData.Password,
+                            confirmPassword: formData.ConfirmPassword
+                        }
+                    }).done(function (data) {
+                        if (data.isSuccess) {
+                            swal(
+                                'Đã Lưu!',
+                                'Mật Khẩu Của Bạn Đã Được Cập Nhật',
+                                'success'
+                            ).then(() => {
+                                window.location = `@Url.Action("Logout")`;
+                            });;
+                        } else {
+                            swal(
+                                'Lỗi!',
+                                data.error,
+                                'error'
+                            );
+                        }
+
+                        }).fail(function (jqXHR, textStatus, err) {
+                            var errors = $.parseJSON(err);
+                            validator.showErrors(errors);
+                            Swal.close();
+                    });
+                }
+            }
+
+            Swal.fire(settings);
+        }
+    </script>
+}
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <center class="m-t-30">
+                    <img src="@Model.Avatar.FirstOrDefault().ImagePath" alt="avatar" class="img-circle" width="150" />
+                    <h4 class="card-title m-t-10">@Model.Fullname</h4>
+                    <h6 class="card-subtitle">ADMINISTRATOR</h6>
+                </center>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div class="card-body">
+                <small class="text-muted">Email address </small>
+                <h6>@Model.EmailAddress</h6> <small class="text-muted p-t-30 db">Phone</small>
+                <h6>@Model.PhoneNumber</h6>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item"> <a class="nav-link @(isInforTab ? "active" : string.Empty)" data-toggle="tab" href="#profile" role="tab">Thông Tin Cá Nhân</a> </li>
+                <li class="nav-item"> <a class="nav-link @(isPasswordTab ? "active" : string.Empty)" data-toggle="tab" href="#password" role="tab">Cập Nhật Mật Khẩu</a> </li>
+                <li class="nav-item"> <a class="nav-link @(isAvatarTab ? "active" : string.Empty)" data-toggle="tab" href="#avatar" role="tab">Ảnh đại diện</a> </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger m-t-20" })
+                <div class="tab-pane @(isInforTab ? "active" : string.Empty)" id="profile" role="tabpanel">
+                    <div class="card-body">
+                        <form action="@Url.Action("ChangeInformation", "ManageAccount")" method="post" class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="col-md-12">Họ và Tên</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.Fullname, new
+                                     {
+                                        @class = "form-control form-control-line",
+                                        Name = $"Fullname"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Fullname, null,
+                                        new Dictionary<string, object>()
+                                        {
+                                            ["Name"] = $"Fullname",
+                                            ["data-valmsg-for"] = $"Fullname"
+                                        })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-email" class="col-md-12">Email</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.EmailAddress, new
+                                     {
+                                        @class = "form-control form-control-line",
+                                        Name = $"EmailAddress"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Fullname, null,
+                                        new Dictionary<string, object>()
+                                        {
+                                            ["Name"] = $"EmailAddress",
+                                            ["data-valmsg-for"] = $"EmailAddress"
+                                        })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Số Điện Thoại</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.PhoneNumber, new
+                                    {
+                                        @class = "form-control form-control-line",
+                                        Name = $"PhoneNumber"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, null,
+                                        new Dictionary<string, object>()
+                                        {
+                                            ["Name"] = $"PhoneNumber",
+                                            ["data-valmsg-for"] = $"PhoneNumber"
+                                        })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-success">Update Profile</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane @(isPasswordTab ? "active" : string.Empty)" id="password" role="tabpanel">
+                    <div class="card-body">
+                        <form id="formPassword" action="@Url.Action("ChangePassword", "ManageAccount")" method="post" class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="col-md-12">Mật Khẩu Cũ</label>
+                                <div class="col-md-12">
+                                    @Html.PasswordFor(x => x.Password.OldPassword, new
+                                    {
+                                        @class = "form-control form-control-line",
+                                        Name = $"OldPassword"
+                                    })
+                                    @Html.ValidationMessageFor(x => x.Password.OldPassword, "", new Dictionary<string, object>()
+                                    {
+                                        ["Name"] = $"OldPassword",
+                                        ["data-valmsg-for"] = $"OldPassword"
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-email" class="col-md-12">Mật Khẩu Mới</label>
+                                <div class="col-md-12">
+                                    @Html.PasswordFor(x => x.Password.Password, new
+                               {
+                                   @class = "form-control form-control-line",
+                                   Name = $"Password"
+                               })
+                                    @Html.ValidationMessageFor(x => x.Password.Password, "", new Dictionary<string, object>()
+                                    {
+                                        ["Name"] = $"Password",
+                                        ["data-valmsg-for"] = $"Password"
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Xác Nhận Mật Khẩu</label>
+                                <div class="col-md-12">
+                                    @Html.PasswordFor(x => x.Password.ConfirmPassword, new
+                               {
+                                   @class = "form-control form-control-line",
+                                   Name = $"ConfirmPassword"
+                               })
+                                    @Html.ValidationMessageFor(x => x.Password.ConfirmPassword, "", new Dictionary<string, object>()
+                                    {
+                                        ["Name"] = $"ConfirmPassword",
+                                        ["data-valmsg-for"] = $"ConfirmPassword"
+                                    })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" onclick="changePassword()" class="btn btn-danger">Change Password</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane @(isAvatarTab ? "active" : string.Empty)" id="avatar" role="tabpanel">
+                    <div class="card-body">
+                        <form action="@Url.Action("ChangeAvatar", "ManageAccount")" method="post" class="form-horizontal form-material">
+                            @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                                                    new _ImageCropper
+                                                    {
+                                                        CropActiveId = "avatarCropper",
+                                                        ImageContainer = "avatarContainer",
+                                                        ImageUploaded = Model.AvatarUpload,
+                                                        ButtonText = "Select Images (600 x 600)"
+                                                    });
+                            }
+                            <div class="form-group m-t-10">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-info">Change Avatar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+
+@{ Html.RenderPartial("ViewComponents/_ImageCropperModal"); }

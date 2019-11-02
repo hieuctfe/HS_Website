@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 This file is used by the publish/package process of your Web project. You can customize the behavior of this process
 by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
@@ -6,20 +6,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\ttsang\source\repos\RealEstate\RealEstate\bin\Release\Publish</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Trung Hieu\Desktop\WebSite</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Areas/Admin/Views/ManageAccount/Login.cshtml">
+      <publishTime>03/29/2019 00:29:26</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageAccount/UserProfile.cshtml">
+      <publishTime>06/01/2019 09:26:33</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/ManageBlog/Create.cshtml">
-      <publishTime>03/04/2019 22:23:43</publishTime>
+      <publishTime>06/01/2019 09:25:59</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageBlog/Index.cshtml">
-      <publishTime>03/04/2019 15:26:48</publishTime>
+      <publishTime>04/11/2019 22:24:00</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageBlog/Update.cshtml">
-      <publishTime>03/04/2019 22:23:49</publishTime>
+      <publishTime>06/01/2019 09:26:22</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageBlog/_BasicInformation.cshtml">
-      <publishTime>03/03/2019 00:03:05</publishTime>
+      <publishTime>04/28/2019 09:30:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageBlog/_ImageCropper.cshtml">
       <publishTime>02/26/2019 14:35:53</publishTime>
@@ -30,17 +36,74 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/Admin/Views/ManageBlog/_SeoOptimize.cshtml">
       <publishTime>02/26/2019 14:35:47</publishTime>
     </File>
+    <File Include="Areas/Admin/Views/ManageContact/Index.cshtml">
+      <publishTime>04/06/2019 17:12:02</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateAboutUs.cshtml">
+      <publishTime>11/02/2019 15:45:57</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateAchivement.cshtml">
+      <publishTime>06/01/2019 09:22:18</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateBanner.cshtml">
+      <publishTime>06/01/2019 09:23:43</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateBannerBreadCum.cshtml">
+      <publishTime>06/01/2019 09:23:11</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateClient.cshtml">
+      <publishTime>06/01/2019 09:24:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateFooter.cshtml">
+      <publishTime>04/01/2019 21:03:23</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateOffer.cshtml">
+      <publishTime>03/07/2019 16:36:35</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateService.cshtml">
+      <publishTime>03/07/2019 20:00:53</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateTeam.cshtml">
+      <publishTime>06/01/2019 09:24:34</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/UpdateTeamProperty.cshtml">
+      <publishTime>06/01/2019 09:24:56</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_AchivementElement.cshtml">
+      <publishTime>03/07/2019 20:53:50</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_BannerElement.cshtml">
+      <publishTime>03/07/2019 15:48:27</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_ClientElement.cshtml">
+      <publishTime>03/09/2019 17:10:51</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_OfferElement.cshtml">
+      <publishTime>03/07/2019 15:15:26</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_ServiceElement.cshtml">
+      <publishTime>03/07/2019 17:21:57</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_TeamElement.cshtml">
+      <publishTime>03/09/2019 15:53:32</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageHomePageUI/_Team_Sidebar_Item.cshtml">
+      <publishTime>04/10/2019 11:43:13</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ManageMenu/Index.cshtml">
+      <publishTime>03/24/2019 15:45:25</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/ManageProperties/Create.cshtml">
-      <publishTime>03/04/2019 23:05:42</publishTime>
+      <publishTime>06/01/2019 09:25:27</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageProperties/Index.cshtml">
-      <publishTime>03/04/2019 15:25:34</publishTime>
+      <publishTime>04/17/2019 17:50:11</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageProperties/Update.cshtml">
-      <publishTime>03/04/2019 23:06:05</publishTime>
+      <publishTime>06/01/2019 09:21:24</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageProperties/_BasicInformation.cshtml">
-      <publishTime>03/02/2019 12:30:09</publishTime>
+      <publishTime>05/24/2019 23:39:35</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageProperties/_ImageCropper.cshtml">
       <publishTime>02/21/2019 13:35:24</publishTime>
@@ -55,19 +118,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/13/2018 11:32:17</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/LayoutComponents/03_Body_MW_Topbar.cshtml">
-      <publishTime>02/27/2019 14:48:41</publishTime>
+      <publishTime>03/29/2019 16:38:53</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/LayoutComponents/04_Body_MW_LeftSidebar.cshtml">
-      <publishTime>03/03/2019 18:11:05</publishTime>
+      <publishTime>11/02/2019 15:45:57</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/LayoutComponents/05_Body_MW_PW_Breadcrumb.cshtml">
       <publishTime>02/17/2019 21:45:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/LayoutComponents/06_Body_MW_PW_Footer.cshtml">
-      <publishTime>08/13/2018 11:40:36</publishTime>
+      <publishTime>03/30/2019 15:40:34</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/LayoutComponents/07_Body_Script.cshtml">
-      <publishTime>02/21/2019 16:45:59</publishTime>
+      <publishTime>03/29/2019 02:01:38</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/ViewComponents/_ImageCropper.cshtml">
+      <publishTime>03/07/2019 15:48:32</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/ViewComponents/_ImageCropperModal.cshtml">
       <publishTime>02/19/2019 20:21:36</publishTime>
@@ -79,10 +145,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/23/2019 13:03:49</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
-      <publishTime>02/19/2019 10:10:17</publishTime>
+      <publishTime>03/29/2019 17:49:47</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
-      <publishTime>03/04/2019 15:16:00</publishTime>
+      <publishTime>03/26/2019 09:16:45</publishTime>
     </File>
     <File Include="Areas/Admin/Views/_ViewStart.cshtml">
       <publishTime>02/17/2019 10:11:30</publishTime>
@@ -93,8 +159,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>10/23/2017 13:15:20</publishTime>
     </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/24/2018 12:47:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>04/24/2018 12:47:40</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>01/18/2019 20:50:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>01/18/2019 20:50:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>01/18/2019 20:50:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>01/18/2019 20:51:10</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
@@ -105,8 +189,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Newtonsoft.Json.pdb">
       <publishTime>11/27/2018 17:59:08</publishTime>
     </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/13/2012 12:19:34</publishTime>
+    </File>
     <File Include="bin/RealEstate.dll">
-      <publishTime>03/05/2019 18:59:56</publishTime>
+      <publishTime>11/02/2019 16:37:39</publishTime>
     </File>
     <File Include="bin/RealEstate.pdb">
       <publishTime>03/05/2019 18:59:56</publishTime>
@@ -3549,6 +3636,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="UIAdmin/customs/images/icon/warning.svg">
       <publishTime>02/17/2019 09:54:03</publishTime>
     </File>
+    <File Include="UIAdmin/customs/images/login/login-register.jpg">
+      <publishTime>03/26/2019 09:06:29</publishTime>
+    </File>
     <File Include="UIAdmin/customs/images/logo-icon.png">
       <publishTime>02/17/2019 09:54:03</publishTime>
     </File>
@@ -3692,6 +3782,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="UIAdmin/customs/images/users/d5.jpg">
       <publishTime>02/17/2019 09:54:04</publishTime>
+    </File>
+    <File Include="UIAdmin/customs/images/users/default_user.png">
+      <publishTime>03/28/2019 23:08:19</publishTime>
     </File>
     <File Include="UIAdmin/customs/images/users/profile.png">
       <publishTime>02/17/2019 09:54:04</publishTime>
@@ -5512,7 +5605,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/17/2019 09:54:18</publishTime>
     </File>
     <File Include="UIAdmin/vendors/cropper/cropper-init-multi-image-modified.js">
-      <publishTime>02/21/2019 15:34:52</publishTime>
+      <publishTime>06/01/2019 09:20:09</publishTime>
     </File>
     <File Include="UIAdmin/vendors/cropper/cropper.init.js">
       <publishTime>08/13/2018 11:12:46</publishTime>
@@ -12204,6 +12297,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="UIClient/assets/css/colors/yellow.css">
       <publishTime>04/24/2018 18:34:24</publishTime>
     </File>
+    <File Include="UIClient/assets/css/dropzone.css">
+      <publishTime>04/07/2019 03:18:57</publishTime>
+    </File>
     <File Include="UIClient/assets/css/font-awesome.css">
       <publishTime>12/22/2016 15:50:34</publishTime>
     </File>
@@ -12226,7 +12322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2018 18:10:34</publishTime>
     </File>
     <File Include="UIClient/assets/css/style.css">
-      <publishTime>02/28/2019 15:55:24</publishTime>
+      <publishTime>03/30/2019 15:47:06</publishTime>
     </File>
     <File Include="UIClient/assets/css/thumbpage.css">
       <publishTime>09/11/2017 14:52:08</publishTime>
@@ -12364,9 +12460,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/08/2017 11:48:28</publishTime>
     </File>
     <File Include="UIClient/assets/img/logo1.png">
-      <publishTime>09/08/2017 14:38:44</publishTime>
+      <publishTime>10/31/2019 23:26:28</publishTime>
     </File>
     <File Include="UIClient/assets/img/logo1_blue.png">
+      <publishTime>09/08/2017 14:38:44</publishTime>
+    </File>
+    <File Include="UIClient/assets/img/logo1_demo.png">
       <publishTime>09/08/2017 14:38:44</publishTime>
     </File>
     <File Include="UIClient/assets/img/logo1_lemon.png">
@@ -12598,7 +12697,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/25/2017 09:40:54</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/1.jpg">
-      <publishTime>09/25/2017 09:44:42</publishTime>
+      <publishTime>03/05/2019 19:14:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/10.jpg">
       <publishTime>09/25/2017 09:44:42</publishTime>
@@ -12610,19 +12709,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/25/2017 09:44:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/2.jpg">
-      <publishTime>09/25/2017 09:44:42</publishTime>
+      <publishTime>03/05/2019 19:14:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/3.jpg">
-      <publishTime>09/25/2017 09:44:42</publishTime>
+      <publishTime>03/05/2019 19:14:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/4.jpg">
-      <publishTime>09/25/2017 09:44:42</publishTime>
+      <publishTime>03/05/2019 19:14:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/5.jpg">
-      <publishTime>09/25/2017 09:44:42</publishTime>
+      <publishTime>03/05/2019 19:14:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/6.jpg">
-      <publishTime>09/25/2017 09:44:42</publishTime>
+      <publishTime>03/05/2019 19:14:42</publishTime>
     </File>
     <File Include="UIClient/assets/img/teams/7.jpg">
       <publishTime>09/25/2017 09:44:42</publishTime>
@@ -12641,6 +12740,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="UIClient/assets/img/testimonial/donald-trump.jpg">
       <publishTime>02/28/2019 13:22:50</publishTime>
+    </File>
+    <File Include="UIClient/assets/img/testimonial/donald-trump.png">
+      <publishTime>03/05/2019 19:16:00</publishTime>
     </File>
     <File Include="UIClient/assets/img/testimonial/Johan-swift_old.png">
       <publishTime>09/25/2017 09:45:52</publishTime>
@@ -12667,10 +12769,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/30/2017 12:36:44</publishTime>
     </File>
     <File Include="UIClient/assets/js/custom.js">
-      <publishTime>03/05/2019 01:13:40</publishTime>
+      <publishTime>05/24/2019 22:47:26</publishTime>
     </File>
     <File Include="UIClient/assets/js/draggable-0.1.js">
       <publishTime>04/06/2016 02:11:38</publishTime>
+    </File>
+    <File Include="UIClient/assets/js/dropzone.js">
+      <publishTime>04/07/2019 03:17:39</publishTime>
     </File>
     <File Include="UIClient/assets/js/jquery-3.2.1.js">
       <publishTime>04/16/2017 13:54:50</publishTime>
@@ -12724,7 +12829,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/03/2016 14:09:56</publishTime>
     </File>
     <File Include="UIClient/assets/js/owl.js">
-      <publishTime>05/03/2016 14:09:56</publishTime>
+      <publishTime>05/24/2019 22:42:21</publishTime>
     </File>
     <File Include="UIClient/assets/js/tmpl.js">
       <publishTime>04/06/2016 02:11:38</publishTime>
@@ -12783,119 +12888,182 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="UIClient/assets/video/real_estate.mp4">
       <publishTime>06/06/2017 13:00:58</publishTime>
     </File>
+    <File Include="UIClient/customs/css/common.css">
+      <publishTime>04/07/2019 15:03:58</publishTime>
+    </File>
     <File Include="UIClient/vendors/jquery-ui.js">
       <publishTime>02/25/2019 13:34:52</publishTime>
     </File>
+    <File Include="Views/AboutUs/Index.cshtml">
+      <publishTime>11/02/2019 15:45:57</publishTime>
+    </File>
     <File Include="Views/Blog/Detail.cshtml">
-      <publishTime>03/02/2019 10:46:40</publishTime>
+      <publishTime>04/09/2019 19:42:34</publishTime>
     </File>
     <File Include="Views/Blog/Index.cshtml">
-      <publishTime>03/05/2019 17:09:33</publishTime>
+      <publishTime>03/06/2019 09:25:57</publishTime>
     </File>
     <File Include="Views/Blog/_Banner_Section.cshtml">
-      <publishTime>02/27/2019 15:02:42</publishTime>
+      <publishTime>05/26/2019 14:37:40</publishTime>
     </File>
     <File Include="Views/Blog/_Banner_Section_Detail.cshtml">
-      <publishTime>02/28/2019 15:38:54</publishTime>
+      <publishTime>05/26/2019 14:37:47</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>03/05/2019 10:17:34</publishTime>
+      <publishTime>10/31/2019 22:31:33</publishTime>
+    </File>
+    <File Include="Views/Contact/SubmitProperty.cshtml">
+      <publishTime>04/03/2019 17:24:21</publishTime>
     </File>
     <File Include="Views/Contact/_Banner_Section.cshtml">
-      <publishTime>03/05/2019 01:02:48</publishTime>
+      <publishTime>05/26/2019 14:37:59</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>03/02/2019 11:28:14</publishTime>
+      <publishTime>11/02/2019 16:01:12</publishTime>
     </File>
     <File Include="Views/Home/_Achivement_Section.cshtml">
-      <publishTime>02/28/2019 13:08:35</publishTime>
+      <publishTime>04/24/2019 19:27:49</publishTime>
+    </File>
+    <File Include="Views/Home/_Achivement_Section_Container.cshtml">
+      <publishTime>04/24/2019 19:27:45</publishTime>
+    </File>
+    <File Include="Views/Home/_Achivement_Section_Container_Item.cshtml">
+      <publishTime>04/24/2019 19:27:43</publishTime>
     </File>
     <File Include="Views/Home/_Client_Feedback.cshtml">
-      <publishTime>03/02/2019 11:31:55</publishTime>
+      <publishTime>04/24/2019 19:27:40</publishTime>
+    </File>
+    <File Include="Views/Home/_Client_Feedback_Container.cshtml">
+      <publishTime>04/24/2019 19:27:37</publishTime>
+    </File>
+    <File Include="Views/Home/_Client_Feedback_Container_Item.cshtml">
+      <publishTime>04/24/2019 19:27:34</publishTime>
     </File>
     <File Include="Views/Home/_Featured_Section.cshtml">
-      <publishTime>03/05/2019 17:06:03</publishTime>
+      <publishTime>11/02/2019 16:22:53</publishTime>
     </File>
     <File Include="Views/Home/_Offer_Part.cshtml">
-      <publishTime>03/05/2019 16:47:49</publishTime>
+      <publishTime>03/07/2019 15:26:55</publishTime>
+    </File>
+    <File Include="Views/Home/_Offer_Part_Item.cshtml">
+      <publishTime>03/07/2019 15:18:37</publishTime>
     </File>
     <File Include="Views/Home/_Recent_New.cshtml">
-      <publishTime>03/05/2019 17:12:45</publishTime>
+      <publishTime>03/05/2019 19:14:45</publishTime>
     </File>
     <File Include="Views/Home/_Recent_Property.cshtml">
-      <publishTime>03/05/2019 17:05:43</publishTime>
+      <publishTime>11/02/2019 16:19:59</publishTime>
     </File>
     <File Include="Views/Home/_Search_Area.cshtml">
-      <publishTime>02/28/2019 15:32:41</publishTime>
+      <publishTime>03/10/2019 22:56:42</publishTime>
     </File>
     <File Include="Views/Home/_Service_Section.cshtml">
-      <publishTime>03/05/2019 16:51:10</publishTime>
+      <publishTime>03/07/2019 17:19:44</publishTime>
+    </File>
+    <File Include="Views/Home/_Service_Section_Container.cshtml">
+      <publishTime>03/07/2019 16:43:22</publishTime>
+    </File>
+    <File Include="Views/Home/_Service_Section_Container_Item.cshtml">
+      <publishTime>03/07/2019 16:32:56</publishTime>
     </File>
     <File Include="Views/Home/_Slider_Part.cshtml">
-      <publishTime>03/05/2019 16:35:02</publishTime>
+      <publishTime>03/07/2019 13:00:47</publishTime>
+    </File>
+    <File Include="Views/Home/_Slider_Part_Item.cshtml">
+      <publishTime>03/07/2019 10:51:13</publishTime>
     </File>
     <File Include="Views/Home/_Team_Section.cshtml">
-      <publishTime>03/05/2019 16:52:50</publishTime>
+      <publishTime>11/02/2019 16:03:17</publishTime>
+    </File>
+    <File Include="Views/Home/_Team_Section_Item.cshtml">
+      <publishTime>03/09/2019 15:33:13</publishTime>
     </File>
     <File Include="Views/Property/Detail.cshtml">
-      <publishTime>03/03/2019 18:06:07</publishTime>
+      <publishTime>11/02/2019 16:30:37</publishTime>
     </File>
     <File Include="Views/Property/Index.cshtml">
-      <publishTime>03/04/2019 23:29:56</publishTime>
+      <publishTime>11/02/2019 16:24:11</publishTime>
+    </File>
+    <File Include="Views/Property/SubmitProperty.cshtml">
+      <publishTime>06/01/2019 09:26:59</publishTime>
+    </File>
+    <File Include="Views/Property/SubmitProperty2.cshtml">
+      <publishTime>04/07/2019 03:41:34</publishTime>
     </File>
     <File Include="Views/Property/_Banner_Section.cshtml">
-      <publishTime>02/22/2019 00:57:02</publishTime>
+      <publishTime>06/16/2019 16:04:39</publishTime>
     </File>
     <File Include="Views/Property/_Banner_Section_Detail.cshtml">
-      <publishTime>02/28/2019 18:03:35</publishTime>
+      <publishTime>05/26/2019 14:37:16</publishTime>
+    </File>
+    <File Include="Views/Property/_BasicInformation.cshtml">
+      <publishTime>04/11/2019 22:24:58</publishTime>
+    </File>
+    <File Include="Views/Property/_ContactInformation.cshtml">
+      <publishTime>04/11/2019 22:12:01</publishTime>
     </File>
     <File Include="Views/Property/_Left_Sidebar.cshtml">
       <publishTime>03/02/2019 10:52:39</publishTime>
     </File>
+    <File Include="Views/Property/_Search_Sidebar.cshtml">
+      <publishTime>04/09/2019 23:15:15</publishTime>
+    </File>
+    <File Include="Views/Property/_Team_Sidebar.cshtml">
+      <publishTime>04/10/2019 15:29:08</publishTime>
+    </File>
+    <File Include="Views/Property/_Team_Sidebar_Item.cshtml">
+      <publishTime>06/01/2019 13:56:05</publishTime>
+    </File>
     <File Include="Views/Property/_Top_Sidebar.cshtml">
-      <publishTime>03/02/2019 10:50:22</publishTime>
+      <publishTime>03/14/2019 18:36:07</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/01_Header.cshtml">
-      <publishTime>03/05/2019 10:02:18</publishTime>
+      <publishTime>04/07/2019 15:04:17</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/02_Page_Loader.cshtml">
       <publishTime>02/21/2019 22:34:40</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/03_Top_Header.cshtml">
-      <publishTime>03/05/2019 10:01:48</publishTime>
+      <publishTime>10/31/2019 22:35:21</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/04_Nav_Header.cshtml">
-      <publishTime>03/05/2019 00:59:59</publishTime>
+      <publishTime>11/02/2019 15:51:56</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/05_Footer_Section.cshtml">
-      <publishTime>02/21/2019 22:55:17</publishTime>
+      <publishTime>04/01/2019 20:01:46</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/06_Scroll_To_top.cshtml">
       <publishTime>02/21/2019 22:47:36</publishTime>
     </File>
     <File Include="Views/Shared/LayoutComponents/07_Javascript_Structure.cshtml">
-      <publishTime>02/25/2019 13:52:51</publishTime>
+      <publishTime>05/25/2019 23:53:04</publishTime>
     </File>
     <File Include="Views/Shared/ViewComponents/_Comment.cshtml">
-      <publishTime>03/02/2019 11:23:10</publishTime>
+      <publishTime>04/07/2019 15:05:14</publishTime>
     </File>
     <File Include="Views/Shared/ViewComponents/_DynamicMenu.cshtml">
-      <publishTime>03/05/2019 16:53:53</publishTime>
+      <publishTime>03/05/2019 20:06:45</publishTime>
+    </File>
+    <File Include="Views/Shared/ViewComponents/_ImageCropper.cshtml">
+      <publishTime>04/07/2019 02:20:07</publishTime>
+    </File>
+    <File Include="Views/Shared/ViewComponents/_ImageCropperModal.cshtml">
+      <publishTime>04/07/2019 02:20:07</publishTime>
     </File>
     <File Include="Views/Shared/ViewComponents/_Pagination.cshtml">
-      <publishTime>02/25/2019 18:03:38</publishTime>
+      <publishTime>04/01/2019 19:37:42</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>03/05/2019 09:45:20</publishTime>
+      <publishTime>04/01/2019 19:38:44</publishTime>
     </File>
     <File Include="Views/web.config">
-      <publishTime>02/21/2019 22:16:24</publishTime>
+      <publishTime>03/06/2019 16:47:16</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>02/15/2019 21:32:13</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/05/2019 19:00:17</publishTime>
+      <publishTime>11/02/2019 16:37:41</publishTime>
     </File>
   </ItemGroup>
 </Project>

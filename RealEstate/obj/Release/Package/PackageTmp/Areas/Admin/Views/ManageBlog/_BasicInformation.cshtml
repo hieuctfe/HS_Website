@@ -1,0 +1,95 @@
+﻿@model PostBasicInformation
+@{
+    string prefix = Model.Prefix;
+}
+
+<div class="col-12 float-left">
+    @Html.HiddenFor(x => x.Id, new
+    {
+        Name = $"{prefix}Id"
+    })
+    <div class="row">
+        <div class="col-4">
+            @Html.LabelFor(model => model.Name, new { Name = $"{prefix}Name" })
+            @Html.TextBoxFor(model => model.Name, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}Name"
+            })
+            @Html.ValidationMessageFor(model => model.Name, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Name",
+                    ["data-valmsg-for"] = $"{prefix}Name"
+                })
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-2">
+            @Html.LabelFor(model => model.PostCategoryId, new { Name = $"{prefix}PostCategoryId" })
+        </div>
+        <div class="col-10">
+            @Html.DropDownList($"{prefix}PostCategoryId", ViewBag.Categories as IEnumerable<SelectListItem>, new
+            {
+                @class = "selectpicker",
+                id = $"{prefix}PostCategoryId"
+            })
+            <button onclick="manageBlogAttr('Category')" data-toggle="tooltip" data-original-title="Quản Lí Danh Mục" 
+                    type="button" class="btn waves-effect waves-light btn-outline-info">
+                <i class="mdi mdi-grease-pencil"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-2">
+            @Html.LabelFor(model => model.PostLabelIds, new { Name = $"{prefix}PostLabelIds" })
+        </div>
+        <div class="col-10">
+            @Html.DropDownList($"{prefix}PostLabelIds", ViewBag.Labels as IEnumerable<SelectListItem>, new Dictionary<string, object>
+             {
+                 ["class"] = "selectpicker",
+                 ["id"] = $"PostLabelIds",
+                 ["multiple"] = "",
+                 ["data-style"] = "form-control btn-secondary"
+             })
+            <button onclick="manageBlogAttr('Label')" data-toggle="tooltip" data-original-title="Quản Lí Tags"
+                    type="button" class="btn waves-effect waves-light btn-outline-info">
+                <i class="mdi mdi-grease-pencil"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-3">
+            @Html.LabelFor(model => model.IsDisplay)
+            @Html.HiddenFor(model => model.IsDisplay, new { Name = $"{prefix}IsDisplay" })
+            <button type="button" name="@($"{prefix}{nameof(Model.IsDisplay)}")"
+                    class="btn btn-secondary btn-toggle float-right @(Model.IsDisplay ? "active" : string.Empty)"
+                    data-toggle="button" aria-pressed="@Model.IsDisplay" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+    </div>
+    <div class="row m-t-10">
+        <div class="col-12">
+            @Html.LabelFor(model => model.Description, new { Name = $"{prefix}Description" })
+            @Html.TextAreaFor(model => model.Description, new
+            {
+                @class = "form-control",
+                rows = 5,
+                Name = $"{prefix}Description"
+            })
+            @Html.ValidationMessageFor(model => model.Description, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Description",
+                    ["data-valmsg-for"] = $"{prefix}Description"
+                })
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(model => model.Content, new { Name = $"{prefix}Content" })
+            <div class="tinymce-contianer">
+                @Html.TextAreaFor(model => model.Content, new { id = "mymce", Name = $"{prefix}Content" })
+            </div>
+        </div>
+    </div>
+</div>
