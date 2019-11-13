@@ -1,0 +1,664 @@
+/*---- RGBA COLORS ----*/
+.category-grid 
+.overlay, 
+#achivment::before, 
+#property-submit::before, 
+#banner::before {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+.page-style-2 .carousel-inner .item::before,
+#video-background:before {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+.sale_amount {
+    background-color: rgba(239, 239, 239, 0.85);
+}
+#feedback::before {
+    background-color: rgba(26, 26, 26, 0.9);
+}
+#slider-fixed::before, 
+.carousel-inner .item::before {
+    background: rgba(26, 26, 26, 0.4);
+}
+.fileupload-example-label:hover {
+    background: rgba(144, 201, 35, 0.05);
+    border-color: rgba(144, 201, 35, 0.7);
+    color: #9786ff;
+}
+.img_area::before, 
+.news_img::before {
+    background: rgba(148, 196, 30, 0.9);
+}
+.bg-gray {
+	background: #f5f5f5
+}
+/*------------------------*/
+
+/*---- Font Color ---*/
+.search-box-map .property_filter_input select, 
+.search-box-map .property_filter_input input.input-address,
+.invoice-table .list_table tbody tr:nth-last-child(-n+2) td,
+.panel-title, 
+.property_link,
+.btn-link,
+.detail_area .socail_area ul li a, 
+.socail_area span, 
+.filter-btns li,
+#offer-style-3 .offer-title, 
+#offer-style-3 .offer_area:hover p {
+    color: #1a1a1a
+}
+.top_right ul li a.toogle_btn:hover, 
+.socail_area li a:hover, 
+.section_title_blue > span, 
+.section_title_white > span, 
+.info-pages .icon, 
+.property_link:hover, 
+.profile_data ul li i, 
+.br-widget > a.br-active, 
+.br-widget > a.br-selected, 
+.user-rating ul li.active {
+    color: #9786ff
+}
+.top_right ul li .dropdown-menu > li > a, 
+.modal-body > p, 
+.section_title_blue, 
+.blue-title, .sub-title p, 
+.box-title, 
+.caeer-grid ul li span, 
+.testimonials .feedback p i{
+    color: #1a1a1a
+}
+.section_title_white,
+.banner_text p,
+.top_contact > ul > li, 
+.navbar-default .navbar-nav > li > a:hover, 
+.top_right ul li a, 
+.page_location span,
+.page_location i, 
+.page_location a,
+#slider .carousel-caption .slider-subtitle, 
+.slider_text p,
+.slider_text h1,
+.fedback_area p,
+.top_contact ul li i,
+.banner-element span {
+    color: #ffffff
+}
+.navbar-default .navbar-nav > li > a:hover,  
+.submit_area a, 
+.modal-footer span a,
+.client_name,
+.page_error,
+.team_img:hover .member-name {
+    color: #9786ff
+}
+.pagination > li > a, 
+.pagination > li > span,
+.reg_banner > h3, 
+.news_eye, 
+a.btn-read, 
+.post-title, 
+.post-info a:hover,
+.reg_banner_title,
+.offer-title,
+.sale_amount,
+.common-plan p, 
+.feature-plan p, 
+.common-plan .price,
+.testimonial-part2 .client-name,
+.search-form-title {
+    color: #1a1a1a
+}
+a.btn-read:hover, 
+.post-info a, 
+.post-title:hover,
+.booking_house p span,
+.feature-plan .price,
+.banner_title_green,
+.error-handel #success {
+    color: #9786ff
+}
+.footer_contact li i, 
+.footer_contact > ul > li > a:hover, 
+.footer_contact > ul > li > a:active, 
+.footer_contact > ul > li > a:focus,
+.terms_sidebar > ul > li a:hover, 
+.terms_sidebar > ul > li.active a,
+.property_grid:hover .property-title, 
+.property_list:hover .property-title, 
+.property-text > span > i {
+    color: #9786ff
+}
+.detail_area .socail_area ul li a:hover, 
+.categories li a:hover, 
+.recent-post li i, 
+.recent-post li a:hover, 
+.archives li a:hover, 
+.blog-content blockquote,
+.offer_area .btn-link:hover, 
+.offer_area .btn-link:hover {
+    color: #9786ff
+}
+#service_part2 .service_area:hover p, 
+#service_part2 .service_area .service_title, 
+#service_part2 .service_area .btn-read, 
+#service_part3 .service_area:hover p, 
+#service_part3 .service_area .service_title,
+#service_part3 .service_area .btn-read {
+    color: #1a1a1a;
+}
+#offer-style-3 .circle_area [class^="flaticon-"]::before, 
+#offer-style-3 .circle_area [class*=" flaticon-"]::before, 
+#offer-style-3 .circle_area [class^="flaticon-"]::after, 
+#offer-style-3 .circle_area [class*=" flaticon-"]::after,
+#offer-style-3 .offer_area a.btn-link:hover  {
+    color: #1a1a1a
+}
+.terms_sidebar > ul > li a, 
+.terms_description .innner_title, 
+.terms_description > span strong, 
+.terms_description > p, 
+.terms_description > span, 
+.terms_description .terms_titile, 
+.terms_deals .deal_title,
+.info-pages .innner_title,
+.find_text span,
+.property-title, 
+.bed_area > ul > li,
+.widget-title,  
+blockquote, 
+.inner-title {
+    color: #1a1a1a;
+}
+.section_title_green, 
+.settings_links ul li a, 
+.profile_label, 
+.avata-info span, 
+.listing_price, 
+.list_table tbody tr td:last-child span a, 
+.sender_name, 
+.message_table ul li datetime, 
+.msg_header datetime, 
+.msg_text time, 
+.invoice-info ul li span,
+.misson_text span,
+.final-price ul li,
+.list_table tbody tr td a {
+    color: #1a1a1a;
+}
+.avata-form .avata-edit [class^="flaticon-"]::before, 
+.avata-form .avata-edit [class*=" flaticon-"]::before, 
+.avata-form .avata-edit [class^="flaticon-"]::after, 
+.avata-form .avata-edit [class*=" flaticon-"]::after,
+.bed_area ul li.flat-icon:hover [class^="flaticon-"]::before, 
+.bed_area ul li.flat-icon:hover [class*=" flaticon-"]::before, 
+.bed_area ul li.flat-icon:hover [class^="flaticon-"]::after, 
+.bed_area ul li.flat-icon:hover [class*=" flaticon-"]::after {
+    color: #9786ff;
+}
+.service_icon [class^="flaticon-"]::before, 
+.service_icon [class*=" flaticon-"]::before, 
+.service_icon [class^="flaticon-"]::after, 
+.service_icon [class*=" flaticon-"]::after, 
+.service_title, 
+.service_area a.btn-read, 
+.service_area:hover .service_title, 
+.service_area:hover a, 
+.service_area:hover p,
+.browse_submit > span, 
+.browse_submit > p,
+.comments-list .author_info span {
+    color: #1a1a1a;
+}
+.categories li a,
+.recent-post li a,
+.list_table tbody tr td,
+.property_price,
+.important_facts > label,
+.jslider .jslider-value {
+    color: #717171;
+}
+.check_submit ul li input[type="checkbox"]:checked + label::before ,
+.settings_links ul li.active a, 
+.settings_links ul li:hover a, 
+.list_table tbody tr td.rating,
+.settings_links ul li a sup,
+.list_table tbody tr td a:hover,
+.author_text a.action:hover {
+    color: #9786ff;
+}
+
+/*============== Background Color ====================*/
+.property_filter_input .jslider .jslider-bg .v,
+.slider-property .looking-for,
+.bullet > ul > li:hover, 
+.bullet > ul > li.active,
+.slider-search-2 h1,
+.jslider .jslider-bg .v {
+    background: #9786ff
+}
+.on-panel, 
+.scroll-btn, 
+.featured_btn, 
+.prifile_picture,
+.my_carousel .active, 
+.popular_tab > li > a,
+.owl-theme .owl-controls .owl-nav [class*="owl-"]:hover, 
+.slider_arrow ul li:hover, 
+.submit_property > a, 
+.submit_property > a > i,
+#register-banner,
+.find_text,
+.circle_area,
+.service_area:hover::before,
+.service_circle {
+    background-color: #9786ff
+}
+.top_right ul li .dropdown-menu > li > a:hover {
+    background-color: #9786ff;
+    color: #fff
+}
+.dropdown-menu, 
+.dropdown-menu ul {
+    background-color: #fff
+}
+.bootstrap-select .dropdown-menu.inner li a:hover,
+.bootstrap-select .dropdown-menu.inner li a:focus {
+	background-color: #9786ff
+}
+.dropdown-menu li a:hover, 
+.dropdown-menu li a:focus {
+    background-color: #9786ff;
+    color: #fff;
+    text-decoration: none
+}
+.dropdown-menu .active a, 
+.dropdown-menu .active a:hover, 
+.dropdown-menu .active a:focus, 
+.navbar-default .navbar-nav li.active a, 
+.navbar-default .navbar-nav li.active a:hover, 
+.navbar-default .navbar-nav li.active a:focus {
+    background-color: transparent;
+    color: #9786ff;
+    outline: 0 none;
+    text-decoration: none;
+}
+.faq_brochure .btn-default:hover, 
+.faq_brochure .btn-default:focus {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+.testimonials .client-name {
+    color: #1a1a1a;
+    padding: 2px 0;
+}
+.slider-property .looking-for::before {
+    border-top: 35px solid #9786ff;
+}
+#top_header,
+#footer,
+#book_appartment,
+.slider_arrow ul li, 
+.submit_property > a:hover, 
+.owl-theme .owl-controls .owl-nav [class*="owl-"],
+.profile_person .socail_area{
+    background-color: #1a1a1a;
+}
+.advance_search .form_part .location,
+#find-location .property_filter_input,
+.feedback-text2,
+.property_list,
+.property_grid,
+.search_form select,
+.pagination_edit > li > a, 
+.pagination_edit > li > span,
+.terms_sidebar,
+.side_bar,
+#service_part,
+#find_area,
+.member_info,
+#popular-category,
+#offer-style-3,
+.contact_agent,
+.search-box-map #find-location .property_filter_input,
+.search-fixed-right #find-location .property_filter_input,
+.msg_header,
+.msg_replay,
+.invoice-header,
+.message_table ul li a.unread {
+    background-color: #ffffff;
+}
+.feedback-text2::before {
+	border-top: 45px solid #ffffff;
+}
+.login_option .btn-default:hover,
+.author_text .btn-default:hover, 
+.reply_form .btn-default:hover,
+.contact_form .btn-default:hover {
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+.modal-header {
+    background-color: #9786ff;
+    color: #fff;
+}
+.tabs_edit > li > a {
+    background-color: #9786ff;
+    color: #1a1a1a;
+}
+.tabs_edit > li.active > a:focus, 
+.tabs_edit > li.active > a:hover, 
+.tabs_edit > li.active > a {
+    background-color: #fff;
+    color: #1a1a1a;
+}
+.btn-default {
+    background-color: #9786ff;
+    color: #fff;
+}
+.btn-primary {
+    background-color: #fff;
+    color: #1a1a1a;
+}
+.btn-default:hover, 
+.btn-default:focus {
+    background: transparent;
+    border-color: #9786ff;
+    color: #9786ff;
+}
+.btn-primary:hover, 
+.btn-primary:focus {
+    background: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+.owl-theme .owl-dots .owl-dot span {
+    background-color: #f1f1f1;
+    border-color: #f1f1f1
+}
+.owl-theme .owl-dots .owl-dot.active span {
+    background-color: #9786ff;
+    border-color: #9786ff;
+}
+.pagination > li > a:hover, 
+.pagination > li > span:hover,
+.pagination > li > a:focus, 
+.pagination > li > span:focus {
+    background-color: #9786ff;
+    border-color: #9786ff;
+    color: #fff;
+    z-index: 2;
+}
+.pagination > .active > a, 
+.pagination > .active > span, 
+.pagination > .active > a:hover, 
+.pagination > .active > span:hover, 
+.pagination > .active > a:focus, 
+.pagination > .active > span:focus {
+    background-color: #9786ff;
+    border-color: #9786ff;
+    color: #fff;
+    cursor: default;
+    z-index: 3;
+}
+#nav_header, 
+.bullet > ul > li,
+.avata,
+.service_area,
+.my_carousel > li,
+.caeer-grid,
+.tabs_edit > li > a:hover,
+.populer_comment li a,
+.tag_area li a  {
+    background-color: #f5f5f5;
+}
+.news_eye:hover {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+.news_area,
+.invoice-liner,
+.invoice-table .list_table tbody {
+    border-bottom-color: #1a1a1a;
+}
+.news_area::before {
+    border-bottom-color: #95c023;
+}
+#bottom_footer, 
+.scroll-btn:hover {
+    background-color: #000;
+}
+.find_text::before {
+    border-left-color: #9786ff;
+}
+#offer .circle_area::before {
+    border-color: transparent transparent transparent #9786ff;
+}
+.sale_btn {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+.hover_property > ul > li > a {
+    background-color: #fff;
+    color: #1a1a1a;
+}
+.hover_property > ul > li > a:hover {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+#who_are {
+    background: #1a1a1a url("../img/banner/who.png") no-repeat scroll 120% center;
+}
+.panel-title a {
+    background-color: #9786ff;
+    color: #fff;
+}
+.panel-title a.collapsed {
+    background-color: #fff;
+    color: #717171;
+}
+.jslider .jslider-bg i, 
+.jslider .jslider-pointer {
+    background: #f1f1f1
+}
+.jslider .jslider-pointer {
+    background-color: #f8f8f8;
+    border: 3px solid #9786ff;
+}
+.info-list ul li span,
+.agent_info .author_name {
+    color: #9786ff;
+}
+.feedback_small p {
+    color: #a2a2a2;
+}
+.property_view ul li a:hover, 
+.property_view ul li a.active {
+    background-color: #9786ff;
+    color: #fff;
+}
+.property_view > ul > li > a {
+	background-color: #fff;
+	color: #717171
+}
+.list_type .bed_area {
+    background-color: #f5f5f5
+}
+.profile_data ul li,
+.tag_area li a {
+    color: #717171;
+}
+.agent-name {
+    color: #9786ff;
+    line-height: 40px;
+}
+.form-control:focus {
+    border-color: #cfcfcf;
+    outline: 0 none;
+}
+.save_change .btn-default:hover {
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+.list_table thead, 
+.message_table ul li .ping {
+    background-color: #9786ff;
+}
+.message_table ul li .ping::before {
+    border-color: transparent #9786ff transparent transparent;
+}
+.side_bar,
+.info-pages.
+.terms_sidebar,
+.page-style-2 .tab-content,
+#service_part2 .service_area,
+.detail_area .socail_area {
+    background-color: #f1f1f1
+}
+.populer_comment li.active a, 
+.populer_comment li:hover a,
+.tag_area li a:hover {
+    background-color: #9786ff;
+    color: #fff;
+}
+.populer_comment li.active a::before {
+    border-top: 10px solid #9786ff;
+}
+.archives li a {
+    color: #4b4b4b;
+}
+.reply_form textarea.form-control, 
+.reply_form input.form-control {
+    background-color: #f5f5f5;
+}
+.contact_message label.error, 
+.error-handel #error {
+    color: #f00;
+}
+.info-pages .panel-title a.collapsed, 
+.info-pages .pagination_edit > li > a, 
+.info-pages .pagination_edit > li > span {
+    background-color: #f5f5f5;
+}
+.info-pages .pagination > li > a:hover, 
+.info-pages .pagination > li > span:hover, 
+.info-pages .pagination > li > a:focus,
+.info-pages .pagination > li > span:focus {
+    background-color: #9786ff;
+    border-color: #9786ff;
+    color: #fff;
+    z-index: 2;
+}
+.info-pages .pagination > .active > a, 
+.info-pages .pagination > .active > span, 
+.info-pages .pagination > .active > a:hover, 
+.info-pages .pagination > .active > span:hover, 
+.info-pages .pagination > .active > a:focus, 
+.info-pages .pagination > .active > span:focus {
+    background-color: #9786ff;
+    border-color: #9786ff;
+    color: #fff;
+    cursor: default;
+    z-index: 3;
+}
+.page-style-2 .slider_text h1 {
+    color: #fff;
+}
+.page-style-2 .tabs_edit > li.active > a:focus, 
+.page-style-2 .tabs_edit > li.active > a:hover, 
+.page-style-2 .tabs_edit > li.active > a, 
+.page-style-2 .tabs_edit > li > a:hover {
+    background-color: #9786ff;
+    color: #fff;
+}
+.page-style-2 .tabs_edit > li > a {
+    background-color: #fff;
+    color: #1a1a1a;
+}
+.tabs_edit li.active a::before {
+    border-top: 35px solid #9786ff;
+}
+.category-grid .overlay:hover .overlay-title {
+    color: #9786ff;
+    transition: all 0.3s ease-in-out 0s;
+}
+.achievement .counting::after {
+    background: #9786ff;
+}
+.banner-element .banner-title {
+    color: #fff;
+    font-weight: 600;
+    padding: 30px 0;
+}
+.slider-search-2 h1::before {
+    border-top: 35px solid #9786ff;
+}
+#offer-style-3 .offer_area:hover::before {
+    background: #9786ff;
+    transform: scale(1);
+}
+.filter-btns li:hover, 
+.filter-btns li.active {
+    background: #9786ff;
+    color: #fff;
+}
+#service_part2 .service_area > p, 
+#service_part3 .service_area > p {
+    color: #717171;
+    transition: all 0.3s ease-in-out 0s;
+}
+.common-plan p::before, 
+.common-plan span {
+    background: #1a1a1a 
+}
+.feature-plan p::before, 
+.feature-plan span {
+    background: #9786ff
+}
+.common-plan a.btn-default {
+    background: transparent;
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+}
+.form-up-btn {
+    background: #1a1a1a;
+    display: table;
+}
+@media screen and (min-width: 992px) {
+.navbar-default .navbar-nav > li.dropdown:hover > a, 
+.navbar-default .navbar-nav > li.dropdown:focus > a {
+    background-color: #9786ff
+}
+.navbar-default .navbar-nav > li.dropdown:hover > a, 
+.navbar-default .navbar-nav > li.dropdown:focus > a {
+    color: #fff
+}
+}
+@media screen and (max-width: 991px) {
+.navbar-default .navbar-nav > .visible > a, 
+.navbar-default .navbar-nav > .visible > a:hover, 
+.navbar-default .navbar-nav > .visible > a:focus {
+    background-color: #9786ff;
+    color: #fff
+}
+.navbar-nav .dropdown-menu {
+    background: #f1f1f1
+}
+.dropdown-menu > li > a, 
+.navbar-nav .visible .dropdown-menu > li > a, 
+.navbar-nav .visible .dropdown-menu .dropdown-header, 
+.navbar-default .navbar-nav .visible .dropdown-menu > li > a {
+    color: #1a1a1a
+}
+.navbar-default .navbar-nav .visible .dropdown-menu > li > a:hover, 
+.navbar-default .navbar-nav .visible .dropdown-menu > li > a:focus, 
+.navbar-default .navbar-nav .visible .dropdown-menu > .active > a, 
+.navbar-default .navbar-nav .visible .dropdown-menu > .active > a:hover, 
+.navbar-default .navbar-nav .visible .dropdown-menu > .active > a:focus {
+    background: transparent none repeat scroll 0 0;
+    color: #9786ff
+}
+}

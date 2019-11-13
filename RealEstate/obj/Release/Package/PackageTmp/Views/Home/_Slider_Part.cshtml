@@ -1,0 +1,18 @@
+﻿@model string
+
+<section id="slider">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol id="slider-Pagination" class="carousel-indicators my_carousel">
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            @Html.Raw(Model)
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <div class="lef_btn"><</div>
+            <span class="sr-only"><</span>
+        </a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <div class="right_btn">></div>
+            <span class="sr-only">></span>
+        </a>
+    </div>
+</section>

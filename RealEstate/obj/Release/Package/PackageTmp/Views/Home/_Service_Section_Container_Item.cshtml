@@ -1,0 +1,9 @@
+﻿@model ServiceViewModels
+
+<div class="col-md-3 col-sm-6">
+    <div class="service_area wow fadeInUp" data-wow-delay="@Model.Delay" data-wow-duration="1500ms">
+        <div class="service_icon"><i class="@Model.Icons"></i></div>
+        <a href="@Model.LinkedUrl"><h4 class="service_title">@Model.Title</h4></a>
+        <p>@Model.Content</p>
+    </div>
+</div>

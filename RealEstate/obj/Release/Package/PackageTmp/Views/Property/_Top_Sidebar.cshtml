@@ -1,0 +1,23 @@
+﻿@model _PropertyPagination
+@{ 
+    string prefix = Model.Prefix;
+}
+<div class="col-md-12">
+    <div class="property_sorting">
+        <div class="property_filter">
+            <div class="property_view">
+                <ul>
+                    <li>
+                        <span>Sắp Xếp:</span>
+                        @Html.DropDownList($"{prefix}{nameof(Model.SortField)}", ViewBag.SortList as IEnumerable<SelectListItem>, 
+                        "Theo Mặc Định", new
+                        {
+                            @class = "selectpicker form-control",
+                            id = nameof(Model.SortField),
+                        })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

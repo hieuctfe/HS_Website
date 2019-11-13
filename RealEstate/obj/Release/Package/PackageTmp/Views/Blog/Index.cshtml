@@ -1,0 +1,161 @@
+﻿@model PostPageViewModels
+@{
+    ViewBag.Title = "Danh Sách Bài Viết";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+           controller = ViewContext.RouteData.Values["controller"].ToString(),
+           searchPrefix = string.Empty;
+
+    var routeValues = new RouteValueDictionary
+    {
+        [$"PageIndex"] = Request[$"PageIndex"],
+        [$"PageSize"] = Request[$"PageSize"],
+        [$"SearchValue"] = Request[$"SearchValue"],
+        ["categoryId"] = Request["categoryId"],
+        ["labelId"] = Request["labelId"]
+    };
+}
+@section CustomStyles
+{
+    <style>
+        .blog-content {
+            overflow: hidden;
+            height: 110px;
+        }
+    </style>
+}
+@{ Html.RenderPartial($"_Banner_Section"); }
+<section id="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="blog_grid">
+                        @foreach (var post in Model.Posts)
+                        {
+                            <div class="col-md-6 col-sm-6">
+                                <div class="news_area">
+                                    <div class="news_img">
+                                        <a href="@Url.Action("Detail", "Blog", new { id = post.Id })"><img src="@post.AvatarPath" alt="@post.AvatarName"></a>
+                                        <a href="@Url.Action("Detail", "Blog", new { id = post.Id })" class="news_eye"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="news_text">
+                                        <a href="@Url.Action("Detail", "Blog", new { id = post.Id })"><h5 class="post-title">@post.Name</h5></a>
+                                        <div class="post-info">Đăng Bởi <a href="#">@post.CreatedBy</a> @post.CreatedOn.TimeAgo() </div>
+                                        <div class="blog-content">
+                                            <p>@post.Description</p>
+                                        </div>
+                                        <a class="btn-read" href="@Url.Action("Detail", "Blog", new { id = post.Id })">Đọc Thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                @{
+                    if (ViewBag.TotalPages > 1)
+                    {
+                        routeValues["PageSize"] = ViewBag.PageSize;
+                        Html.RenderAction("RenderPaging", "SiteClient",
+                                    new
+                                    {
+                                        pageView = new _PageView
+                                        {
+                                            Action = action,
+                                            Controller = controller,
+                                            PageIndex = ViewBag.PageIndex,
+                                            TotalPage = ViewBag.TotalPages,
+                                            ShowPage = 5,
+                                            RouteValues = routeValues,
+                                            Prefix = searchPrefix
+                                        }
+                                    });
+                    }
+                }
+            </div>
+            <div class="col-md-4">
+                <div class="side_bar">
+                    <div class="sidebar-widget">
+                        <form method="get" class="search_form">
+                            @Html.TextBoxFor(x => x.PostPagination.SearchValue, new
+                             {
+                                placeholder = "Tiêu Đề Bài Viết",
+                                @class = "search_option form-control",
+                                Name = "SearchValue"
+                            })
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Danh Mục</h4>
+                        <ul class="categories">
+                            @foreach (var category in Model.Categories)
+                            {
+                                <li><a href="@Url.Action("", "")">@category.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Bài Đăng Gần Đây</h4>
+                        <ul class="recent-post">
+                            @foreach (var post in Model.RecentPosts)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Detail", "Blog", new { id = post.Id })">@post.Name</a>
+                                    <span>@post.CreatedOn.TimeAgo()<i class="fa fa-comments-o" aria-hidden="true"></i> @post.CommentCount bình luận</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs populer_comment" role="tablist">
+                            <li role="presentation" class="active"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Phổ Biến</a></li>
+                            <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Tương Tác Cao</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="popular">
+                                <div class="post_area">
+                                    <ul class="recent-post">
+                                        @foreach (var post in Model.TopViewPosts)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Detail", "Blog", new { id = post.Id })">@post.Name</a>
+                                                <span><i class="fa fa-eye" aria-hidden="true"></i> @post.ViewCount lượt xem</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="comments">
+                                <div class="post_area">
+                                    <ul class="recent-post">
+                                        @foreach (var post in Model.TopCommentPosts)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Detail", "Blog", new { id = post.Id })">@post.Name</a>
+                                                <span><i class="fa fa-comments-o" aria-hidden="true"></i> @post.CommentCount bình luận</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Tags</h4>
+                        <ul class="tag_area">
+                            @foreach (var label in Model.Labels)
+                            {
+                                <li><a href="@Url.Action("", "")">@label.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog List End -->

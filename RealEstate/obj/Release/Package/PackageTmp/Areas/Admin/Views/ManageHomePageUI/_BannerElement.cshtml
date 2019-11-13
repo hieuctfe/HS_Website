@@ -1,0 +1,92 @@
+﻿@model HomeUIBannerViewModels
+@{
+    string index = string.Format("[{0}]", ViewBag.Index != null ? (int.Parse(ViewBag.Index) - 1).ToString() : "{{index}}");
+    string prefix = $"{nameof(HomeUIViewModels.Slider)}{index}";
+
+    string i = ViewBag.Index != null ? ViewBag.Index : "{{i}}";
+}
+
+<div class="card">
+    <div class="card-header" id="heading@(i)">
+        <h5 class="mb-0">
+            <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse@(i)" aria-expanded="false" aria-controls="collapseOne">
+                Banner @(i)
+            </button>
+        </h5>
+    </div>
+    <div id="collapse@(i)" class="collapse" aria-labelledby="heading@(i)" data-parent="#accordion">
+        <div class="card-body">
+            <div class="form-material row col-12 float-left">
+                <div class="col-8">
+                    @Html.LabelFor(model => model.Title, new { Name = $"{prefix}.Title" })
+                    @Html.TextBoxFor(model => model.Title, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.Title"
+                    })
+                    @Html.ValidationMessageFor(model => model.Title, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.Title",
+                            ["data-valmsg-for"] = $"{prefix}.Title"
+                        })
+                </div>
+                <div class="col-12 m-t-20">
+                    @Html.LabelFor(model => model.Content, new { Name = $"{prefix}.Content" })
+                    @Html.TextAreaFor(model => model.Content, new
+                    {
+                        @class = "form-control",
+                        rows = 5,
+                        Name = $"{prefix}.Content"
+                    })
+                    @Html.ValidationMessageFor(model => model.Content, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.Content",
+                            ["data-valmsg-for"] = $"{prefix}.Content"
+                        })
+                </div>
+                <div class="col-4 m-t-20">
+                    @Html.LabelFor(model => model.LinkedUrl, new { Name = $"{prefix}.LinkedUrl" })
+                    @Html.TextBoxFor(model => model.LinkedUrl, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.LinkedUrl"
+                    })
+                    @Html.ValidationMessageFor(model => model.LinkedUrl, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.LinkedUrl",
+                            ["data-valmsg-for"] = $"{prefix}.LinkedUrl"
+                        })
+                </div>
+                <div class="col-4 m-t-20">
+                    @Html.LabelFor(model => model.ExtraUrl, new { Name = $"{prefix}.ExtraUrl" })
+                    @Html.TextBoxFor(model => model.ExtraUrl, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.ExtraUrl"
+                    })
+                    @Html.ValidationMessageFor(model => model.ExtraUrl, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.ExtraUrl",
+                            ["data-valmsg-for"] = $"{prefix}.ExtraUrl"
+                        })
+                </div>
+                <div class="col-12 m-t-20">
+                    @Html.LabelFor(model => model.BackgroundUploaded)
+                    @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                                new _ImageCropper
+                                {
+                                    CropActiveId = $"slider{i}",
+                                    ImageContainer = $"slider{i}Container",
+                                    ImageUploaded = Model?.BackgroundUploaded ?? string.Empty,
+                                    ButtonText = "Select Images (1920 x 800)"
+                                });
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

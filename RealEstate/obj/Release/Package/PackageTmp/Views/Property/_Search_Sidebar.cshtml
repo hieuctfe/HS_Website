@@ -1,0 +1,104 @@
+﻿@model PropertyPageViewModels
+@{
+    string prefix = Model.PropertyPagination.Prefix;
+
+    IEnumerable<SelectListItem> cities = ViewBag.Cities as IEnumerable<SelectListItem>,
+                                districts = ViewBag.Districts as IEnumerable<SelectListItem> ??
+                                                                 Enumerable.Empty<SelectListItem>();
+}
+
+
+<form id="searchForm" action="@Url.Action("Index", "Home")" method="get">
+    <div class="property_sidebar col-12">
+        <div class="price_range sidebar-widget">
+            <h4 class="widget-title">Diện Tích</h4>
+            <div class="area-filter">
+                <span class="price-slider">
+                    <input class="area_filter" type="text" name="@($"{prefix}{nameof(Model.PropertyPagination.AreaValue)}")" value="@Model.PropertyPagination.AreaValue" />
+                </span>
+            </div>
+        </div>
+        <h4 class="widget-title">Giá</h4>
+        <div class="row float-left">
+            <div class="col-sm-12">
+                <input name="@($"{prefix}{nameof(Model.PropertyPagination.FromPriceValue)}")" id="@nameof(Model.PropertyPagination.FromPriceValue)" value="@Model.PropertyPagination.FromPriceValue" />
+            </div>
+            <div class="col-sm-12" style="margin-top:10px;">
+                <input name="@($"{prefix}{nameof(Model.PropertyPagination.ToPriceValue)}")" id="@nameof(Model.PropertyPagination.ToPriceValue)" value="@Model.PropertyPagination.ToPriceValue" />
+            </div>
+        </div>
+        <div class="advance_search sidebar-widget">
+            <h4 class="widget-title">Tìm Kiếm Nâng Cao</h4>
+            <div class="search_form">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                        @Html.DropDownList($"{prefix}{nameof(Model.PropertyPagination.City)}", cities,
+                        $"Thành Phố", new
+                        {
+                            @class = "selectpicker form-control",
+                            id = nameof(Model.PropertyPagination.City)
+                        })
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        @if (!cities.Any(x => x.Selected))
+                        {
+                            @Html.DropDownList($"{prefix}{nameof(Model.PropertyPagination.District)}", districts, $"{Html.DisplayNameFor(x => x.PropertyPagination.District)}", new
+                             {
+                                @class = "selectpicker form-control",
+                                id = nameof(Model.PropertyPagination.District),
+                                disabled = "True"
+                            })
+                        }
+                        else
+                        {
+                            @Html.DropDownList($"{prefix}{nameof(Model.PropertyPagination.District)}", districts, $"{Html.DisplayNameFor(x => x.PropertyPagination.District)}", new
+                             {
+                                @class = "selectpicker form-control",
+                                id = nameof(Model.PropertyPagination.District),
+                            })
+                        }
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        @Html.DropDownList($"{prefix}{nameof(Model.PropertyPagination.Status)}", ViewBag.Statuses as IEnumerable<SelectListItem>,
+                        $"Trạng Thái", new
+                        {
+                            @class = "selectpicker form-control",
+                            id = nameof(Model.PropertyPagination.Status)
+                        })
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        @Html.DropDownList($"{prefix}{nameof(Model.PropertyPagination.Type)}", ViewBag.Types as IEnumerable<SelectListItem>,
+                        $"Loại Hình", new
+                        {
+                            @class = "selectpicker form-control",
+                            id = nameof(Model.PropertyPagination.Type)
+                        })
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.TextBoxFor(model => model.PropertyPagination.Bed, new
+                         {
+                            @class = "form-control",
+                            Name = $"{prefix}{nameof(Model.PropertyPagination.Bed)}",
+                            value = "",
+                            id = "searchBoxBed",
+                        })
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.TextBoxFor(model => model.PropertyPagination.Bath, new
+                         {
+                            @class = "form-control",
+                            Name = $"{prefix}{nameof(Model.PropertyPagination.Bath)}",
+                            value = "",
+                            id = "searchBoxBath",
+                        })
+                    </div>
+                    <div class="col-md-12 col-sm-6" style="margin-top:20px;">
+                        <button name="search" class="btn btn-default" type="submit">Tìm Kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</form>
+<!-- End Left Sidebar -->

@@ -1,0 +1,67 @@
+﻿@model PropertyContacInformation
+@{
+    string prefix = "ContactInformation.";
+}
+
+<div class="form-material col-12 float-left">
+    <div class="row">
+        <div class="col-4">
+            @Html.LabelFor(model => model.ContactName, new { Name = $"{prefix}ContactName" })
+            @Html.TextBoxFor(model => model.ContactName, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}ContactName"
+            })
+            @Html.ValidationMessageFor(model => model.ContactName, null,
+            new Dictionary<string, object> ()
+            {
+                ["Name"] = $"{prefix}ContactName",
+                ["data-valmsg-for"] = $"{prefix}ContactName"
+            })
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(model => model.ContactPhoneNumber, new { Name = $"{prefix}ContactPhoneNumber" })
+            @Html.TextBoxFor(model => model.ContactPhoneNumber, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}ContactPhoneNumber"
+            })
+            @Html.ValidationMessageFor(model => model.ContactPhoneNumber, null,
+            new Dictionary<string, object> ()
+            {
+                ["Name"] = $"{prefix}ContactPhoneNumber",
+                ["data-valmsg-for"] = $"{prefix}ContactPhoneNumber"
+            })
+        </div>
+    </div>
+    <div class="row m-t-10">
+        <div class="col-10">
+            @Html.LabelFor(model => model.ContactEmail, new { Name = $"{prefix}ContactEmail" })
+            @Html.TextBoxFor(model => model.ContactEmail, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}ContactEmail"
+            })
+            @Html.ValidationMessageFor(model => model.ContactEmail, null,
+            new Dictionary<string, object> ()
+            {
+                ["Name"] = $"{prefix}ContactEmail",
+                ["data-valmsg-for"] = $"{prefix}ContactEmail"
+            })
+        </div>
+        <div class="col-10 m-b-20">
+            @Html.LabelFor(model => model.ContactAddress, new { Name = $"{prefix}ContactAddress" })
+            @Html.TextBoxFor(model => model.ContactAddress, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}ContactAddress"
+            })
+            @Html.ValidationMessageFor(model => model.ContactAddress, null,
+            new Dictionary<string, object> ()
+            {
+                ["Name"] = $"{prefix}ContactAddress",
+                ["data-valmsg-for"] = $"{prefix}ContactAddress"
+            })
+        </div>
+    </div>
+</div>

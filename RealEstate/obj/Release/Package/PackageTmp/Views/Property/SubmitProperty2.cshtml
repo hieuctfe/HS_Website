@@ -1,0 +1,237 @@
+﻿@model CreatePropertyViewModels
+@{
+    ViewBag.Title = "Đăng Tin";
+    IEnumerable<SelectListItem> cities = ViewBag.Cities as IEnumerable<SelectListItem>,
+                            districts = ViewBag.Districts as IEnumerable<SelectListItem> ??
+                                                                Enumerable.Empty<SelectListItem>();
+}
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")" rel="stylesheet" />
+    <style>
+        #BasicInformation_Price, #BasicInformation_Area,
+        #BasicInformation_NumberOfBedRoom, #BasicInformation_NumberOfBathRoom {
+            min-height: 38px;
+            margin-bottom: 0px;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var $city = $('#@nameof(Model.BasicInformation.City)');
+        var $district = $('#@nameof(Model.BasicInformation.District)');
+
+        $city.on('change', function () {
+                let $this = $(this);
+                let options = `<option value="">Quận Huyện</option>`;
+                if ($this.val() === '') {
+                    $district.prop('disabled', true);
+                    $district.empty();
+                    $district.html(options);
+                    $district.selectpicker('refresh');
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("GetDistricts")',
+                        dataType: 'json',
+                        method: 'get',
+                        data: {
+                            cityName: $this.val()
+                        }
+                    }).done(function (data) {
+                        $district.prop('disabled', false);
+
+                        $.each(data, function (i, ele) {
+                            options += `<option value="${ele}">${ele}</option>`;
+                        });
+                        $district.empty();
+                        $district.html(options)
+                        $district.selectpicker('refresh');
+                    }).fail(function () {
+                        swal('Error at loading districts, Please contact to the administrator', '', 'error');
+                    });
+                }
+        });
+
+        $('input#BasicInformation_Price').TouchSpin({
+            min: 0,
+            max: 999999999999,
+            prefix: 'Giá (VND) ',
+            initval: "",
+            step: 500000,
+            forcestepdivisibility: 'none',
+            verticalbuttons: true,
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default'
+        });
+
+        $('input#BasicInformation_Area').TouchSpin({
+            min: 0,
+            max: 1000,
+            prefix: 'Diện Tích ',
+            initval: "",
+            step: 10,
+            forcestepdivisibility: 'none',
+            verticalbuttons: true,
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default'
+        });
+
+        $('input#BasicInformation_NumberOfBedRoom').TouchSpin({
+            min: 0,
+            max: 100,
+            prefix: '<i class="fa fa-bed"></i>',
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $('input#BasicInformation_NumberOfBathRoom').TouchSpin({
+            min: 0,
+            max: 100,
+            prefix: '<i class="fa fa-bath"></i>',
+            buttonup_class: 'btn btn-secondary',
+            buttondown_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+    </script>
+}
+@{ Html.RenderPartial($"_Banner_Section"); }
+<section id="submit_property">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-12">
+                <form action="#" method="post" class="submit_form">
+                    <div class="basic_information">
+                        <h4 class="inner-title">Thông Tin Cơ Bản</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                @Html.DropDownList($"{nameof(Model.BasicInformation.PropertyStatusCodeId)}", ViewBag.PropertyStatusCodes as IEnumerable<SelectListItem>,
+                                  $"Trạng Thái", new
+                                  {
+                                      @class = "selectpicker form-control",
+                                      id = nameof(Model.BasicInformation.PropertyStatusCodeId)
+                                  })
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                @Html.DropDownList($"{nameof(Model.BasicInformation.PropertyTypeId)}", ViewBag.PropertyTypes as IEnumerable<SelectListItem>,
+                                  $"Loại Hình", new
+                                  {
+                                      @class = "selectpicker form-control",
+                                      id = nameof(Model.BasicInformation.PropertyStatusCodeId)
+                                  })
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <input type="text" placeholder="Tiêu Đề" class="form-control">
+                            </div>
+                            <div class="col-md-5 col-sm-6">
+                                @Html.TextBoxFor(x => x.BasicInformation.Price)
+                            </div>
+                            <div class="col-md-5 col-sm-6">
+                                @Html.TextBoxFor(x => x.BasicInformation.Area)
+                            </div>
+                            <div class="col-md-8">
+                                <div class="important_facts">
+                                    <label>Bể Bơi</label>
+                                    <div class="radio_check">
+                                        <input type="checkbox" id="radio_1" name="question" value="No">
+                                        <label for="radio_1"><span>No</span><span>Yes</span></label>
+                                    </div>
+                                </div>
+                                <div class="important_facts">
+                                    <label>Vườn</label>
+                                    <div class="radio_check">
+                                        <input type="checkbox" id="radio_2" name="question" value="No">
+                                        <label for="radio_2"><span>No</span><span>Yes</span></label>
+                                    </div>
+                                </div>
+                                <div class="important_facts">
+                                    <label>Nhà Để Xe</label>
+                                    <div class="radio_check">
+                                        <input type="checkbox" id="radio_3" name="question" value="No">
+                                        <label for="radio_3"><span>No</span><span>Yes</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6">
+                                @Html.TextBoxFor(x => x.BasicInformation.NumberOfBathRoom)
+                            </div>
+                            <div class="col-md-5 col-sm-6">
+                                @Html.TextBoxFor(x => x.BasicInformation.NumberOfBedRoom)
+                            </div>
+                        </div>
+                        <div class="alert alert-warning">Lưu ý: Mệnh giá sẽ là liên hệ, nếu bạn không cập nhật mệnh giá</div>
+                    </div>
+                    <div class="description">
+                        <h4 class="inner-title">Thông Tin Chi Tiết</h4>
+                        @Html.TextAreaFor(x => x.BasicInformation.DetailDescription, new { @class = "form_description", placeholder = "Mô tả..." })
+                        <div class="alert alert-warning">
+                            Giới thiệu chung về bất động sản của bạn.
+                            Ví dụ: Khu nhà có vị trí thuận lợi: Gần siêu thị, trường học,...
+                            Tổng diện tích 60m2, 2 mặt tiền. Thích hợp cho kinh doanh, buôn bán
+                        </div>
+                    </div>
+                    <div class="property_location">
+                        <h4 class="inner-title">Địa Điểm Cụ Thể</h4>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-6">
+                                        @Html.TextBoxFor(x => x.BasicInformation.AddressLine, new { @class = "form-control", placeholder = "Địa Chỉ" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        @Html.DropDownList(nameof(Model.BasicInformation.City), cities,
+                                         $"Thành Phố", new
+                                         {
+                                             @class = "selectpicker form-control",
+                                             id = nameof(Model.BasicInformation.City)
+                                         })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        @if (!cities.Any(x => x.Selected))
+                                        {
+                                            @Html.DropDownList(nameof(Model.BasicInformation.District), districts, $"Quận/Huyện", new
+                                            {
+                                                @class = "selectpicker form-control",
+                                                id = nameof(Model.BasicInformation.District),
+                                                disabled = "True"
+                                            })
+                                        }
+                                        else
+                                        {
+                                            @Html.DropDownList(nameof(Model.BasicInformation.District), districts, $"Quận/Huyện", new
+                                            {
+                                                @class = "selectpicker form-control",
+                                                id = nameof(Model.BasicInformation.District),
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_owner">
+                        <h4 class="inner-title">Thông Tin Liên Hệ</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.ContactInformation.ContactName, new { @class = "form-control", placeholder = "Họ và Tên" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.ContactInformation.ContactEmail, new { @class = "form-control", placeholder = "Email", type = "email" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.ContactInformation.ContactPhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại liên lạc" })
+                            </div>
+                        </div>
+                        <div class="browse_submit">
+                            <button name="submit" class="btn btn-default">Đăng Bài</button>
+                            <p><span>note</span> : Dự án của bạn sẽ được review trong vòng 24h sau khi upload *</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

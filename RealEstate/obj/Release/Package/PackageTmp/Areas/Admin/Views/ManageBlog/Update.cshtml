@@ -1,0 +1,375 @@
+﻿@model UpdatePostViewModels
+@{
+    ViewBag.Title = "Cập Nhật Bài Viết";
+
+    Model.Seo.Prefix = $"{nameof(Model.Seo)}.";
+    Model.BasicInformation.Prefix = $"{nameof(Model.BasicInformation)}.";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("perfect-scrollbar-1.4.0/css/perfect-scrollbar.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("bootstrap-select/bootstrap-select.min.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("cropper/cropper.min.css")" rel="stylesheet" />
+    <link href="@Url.AppCustoms("css/switchBtn.css")" rel="stylesheet" />
+
+    <style>
+        .img-container {
+            min-height: 300px;
+        }
+
+        .no-image-background {
+            background: white;
+            display: flex;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            line-height: 300px;
+        }
+
+        .activeCropper {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #image-popup-gallery img {
+            cursor: pointer
+        }
+
+        .btn-delete {
+            top: calc(0px - 5px);
+            right: calc(0px + 5px);
+            padding: 0;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            outline: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .filter-option {
+            color: black;
+        }
+
+        .show-tick {
+            width: 350px !important;
+        }
+
+        .table-popup-management {
+            position: relative;
+            max-height: 400px;
+        }
+
+        form label {
+            color: black;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("perfect-scrollbar-1.4.0/dist/perfect-scrollbar.js")"></script>
+    <script src="@Url.AppVendors("bootstrap-select/bootstrap-select.min.js")"></script>
+    <script src="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js")" type="text/javascript"></script>
+    <script src="@Url.AppVendors("tinymce/jquery.tinymce.min.js")"></script>
+    <script src="@Url.AppVendors("tinymce/tinymce.min.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper-init-multi-image-modified.js")"></script>
+
+    <script type="text/javascript">
+        function manageBlogAttr(elementName) {
+            let $modal = $('.popup-management'),
+                $modalForm = $modal.find('.modal-body form');
+
+            $modal.modal('show');
+
+            $.ajax({
+                url: `/SiteAdmin/${elementName}Management`,
+                method: 'get',
+                dataType: 'json'
+            }).done(function (data) {
+                $modal.find('.modal-content').html('').append(data);
+
+                new PerfectScrollbar('.table-popup-management', {
+                    wheelPropagation: true
+                });
+
+                $modalForm = $modal.find('.modal-content form');
+                let $createButton = $modal.find('.modal-content button#create-popup-management');
+                var $deleteButton = $modal.find('.modal-content .btnDelete-popup-management');
+
+                //help validate for modal form with outside button
+                $.validator.unobtrusive.parse($modalForm);
+                $modalForm.submit(() => false);
+
+                //create button
+                $createButton.on('click', function () {
+                    var formData = formToJSON($modalForm[0].elements);
+
+                    if ($modalForm.valid()) {
+                        $.ajax({
+                            url: `/ManageBlogAttribute/Create${elementName}`,
+                            method: 'post',
+                            dataType: 'json',
+                            data: {
+                                name: formData.ItemName,
+                                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            },
+                        }).done(function (data, textStatus, jqXHR) {
+                            var $select = $(elementName == 'Category' ?
+                                'select[name="BasicInformation.PostCategoryId"]' : 'select[name="BasicInformation.PostLabelIds"]');
+
+                            var template = '';
+                            var isExisted = false;
+                            $select.find('option').each(function (index, ele) {
+                                var $option = $(ele);
+                                if ($option.text().localeCompare(data.Name) == 1 && !isExisted) {
+                                    template += `<option value="${data.Id}">${data.Name}</option>`;
+                                    isExisted = true;
+                                }
+                                template += `<option value="${$option.val()}">${$option.text()}</option>`;
+                            });
+                            $select.html('').append(template);
+                            $select.selectpicker('refresh');
+
+                            manageBlogAttr(elementName);
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            swal(
+                                'Lỗi!',
+                                'Tên Đã Tồn Tại, Vui Lòng Chọn 1 Tên Khác',
+                                'error'
+                            );
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+
+                //validate hidden field by ajax submit form
+                $modalForm.validate().settings.ignore = [];
+
+                //delete button
+                $deleteButton.on('click', function () {
+                    if (elementName == 'Category') {
+                        swal({
+                            title: 'Bạn có chắc không?',
+                            text: 'CÁC BÀI VIẾT CỦA DANH MỤC NÀY SẼ BỊ XÓA!!!',
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Có',
+                            cancelButtonText: 'Không'
+                        }).then((result) => {
+                            if (result.value) {
+                                var sendData = $(this).attr('data-id')
+
+                                $.ajax({
+                                    url: `/ManageBlogAttribute/Delete${elementName}`,
+                                    method: 'post',
+                                    dataType: 'json',
+                                    data: {
+                                        ids: sendData,
+                                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                                    },
+                                }).done(function (data, textStatus, jqXHR) {
+                                    var $select = $(elementName == 'Category' ?
+                                        'select[name="BasicInformation.PostCategoryId"]' : 'select[name="BasicInformation.PostLabelIds"]');
+
+                                    $select.find('option').each(function (index, ele) {
+                                        var $option = $(ele);
+
+                                        if ($option.val() == sendData) {
+                                            $option.remove();
+                                        }
+                                    });
+
+                                    $select.selectpicker('refresh');
+
+                                    manageBlogAttr(elementName);
+                                }).fail(function (jqXHR, textStatus, errorThrown) {
+                                    swal(
+                                        'Lỗi!',
+                                        errorThrown,
+                                        'error'
+                                    );
+                                });
+                            }
+                        });
+                    } else {
+                        var sendData = $(this).attr('data-id')
+
+                        $.ajax({
+                            url: `/ManageBlogAttribute/Delete${elementName}`,
+                            method: 'post',
+                            dataType: 'json',
+                            data: {
+                                ids: sendData,
+                                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            },
+                        }).done(function (data, textStatus, jqXHR) {
+                            var $select = $(elementName == 'Category' ?
+                                'select[name="BasicInformation.PostCategoryId"]' : 'select[name="BasicInformation.PostLabelIds"]');
+
+                            $select.find('option').each(function (index, ele) {
+                                var $option = $(ele);
+
+                                if ($option.val() == sendData) {
+                                    $option.remove();
+                                }
+                            });
+
+                            $select.selectpicker('refresh');
+
+                            manageBlogAttr(elementName);
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            swal(
+                                'Lỗi!',
+                                errorThrown,
+                                'error'
+                            );
+                        });
+                    }
+                });
+            });
+        }
+
+        $(function () {
+            var $btnDisplay = $("button[name='@($"{Model.BasicInformation.Prefix}" +
+                                                $"{nameof(Model.BasicInformation.IsDisplay)}")']");
+
+            $btnDisplay.on('click', function () {
+                let $inputDisplay = $("input[name='@($"{Model.BasicInformation.Prefix}" +
+                                                     $"{nameof(Model.BasicInformation.IsDisplay)}")']");
+                $inputDisplay.val($inputDisplay.val() === 'True' ? 'False' : 'True');
+            });
+
+
+            new MyLib.CropperFactory({ $CropperModal: '#modalCropper' })
+                .Create('#avatarCropper', 1, NaN, '@nameof(Model.Avatar)', true, 0)
+                .Create('#listCropper', 1, NaN, '@nameof(Model.HeaderImage)', true, 0)
+                ;
+        });
+
+        $(document).ready(function () {
+            if ($("#mymce").length > 0) {
+                tinymce.init({
+                    selector: "textarea#mymce",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    valid_elements: '*[*]',
+                    invalid_elements: "script",
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+                });
+            }
+        });
+
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+    </script>
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box; margin-bottom: 25px">Cập Nhật Thông Tin Bài Viết</h4>
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Update</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post))
+        {
+            @Html.Hidden("id", Model.BasicInformation.Id)
+            @Html.AntiForgeryToken()
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Thông Tin Cơ Bản
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @{
+                            Html.RenderPartial("_BasicInformation", Model.BasicInformation);
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ảnh Đại Diện
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                             new _ImageCropper
+                             {
+                                 CropActiveId = "avatarCropper",
+                                 ImageContainer = "avatarContainer",
+                                 ImageUploaded = Model.AvatarUpload,
+                                 ButtonText = "Select Images (770 x 458)"
+                             });
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Hình Ảnh Bài Viết
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                             new _ImageCropper
+                             {
+                                 CropActiveId = "listCropper",
+                                 ImageContainer = "imagesContainer",
+                                 ImageUploaded = Model.ImageUpload,
+                                 ButtonText = "Select Images (770 x 410)"
+                             });
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            SEO Optimize
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        @{ Html.RenderPartial("_SeoOptimize", Model.Seo); }
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+@{ Html.RenderPartial("ViewComponents/_ImageCropperModal"); }
+@{ Html.RenderPartial("ViewComponents/_ManagementModal"); }

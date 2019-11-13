@@ -1,0 +1,73 @@
+﻿@model HomeUIFooteViewModels
+@{
+    ViewBag.Title = "Chỉnh sửa footer";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppVendors("tinymce/jquery.tinymce.min.js")"></script>
+    <script src="@Url.AppVendors("tinymce/tinymce.min.js")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($("#mymce").length > 0) {
+                tinymce.init({
+                    selector: "textarea#mymce",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    valid_elements: '*[*]',
+                    invalid_elements: "script",
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+                });
+            }
+        });
+
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box; margin-bottom: 25px">Chỉnh sửa footer</h4>
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Save</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Footer
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="col-12 float-left">
+                                <div class="row m-t-10">
+                                    <div class="col-12">
+                                        @Html.LabelFor(model => model.FooterHtml, new { Name = $"FooterHtml" })
+                                        <div class="tinymce-contianer">
+                                            @Html.TextAreaFor(model => model.FooterHtml, new { id = "mymce", Name = $"FooterHtml" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

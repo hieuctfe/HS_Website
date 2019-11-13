@@ -1,0 +1,62 @@
+﻿@model AchivementViewModels
+@{
+    string index = string.Format("[{0}]", ViewBag.Index != null ? (int.Parse(ViewBag.Index) - 1).ToString() : "{{index}}");
+    string prefix = $"{nameof(HomeUIAchivementViewModels.Achivements)}{index}";
+
+    string i = ViewBag.Index != null ? ViewBag.Index : "{{i}}";
+}
+
+<div class="card">
+    <div class="card-header" id="heading@(i)">
+        <h5 class="mb-0">
+            <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse@(i)" aria-expanded="false" aria-controls="collapseOne">
+                Achivement @(i)
+            </button>
+        </h5>
+    </div>
+    <div id="collapse@(i)" class="collapse" aria-labelledby="heading@(i)" data-parent="#accordion">
+        <div class="card-body">
+            <div class="form-material row col-12 float-left">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.Content, new { Name = $"{prefix}.Content" })
+                    @Html.TextBoxFor(model => model.Content, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.Content"
+                    })
+                    @Html.ValidationMessageFor(model => model.Content, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.Content",
+                            ["data-valmsg-for"] = $"{prefix}.Content"
+                        })
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4 m-t-20">
+                    @Html.LabelFor(model => model.Delay, new { Name = $"{prefix}.Deplay" })
+                    @Html.TextBoxFor(model => model.Delay, new
+               {
+                   @class = "form-control",
+                   Name = $"{prefix}.Deplay"
+               })
+                </div>
+                <div class="col-4 m-t-20">
+                    @Html.LabelFor(model => model.Speed, new { Name = $"{prefix}.Speed" })
+                    @Html.TextBoxFor(model => model.Speed, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.Speed"
+                    })
+                </div>
+                <div class="col-4 m-t-20 m-b-20">
+                    @Html.LabelFor(model => model.StopAt, new { Name = $"{prefix}.StopAt" })
+                    @Html.TextBoxFor(model => model.StopAt, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.StopAt"
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

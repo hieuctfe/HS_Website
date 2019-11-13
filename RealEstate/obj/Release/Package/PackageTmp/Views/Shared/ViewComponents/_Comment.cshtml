@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CommentViewModels>
+@{ 
+    var comments = Model.ToList();
+}
+
+<ul class="user-comments">
+    @foreach (var comment in comments)
+    {
+        <li>
+            <div class="comment_description">
+                <div class="author_img">
+                    <img src="~/UIAdmin/customs/images/RandomImage/DefaultImage/default-user.png" alt="default-user" />
+                </div>
+                <div class="author_text">
+                    <div class="author_info">
+                        <h5 class="author_name">@comment.Owner</h5>
+                        <span>@comment.CreatedOn.TimeAgo()</span>
+                    </div>
+                    <div class="user-rating">
+                        <ul>
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (comment.Rating > 0)
+                                {
+                                    comment.Rating--;
+                                    <li class="active"></li>
+                                }
+                                else
+                                {
+                                    <li class="deactive"></li>
+
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <p>@comment.Description</p>
+                    <a href="#" class="btn btn-default">Replay</a>
+                </div>
+            </div>
+        </li>
+        if (comment == null || comment.Child.Count != 0)
+        {
+            foreach (var child in comment.Child)
+            {
+                <li>
+                    <div class="comment_description replied">
+                        <div class="author_img">
+                            <img src="~/UIAdmin/customs/images/RandomImage/DefaultImage/default-user.png" alt="default-user" />
+                        </div>
+                        <div class="author_text">
+                            <div class="author_info">
+                                <h5 class="author_name">@child.Owner</h5>
+                                <span>@child.CreatedOn.TimeAgo()</span>
+                            </div>
+                            <div class="user-rating">
+                                <ul>
+                                    <li class="active"></li>
+                                    <li class="active"></li>
+                                    <li class="active"></li>
+                                    <li class="deactive"></li>
+                                    <li class="deactive"></li>
+                                </ul>
+                            </div>
+                            <p>@child.Description</p>
+                            <a href="#" class="btn btn-default">Replay</a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+    }
+</ul>

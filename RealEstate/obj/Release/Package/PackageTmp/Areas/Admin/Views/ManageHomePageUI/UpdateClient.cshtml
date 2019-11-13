@@ -1,0 +1,135 @@
+﻿@model HomeUIClientViewModels
+@{
+    ViewBag.Title = "Chỉnh Sửa Client Trang Chủ";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+    string prefix = $"{nameof(HomeUIClientViewModels.Clients)}";
+    int index = 0;
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("cropper/cropper.min.css")" rel="stylesheet" />
+
+    <style>
+        .img-container {
+            min-height: 300px;
+        }
+
+        .no-image-background {
+            background: white;
+            display: flex;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            line-height: 300px;
+        }
+
+        .activeCropper {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        #image-popup-gallery img {
+            cursor: pointer
+        }
+
+        .btn-delete {
+            top: calc(0px - 5px);
+            right: calc(0px + 5px);
+            padding: 0;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            outline: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        form label {
+            color: black;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper-init-multi-image-modified.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $mainForm = $('#accordion');
+            var cropper = new MyLib.CropperFactory({ $CropperModal: '#modalCropper' });
+            cropper.Create(`#slider`, 1, NaN, '@nameof(Model.Background)', true, 0);
+
+            $("button[name='addClient']").on('click', function () {
+                $.ajax({
+                    url: '@Url.Action("RenderHomeClientForm", "SiteAdmin")',
+                    dataType: 'json'
+                }).done(function (data, textStatus, jqXHR) {
+                    var index = $mainForm.find('.form-material').length || 0;
+                    $mainForm.append(data.replace(/{{index}}/g, index).replace(/{{i}}/g, index + 1));
+
+                    cropper.Create(`#slider${index + 1}`, 1, NaN, '@(nameof(Model.Clients))', true, index++);
+                    }).fail(function () {
+                        swal('Error', 'Error at loading client form, Please contact to the administrator', 'error');
+                    });
+            });
+
+            $("button[name='removeClient']").on('click', function () {
+                $mainForm.children('.card').last().remove();
+            });
+
+            $mainForm.find('.form-material').each(function (index, e) {
+                    cropper.Create(`#slider${index + 1}`, 1, NaN, '@(nameof(Model.Clients))', true, index++);
+                });
+        });
+            
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box;">Cập Nhật Client (recommend 3)</h4>
+
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Save Changes</button>
+        <button type="button" name="removeClient" class="btn btn-outline-danger waves-effect waves-light mr-2 float-right">Remove Client</button>
+        <button type="button" name="addClient" class="btn btn-outline-info waves-effect waves-light mr-2 float-right">Add Client</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post, new { id = "mainFormContainer" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-material col-12 float-left">
+                <div class="col-12 m-b-20">
+                    @Html.LabelFor(model => model.BackgroundUploaded)
+                    @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                                  new _ImageCropper
+                                  {
+                                      CropActiveId = $"slider",
+                                      ImageContainer = $"sliderContainer",
+                                      ImageUploaded = Model.BackgroundUploaded ?? string.Empty,
+                                      ButtonText = "Select Images (1920 x 1080)"
+                                  });
+                    }
+                </div>
+            </div>
+            <div id="accordion">
+                @{ index = 0; }
+                @foreach (var client in Model.Clients)
+                {
+                    ViewBag.Index = (index++ + 1).ToString();
+                    Html.RenderPartial("_ClientElement", client);
+                }
+            </div>
+        }
+    </div>
+</div>
+@{ Html.RenderPartial("ViewComponents/_ImageCropperModal"); }

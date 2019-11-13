@@ -1,0 +1,352 @@
+﻿@model UpdatePropertyViewModels
+@{
+    ViewBag.Title = "Cập Nhật Dự Án";
+
+    Model.Seo.Prefix = $"{nameof(Model.Seo)}.";
+    Model.BasicInformation.Prefix = $"{nameof(Model.BasicInformation)}.";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("bootstrap-select/bootstrap-select.min.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("cropper/cropper.min.css")" rel="stylesheet" />
+    <link href="@Url.AppCustoms("css/switchBtn.css")" rel="stylesheet" />
+
+    <style>
+        .img-container {
+            min-height: 300px;
+        }
+
+        .no-image-background {
+            background: white;
+            display: flex;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            line-height: 300px;
+        }
+
+        .activeCropper {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #image-popup-gallery img {
+            cursor: pointer
+        }
+
+        .btn-delete {
+            top: calc(0px - 5px);
+            right: calc(0px + 5px);
+            padding: 0;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            outline: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        form label {
+            color: black;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppVendors("bootstrap-select/bootstrap-select.min.js")"></script>
+    <script src="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js")" type="text/javascript"></script>
+    <script src="@Url.AppVendors("tinymce/jquery.tinymce.min.js")"></script>
+    <script src="@Url.AppVendors("tinymce/tinymce.min.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper.min.js")"></script>
+    <script src="@Url.AppVendors("cropper/cropper-init-multi-image-modified.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var $btnSwimming = $("button[name='@($"{Model.BasicInformation.Prefix}" +
+                                                 $"{nameof(Model.BasicInformation.HasSwimming)}")']");
+            var $btnGarden = $("button[name='@($"{Model.BasicInformation.Prefix}" +
+                                                 $"{nameof(Model.BasicInformation.HasGarden)}")']");
+            var $btnGarage = $("button[name='@($"{Model.BasicInformation.Prefix}" +
+                                                 $"{nameof(Model.BasicInformation.HasCarGarage)}")']");
+            var $btnDisplay = $("button[name='@($"{Model.BasicInformation.Prefix}" +
+                                                 $"{nameof(Model.BasicInformation.IsDisplay)}")']");
+            var $btnFeatured = $("button[name='@($"{Model.BasicInformation.Prefix}" +
+                                                 $"{nameof(Model.BasicInformation.IsFeatured)}")']");
+            $btnDisplay.on('click', function () {
+                let $inputDisplay = $("input[name='@($"{Model.BasicInformation.Prefix}" +
+                                                      $"{nameof(Model.BasicInformation.IsDisplay)}")']");
+                $inputDisplay.val($inputDisplay.val() === 'True' ? 'False' : 'True');
+            });
+
+            $btnFeatured.on('click', function () {
+                let $inputFeatured = $("input[name='@($"{Model.BasicInformation.Prefix}" +
+                                                      $"{nameof(Model.BasicInformation.IsFeatured)}")']");
+                $inputFeatured.val($inputFeatured.val() === 'True' ? 'False' : 'True');
+            });
+
+            $btnSwimming.on('click', function () {
+                let $inputSwimming = $("input[name='@($"{Model.BasicInformation.Prefix}" +
+                                                      $"{nameof(Model.BasicInformation.HasSwimming)}")']");
+                $inputSwimming.val($inputSwimming.val() === 'True' ? 'False' : 'True');
+            });
+
+            $btnGarden.on('click', function () {
+                let $inputGarden = $("input[name='@($"{Model.BasicInformation.Prefix}" +
+                                                    $"{nameof(Model.BasicInformation.HasGarden)}")']");
+                $inputGarden.val($inputGarden.val() === 'True' ? 'False' : 'True');
+            });
+
+            $btnGarage.on('click', function () {
+                let $inputGarage = $("input[name='@($"{Model.BasicInformation.Prefix}" +
+                                                    $"{nameof(Model.BasicInformation.HasCarGarage)}")']");
+                let hiddenGarage = $('#NumberOfGarage');
+
+                if ($inputGarage.val() === 'True') {
+                    $inputGarage.val('False');
+                    hiddenGarage.parent().parent().css('display', 'none');
+                } else {
+                    $inputGarage.val('True');
+                    hiddenGarage.parent().parent().css('display', 'block');
+                }
+            });
+
+            var $city = $('#City');
+            var $district = $('#District');
+
+            $city.on('change', function () {
+                let $this = $(this);
+                let options = `<option value="">@Html.DisplayNameFor(x => x.BasicInformation.District)</option>`;
+                if ($this.val() === '') {
+                    $district.prop('disabled', true);
+                    $district.empty();
+                    $district.html(options);
+                    $district.selectpicker('refresh');
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("GetDistricts")',
+                        dataType: 'json',
+                        method: 'get',
+                        data: {
+                            cityName: $this.val()
+                        }
+                    }).done(function (data) {
+                        $district.prop('disabled', false);
+
+                        $.each(data, function (i, ele) {
+                            options += `<option value="${ele}">${ele}</option>`;
+                        });
+                        $district.empty();
+                        $district.html(options)
+                        $district.selectpicker('refresh');
+                    }).fail(function () {
+                        swal('Error at loading districts, Please contact to the administrator', '', 'error');
+                    });
+                }
+            });
+
+            new MyLib.CropperFactory({ $CropperModal: '#modalCropper' })
+                    .Create('#avatarCropper', 1, NaN, '@nameof(Model.Avatar)', true, 0)
+                    .Create('#listCropper', 100, NaN, '@nameof(Model.PropertyImages)', false, 0)
+                    ;
+        });
+
+        $(document).ready(function () {
+            if ($("#mymce").length > 0) {
+                tinymce.init({
+                    selector: "textarea#mymce",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    valid_elements: '*[*]',
+                    invalid_elements: "script",
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+                });
+            }
+        });
+
+        $('input#Price').TouchSpin({
+            min: 0,
+            max: 999999999999,
+            prefix: 'VND',
+            initval: "0",
+            step: 500000,
+            forcestepdivisibility: 'none',
+            verticalbuttons: true,
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+        });
+
+        $('input#Area').TouchSpin({
+            min: 0,
+            max: 999999999999,
+            prefix: 'm²',
+            initval: "0",
+            step: 5,
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+            verticalbuttons: true,
+            forcestepdivisibility: 'none'
+        });
+
+        $('input#Rating').TouchSpin({
+            min: 1,
+            max: 10,
+            initval: "1",
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $('input#NumberOfGarage').TouchSpin({
+            min: 1,
+            max: 10,
+            prefix: '<i class="fas fa-car"></i>',
+            initval: "1",
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $('input#NumberOfBedRoom').TouchSpin({
+            min: 0,
+            max: 100,
+            prefix: '<i class="fas fa-bed"></i>',
+            initval: "0",
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $('input#NumberOfBathRoom').TouchSpin({
+            min: 0,
+            max: 100,
+            prefix: '<i class="fas fa-bath"></i>',
+            initval: "0",
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+            verticalbuttons: true
+        });
+
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+    </script>
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box; margin-bottom: 25px">Cập Nhật Thông Tin Dự Án</h4>
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Update</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post))
+        {
+            @Html.Hidden("id", Model.BasicInformation.Id)
+            @Html.AntiForgeryToken()
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Thông Tin Cơ Bản
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @{
+                            Html.RenderPartial("_BasicInformation", Model.BasicInformation);
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ảnh Đại Diện
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                                    new _ImageCropper
+                                    {
+                                        CropActiveId = "avatarCropper",
+                                        ImageContainer = "avatarContainer",
+                                        ImageUploaded = Model.AvatarUpload,
+                                        ButtonText = "Select Images (470 x 315)"
+                                    });
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Hình Ảnh Dự Án
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        @{ Html.RenderPartial("ViewComponents/_ImageCropper",
+                                     new _ImageCropper
+                                     {
+                                         CropActiveId = "listCropper",
+                                         ImageContainer = "imagesContainer",
+                                         ImageUploaded = Model.ImageUploaded,
+                                         ButtonText = "Select Images (1170 x 620)"
+                                     });
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            SEO Optimize
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        @{ Html.RenderPartial("_SeoOptimize", Model.Seo); }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Thông Tin Liên Hệ
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        @{
+                            Html.RenderPartial("_ContactInformation", Model.ContactInformation);
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+@{ Html.RenderPartial("ViewComponents/_ImageCropperModal"); }

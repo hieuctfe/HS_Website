@@ -1,0 +1,253 @@
+﻿@model PropertyBasicInformation
+@{
+    string prefix = "BasicInformation.";
+
+    IEnumerable<SelectListItem>
+            cities = ViewBag.Cities as IEnumerable<SelectListItem> ?? Enumerable.Empty<SelectListItem>(),
+            districts = ViewBag.Districts as IEnumerable<SelectListItem> ?? Enumerable.Empty<SelectListItem>();
+}
+
+<div class="form-material col-12 float-left">
+    @Html.HiddenFor(x => x.Id, new
+    {
+        Name = $"{prefix}Id"
+    })
+    <div class="row">
+        <div class="col-2">
+            @Html.LabelFor(model => model.Code, new { Name = $"{prefix}Code" })
+            @Html.TextBoxFor(model => model.Code, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}Code"
+            })
+            @Html.ValidationMessageFor(model => model.Code, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Code",
+                    ["data-valmsg-for"] = $"{prefix}Code"
+                })
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(model => model.Name, new { Name = $"{prefix}Name" })
+            @Html.TextBoxFor(model => model.Name, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}Name"
+            })
+            @Html.ValidationMessageFor(model => model.Name, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Name",
+                    ["data-valmsg-for"] = $"{prefix}Name"
+                })
+        </div>
+    </div>
+    <div class="row m-t-10">
+        <div class="col-4">
+            @Html.LabelFor(model => model.Price, new { Name = $"{prefix}Price" })
+            @Html.TextBoxFor(model => model.Price, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}Price"
+            })
+            @Html.ValidationMessageFor(model => model.Price, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Price",
+                    ["data-valmsg-for"] = $"{prefix}Price"
+                })
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(model => model.Area, new { Name = $"{prefix}Area" })
+            @Html.TextBoxFor(model => model.Area, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}Area"
+            })
+            @Html.ValidationMessageFor(model => model.Area, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}Area",
+                    ["data-valmsg-for"] = $"{prefix}Area"
+                })
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-4">
+            @Html.LabelFor(model => model.HasSwimming)
+            @Html.HiddenFor(model => model.HasSwimming, new { Name = $"{prefix}HasSwimming" })
+            <button type="button" name="@($"{prefix}{nameof(Model.HasSwimming)}")"
+                    class="btn btn-secondary btn-toggle float-right @(Model.HasSwimming ? "active" : string.Empty)"
+                    data-toggle="button" aria-pressed="@Model.HasSwimming" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-4">
+            @Html.LabelFor(model => model.HasGarden)
+            @Html.HiddenFor(model => model.HasGarden, new { Name = $"{prefix}HasGarden" })
+            <button type="button" name="@($"{prefix}{nameof(Model.HasGarden)}")"
+                    class="btn btn-secondary btn-toggle float-right @(Model.HasGarden ? "active" : string.Empty)"
+                    data-toggle="button" aria-pressed="@Model.HasGarden" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-4">
+            @Html.LabelFor(model => model.HasCarGarage)
+            @Html.HiddenFor(model => model.HasCarGarage, new { Name = $"{prefix}HasCarGarage" })
+            <button type="button" name="@($"{prefix}{nameof(Model.HasCarGarage)}")"
+                    class="btn btn-secondary btn-toggle float-right @(Model.HasCarGarage ? "active" : string.Empty)"
+                    data-toggle="button" aria-pressed="@Model.HasCarGarage" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-2">
+            <label>Số Lượng</label>
+            @Html.TextBoxFor(model => model.NumberOfBedRoom, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}NumberOfBedRoom"
+            })
+
+        </div>
+        <div class="col-2">
+            <label>&nbsp;</label>
+            @Html.TextBoxFor(model => model.NumberOfBathRoom, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}NumberOfBathRoom"
+            })
+        </div>
+        <div class="col-2" style="display:@(Model.HasCarGarage ? "block" : "none")">
+            <label>&nbsp;</label>
+            @Html.TextBoxFor(model => model.NumberOfGarage, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}NumberOfGarage"
+            })
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-4">
+            @Html.LabelFor(model => model.PropertyTypeId, new { Name = $"{prefix}PropertyTypeId" })
+            @Html.DropDownList($"{prefix}PropertyTypeId", ViewBag.PropertyTypes as IEnumerable<SelectListItem>, new
+                   {
+                       @class = "selectpicker",
+                       id = $"{prefix}PropertyTypeId"
+                   })
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(model => model.PropertyStatusCodeId, new { Name = $"{prefix}PropertyStatusCodeId" })
+            @Html.DropDownList($"{prefix}PropertyStatusCodeId", ViewBag.PropertyStatusCodes as IEnumerable<SelectListItem>, new
+                   {
+                       @class = "selectpicker",
+                       id = $"{prefix}PropertyStatusCodeId"
+                   })
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-6">
+            @Html.TextBoxFor(model => model.AddressLine, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}AddressLine",
+                placeholder = $"{Html.DisplayNameFor(model => model.AddressLine)}"
+            })
+            @Html.ValidationMessageFor(model => model.AddressLine, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}AddressLine",
+                    ["data-valmsg-for"] = $"{prefix}AddressLine"
+                })
+        </div>
+        <div class="col-3">
+            @Html.DropDownList($"{prefix}City", cities, $"Thành Phố", new
+                   {
+                       @class = "selectpicker",
+                       id = $"City"
+                   })
+        </div>
+        <div class="col-3">
+            @if (!cities.Any(x => x.Selected))
+            {
+                @Html.DropDownList($"{prefix}District", districts, $"{Html.DisplayNameFor(x => x.District)}", new
+                   {
+                       @class = "selectpicker",
+                       id = $"District",
+                       disabled = "True"
+                   })
+            }
+            else
+            {
+                @Html.DropDownList($"{prefix}District", districts, $"{Html.DisplayNameFor(x => x.District)}", new
+                   {
+                       @class = "selectpicker",
+                       id = $"District",
+                   })
+            }
+        </div>
+
+    </div>
+    @*<div class="row m-t-20">
+        <div class="col-3">
+            @Html.LabelFor(model => model.IsDisplay)
+            @Html.HiddenFor(model => model.IsDisplay, new { Name = $"{prefix}IsDisplay" })
+            <button type="button" name="@($"{prefix}{nameof(Model.IsDisplay)}")"
+                    class="btn btn-secondary btn-toggle float-right @(Model.IsDisplay ? "active" : string.Empty)"
+                    data-toggle="button" aria-pressed="@Model.IsDisplay" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(model => model.IsFeatured)
+            @Html.HiddenFor(model => model.IsFeatured, new { Name = $"{prefix}IsFeatured" })
+            <button type="button" name="@($"{prefix}{nameof(Model.IsFeatured)}")"
+                    class="btn btn-secondary btn-toggle float-right @(Model.IsFeatured ? "active" : string.Empty)"
+                    data-toggle="button" aria-pressed="@Model.IsFeatured" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+    </div>*@
+    <div class="row m-t-10">
+        <div class="col-12">
+            @Html.LabelFor(model => model.ShortDescription, new { Name = $"{prefix}ShortDescription" })
+            @Html.TextAreaFor(model => model.ShortDescription, new
+            {
+                @class = "form-control",
+                rows = 5,
+                Name = $"{prefix}ShortDescription"
+            })
+            @Html.ValidationMessageFor(model => model.ShortDescription, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}ShortDescription",
+                    ["data-valmsg-for"] = $"{prefix}ShortDescription"
+                })
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.PostTitle, new { Name = $"{prefix}PostTitle" })
+            @Html.TextBoxFor(model => model.PostTitle, new
+            {
+                @class = "form-control",
+                Name = $"{prefix}PostTitle"
+            })
+            @Html.ValidationMessageFor(model => model.PostTitle, null,
+                new Dictionary<string, object>()
+                {
+                    ["Name"] = $"{prefix}PostTitle",
+                    ["data-valmsg-for"] = $"{prefix}PostTitle"
+                })
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(model => model.DetailDescription, new { Name = $"{prefix}DetailDescription" })
+            <div class="tinymce-contianer">
+                @Html.TextAreaFor(model => model.DetailDescription, new { id = "mymce", Name = $"{prefix}DetailDescription" })
+            </div>
+        </div>
+    </div>
+</div>

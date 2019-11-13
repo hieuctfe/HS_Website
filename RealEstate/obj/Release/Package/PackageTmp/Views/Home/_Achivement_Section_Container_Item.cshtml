@@ -1,0 +1,8 @@
+﻿@model AchivementViewModels
+
+<div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="achievement wow fadeIn" data-wow-delay="@(Model.Delay)ms" data-wow-duration="500ms">
+        <h2 class="counting" data-speed="@Model.Speed" data-stop="@Model.StopAt"></h2>
+        <p class="subject">@Model.Content</p>
+    </div>
+</div>

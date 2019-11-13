@@ -1,0 +1,135 @@
+﻿@model HomeUIServiceViewModels
+@{
+    ViewBag.Title = "Chỉnh Sửa Service Trang Chủ";
+
+    string action = ViewContext.RouteData.Values["action"].ToString(),
+        controller = ViewContext.RouteData.Values["controller"].ToString();
+    int index = 0;
+    string prefix = $"{nameof(HomeUIServiceViewModels.Services)}";
+}
+
+@section CustomStyles
+{
+    <link href="@Url.AppVendors("sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")" rel="stylesheet" />
+
+    <style>
+        form label {
+            color: black;
+        }
+    </style>
+}
+
+@section CustomScripts
+{
+    <script src="@Url.AppCustoms("js/common.js")"></script>
+    <script src="@Url.AppVendors("sweetalert/sweetalert.min.js")"></script>
+    <script src="@Url.AppVendors("bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $mainForm = $('#accordion');
+
+            $("button[name='addService']").on('click', function () {
+                $.ajax({
+                    url: '@Url.Action("RenderHomeServiceForm", "SiteAdmin")',
+                    dataType: 'json'
+                }).done(function (data, textStatus, jqXHR) {
+                    var index = $mainForm.find('.form-material').length || 0;
+                    $mainForm.append(data.replace(/{{index}}/g, index).replace(/{{i}}/g, index + 1));
+
+                    $(`input#Delay`).TouchSpin({
+                        min: 0,
+                        max: 10000,
+                        prefix: 'ms',
+                        initval: "0",
+                        step: 100,
+                        forcestepdivisibility: 'none',
+                        verticalbuttons: true,
+                        buttondown_class: 'btn btn-info',
+                        buttonup_class: 'btn btn-default',
+                    });
+
+                    }).fail(function () {
+                        swal('Error', 'Error at loading service form, Please contact to the administrator', 'error');
+                    });
+            });
+
+            $("button[name='removeService']").on('click', function () {
+                $mainForm.children('.card').last().remove();
+            });
+        });
+
+        $("button[name='submitForm']").on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+
+        $(`input#Delay`).TouchSpin({
+            min: 0,
+            max: 10000,
+            prefix: 'ms',
+            initval: "0",
+            step: 100,
+            forcestepdivisibility: 'none',
+            verticalbuttons: true,
+            buttondown_class: 'btn btn-info',
+            buttonup_class: 'btn btn-default',
+        });
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="display: -webkit-inline-box;">Cập Nhật Service (recommend 4)</h4>
+
+        <button type="button" name="submitForm" class="btn btn-success waves-effect waves-light mr-2 float-right">Save Changes</button>
+        <button type="button" name="removeService" class="btn btn-outline-danger waves-effect waves-light mr-2 float-right">Remove Service</button>
+        <button type="button" name="addService" class="btn btn-outline-info waves-effect waves-light mr-2 float-right">Add Service</button>
+        @using (Html.BeginForm(action, controller, FormMethod.Post, new { id = "mainFormContainer" }))
+        {
+            @Html.AntiForgeryToken()
+            <h6 class="card-subtitle" style="display: -webkit-inline-box; margin-bottom: 25px">
+                Visit
+                <a target="_blank" href="https://www.flaticon.com/">here</a> to choose your favorites icon. Then copy <code>class</code> value to icon text box to change the icon
+            </h6>
+            <div class="form-material col-12 float-left">
+                <div class="col-12">
+                    @Html.LabelFor(model => model.Sologan, new { Name = $"Sologan" })
+                    @Html.TextAreaFor(model => model.Sologan, new
+                    {
+                        @class = "form-control",
+                        rows = 3,
+                        Name = $"Sologan"
+                    })
+                    @Html.ValidationMessageFor(model => model.Sologan, null,
+                    new Dictionary<string, object>()
+                    {
+                        ["Name"] = $"Sologan",
+                        ["data-valmsg-for"] = $"Sologan"
+                    })
+                </div>
+                <div class="col-8 m-b-20">
+                    @Html.LabelFor(model => model.Author, new { Name = $"Author" })
+                    @Html.TextBoxFor(model => model.Author, new
+                    {
+                        @class = "form-control",
+                        Name = $"Author"
+                    })
+                    @Html.ValidationMessageFor(model => model.Author, null,
+                    new Dictionary<string, object>()
+                    {
+                        ["Name"] = $"Author",
+                        ["data-valmsg-for"] = $"Author"
+                    })
+                </div>
+            </div>
+            <div id="accordion">
+                @{ index = 0; }
+                @foreach (var service in Model.Services)
+                {
+                    ViewBag.Index = (index++ + 1).ToString();
+                    Html.RenderPartial("_ServiceElement", service);
+                }
+            </div>
+        }
+    </div>
+</div>

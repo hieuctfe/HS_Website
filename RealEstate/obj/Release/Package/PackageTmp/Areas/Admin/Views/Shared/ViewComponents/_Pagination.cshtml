@@ -1,0 +1,20 @@
+﻿@model _PageView
+<ul class="pagination justify-content-end pagination-pt m-t-20">
+    <li class="page-item@(Model.PageIndex == 1 ? " disabled" : string.Empty)">
+        @{ Model.RouteValues["PageIndex"] = 1; }
+        <a class="page-link" href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)"><<</a>
+    </li>
+
+    @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+    {
+        <li class="page-item@(Model.PageIndex == i ? " active" : string.Empty)">
+            @{ Model.RouteValues["PageIndex"] = i; }
+            <a class="page-link" href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">@i</a>
+        </li>
+    }
+
+    <li class="page-item@(Model.PageIndex == Model.TotalPage ? " disabled" : string.Empty)">
+        @{ Model.RouteValues["PageIndex"] = Model.TotalPage; }
+        <a class="page-link" href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">>></a>
+    </li>
+</ul>

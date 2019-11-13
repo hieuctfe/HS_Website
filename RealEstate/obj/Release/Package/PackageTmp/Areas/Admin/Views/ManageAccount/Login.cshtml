@@ -1,0 +1,78 @@
+﻿@model AccountViewModels
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="@Url.AppCustoms("images/favicon.png")">
+    <title>Trang Đăng Nhập</title>
+    <link href="@Url.AppVendors("bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.AppAssets("css/style.css")" rel="stylesheet">
+    <link href="@Url.AppAssets("css/colors/blue.css")" id="theme" rel="stylesheet">
+</head>
+<body>
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url(/UIAdmin/customs/images/login/login-register.jpg);">
+            <div class="login-box card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Login", "ManageAccount", new { returnUrl = ViewBag.ReturnUrl },
+                        FormMethod.Post, new { @class = "form-horizontal form-material", id = "loginform" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h3 class="box-title m-b-20">Sign in</h3>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = "Username" })
+                                @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Password" })
+                                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex no-block align-items-center">
+                                <div class="checkbox checkbox-primary p-t-0">
+                                    <input id="checkbox-signup" name="IsRemember" type="checkbox">
+                                    <label for="checkbox-signup"> Remember me </label>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="@Url.AppVendors("jquery/jquery.min.js")"></script>
+    <script src="@Url.AppVendors("popper/popper.min.js")"></script>
+    <script src="@Url.AppVendors("bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@Url.AppVendors("sticky-kit-master/dist/sticky-kit.min.js")"></script>
+    <script src="@Url.AppVendors("sparkline/jquery.sparkline.min.js")"></script>
+    <script src="@Url.AppVendors("styleswitcher/jQuery.style.switcher.js")"></script>
+    <script src="@Url.AppAssets("js/jquery.slimscroll.js")"></script>
+    <script src="@Url.AppAssets("js/waves.js")"></script>
+    <script src="@Url.AppAssets("js/sidebarmenu.js")"></script>
+    <script src="@Url.AppAssets("js/custom.min.js")"></script>
+</body>
+</html>

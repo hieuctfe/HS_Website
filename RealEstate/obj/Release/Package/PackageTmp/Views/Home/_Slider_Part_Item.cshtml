@@ -1,0 +1,17 @@
+﻿@model HomeUIBannerViewModels
+
+<div class="item @(ViewBag.Active == 0 ? "active" : string.Empty)">
+    <img src="@Model.ImagePath" alt="@Model.ImageName">
+    <div class="carousel-caption">
+        <div class="container">
+            <div class="slider_text">
+                <h1>@Model.Title</h1>
+                <p>@Model.Content</p>
+                <div class="slider_btn">
+                    <a href="@Model.LinkedUrl" class="btn btn-default">Đọc Thêm</a>
+                    <a href="@Model.ExtraUrl" class="btn btn-primary">Tìm Hiểu Thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿@model ServiceViewModels
+@{
+    string index = string.Format("[{0}]", ViewBag.Index != null ? (int.Parse(ViewBag.Index) - 1).ToString() : "{{index}}");
+    string prefix = $"{nameof(HomeUIServiceViewModels.Services)}{index}";
+
+    string i = ViewBag.Index != null ? ViewBag.Index : "{{i}}";
+}
+
+<div class="card">
+    <div class="card-header" id="heading@(i)">
+        <h5 class="mb-0">
+            <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse@(i)" aria-expanded="false" aria-controls="collapseOne">
+                Service @(i)
+            </button>
+        </h5>
+    </div>
+    <div id="collapse@(i)" class="collapse" aria-labelledby="heading@(i)" data-parent="#accordion">
+        <div class="card-body">
+            <div class="form-material row col-12 float-left">
+                <div class="col-8">
+                    @Html.LabelFor(model => model.Title, new { Name = $"{prefix}.Title" })
+                    @Html.TextBoxFor(model => model.Title, new
+                    {
+                    @class = "form-control",
+                    Name = $"{prefix}.Title"
+                    })
+                    @Html.ValidationMessageFor(model => model.Title, null,
+                    new Dictionary<string, object>()
+                        {
+                        ["Name"] = $"{prefix}.Title",
+                        ["data-valmsg-for"] = $"{prefix}.Title"
+                        })
+                </div>
+                <div class="col-4">
+                    @Html.LabelFor(model => model.Icons, new { Name = $"{prefix}.Icons" })
+                    @Html.TextBoxFor(model => model.Icons, new
+                    {
+                    @class = "form-control",
+                    Name = $"{prefix}.Icons"
+                    })
+                    @Html.ValidationMessageFor(model => model.Icons, null,
+                    new Dictionary<string, object>
+                        ()
+                        {
+                        ["Name"] = $"{prefix}.Icons",
+                        ["data-valmsg-for"] = $"{prefix}.Icons"
+                        })
+                </div>
+                <div class="col-12 m-t-20">
+                    @Html.LabelFor(model => model.Content, new { Name = $"{prefix}.Content" })
+                    @Html.TextAreaFor(model => model.Content, new
+                    {
+                    @class = "form-control",
+                    rows = 5,
+                    Name = $"{prefix}.Content"
+                    })
+                    @Html.ValidationMessageFor(model => model.Content, null,
+                    new Dictionary<string, object>
+                        ()
+                        {
+                        ["Name"] = $"{prefix}.Content",
+                        ["data-valmsg-for"] = $"{prefix}.Content"
+                        })
+                </div>
+                <div class="col-4 m-t-20">
+                    @Html.LabelFor(model => model.LinkedUrl, new { Name = $"{prefix}.LinkedUrl" })
+                    @Html.TextBoxFor(model => model.LinkedUrl, new
+                    {
+                    @class = "form-control",
+                    Name = $"{prefix}.LinkedUrl"
+                    })
+                    @Html.ValidationMessageFor(model => model.LinkedUrl, null,
+                    new Dictionary<string, object>
+                        ()
+                        {
+                        ["Name"] = $"{prefix}.LinkedUrl",
+                        ["data-valmsg-for"] = $"{prefix}.LinkedUrl"
+                        })
+                </div>
+                <div class="col-4 m-t-20 m-b-20">
+                    @Html.LabelFor(model => model.Delay, new { Name = $"{prefix}.Delay" })
+                    @Html.TextBoxFor(model => model.Delay, new
+                    {
+                        @class = "form-control",
+                        Name = $"{prefix}.Delay"
+                    })
+                    @Html.ValidationMessageFor(model => model.Delay, null,
+                        new Dictionary<string, object>()
+                        {
+                            ["Name"] = $"{prefix}.Delay",
+                            ["data-valmsg-for"] = $"{prefix}.Delay"
+                        })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
